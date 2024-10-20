@@ -1,0 +1,73 @@
+---
+title: Welcome to Atom
+description: Navigate through the documentation sections.
+template: splash
+hero:
+  tagline: Welcome to the Documentation of Atom Library
+  image:
+    file: ../../../assets/houston.webp
+  actions:
+    - text: Get Started
+      link: /en/algorithm/algorithm
+      icon: right-arrow
+    - text: Read Atom Document
+      link: https://starlight.astro.build
+      icon: external
+      variant: minimal
+---
+
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Documentation Sections
+
+<CardGrid stagger>
+    <Card title="Algorithms" icon="algorithm">
+        Explore various algorithms in [Algorithms](./en/algorithm/).
+    </Card>
+    <Card title="Asynchronous Programming" icon="async">
+        Learn about async programming in [Async](./en/async/).
+    </Card>
+    <Card title="Connections" icon="connection">
+        Understand different connection methods in [Connections](./en/connection/).
+    </Card>
+    <Card title="Error Handling" icon="error">
+        Master error handling techniques in [Error Handling](./en/error/).
+    </Card>
+    <Card title="Extra Topics" icon="extra">
+        Discover additional topics in [Extra](./en/extra/).
+    </Card>
+    <Card title="Functions" icon="function">
+        Dive into function-related content in [Functions](./en/function/).
+    </Card>
+    <Card title="Input/Output" icon="io">
+        Explore I/O operations in [Input/Output](./en/io/).
+    </Card>
+    <Card title="Logging" icon="log">
+        Learn about logging practices in [Logging](./en/log/).
+    </Card>
+    <Card title="Memory Management" icon="memory">
+        Understand memory management in [Memory](./en/memory/).
+    </Card>
+    <Card title="Search Algorithms" icon="search">
+        Study search algorithms in [Search](./en/search/).
+    </Card>
+    <Card title="Security" icon="secret">
+        Explore security topics in [Security](./en/secret/).
+    </Card>
+    <Card title="System Information" icon="sysinfo">
+        Get system information in [System Info](./en/sysinfo/).
+    </Card>
+    <Card title="System Operations" icon="system">
+        Understand system operations in [System](./en/system/).
+    </Card>
+    <Card title="Testing" icon="tests">
+        Learn about testing in [Tests](./en/tests/).
+    </Card>
+    <Card title="Types" icon="type">
+        Explore type-related content in [Types](./en/type/).
+    </Card>
+    <Card title="Web Development" icon="web">
+        Dive into web development in [Web](./en/web/).
+    </Card>
+</CardGrid>

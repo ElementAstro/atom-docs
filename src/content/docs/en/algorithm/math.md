@@ -1,9 +1,7 @@
 ---
-title: Extra Math Library Documentation
-description: Comprehensive documentation for the Extra Math Library in the atom::algorithm namespace, including functions for safe arithmetic operations, bit manipulation, and mathematical calculations for 64-bit unsigned integers.
+title: Extra Math Library
+description: Comprehensive for the Extra Math Library in the atom::algorithm namespace, including functions for safe arithmetic operations, bit manipulation, and mathematical calculations for 64-bit unsigned integers.
 ---
-
-# Extra Math Library Documentation
 
 ## Overview
 

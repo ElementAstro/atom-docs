@@ -1,9 +1,9 @@
 ---
-title: atom::type::expected Class Documentation
-description: Comprehensive documentation for the atom::type::expected class, including class definitions, main features, usage examples, and best practices for handling operations that might fail without using exceptions.
+title: atom::type::expected
+description: Comprehensive for the atom::type::expected class, including class definitions, main features, usage examples, and best practices for handling operations that might fail without using exceptions.
 ---
 
-# atom::type::expected Class Documentation
+# atom::type::expected
 
 The `atom::type::expected` class is a C++ implementation of the Expected monad pattern, providing a way to handle operations that might fail without using exceptions. It is similar to `std::expected` from C++23, but with some additional features.
 

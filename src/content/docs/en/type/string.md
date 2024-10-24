@@ -1,9 +1,9 @@
 ---
-title: Enhanced String Class Documentation
-description: Comprehensive documentation for the Enhanced String class, including constructors, operators, basic and advanced string operations, utility methods, static methods, and usage examples.
+title: Enhanced String
+description: Comprehensive for the Enhanced String class, including constructors, operators, basic and advanced string operations, utility methods, static methods, and usage examples.
 ---
 
-# Enhanced String Class Documentation
+# Enhanced String
 
 ## Table of Contents
 

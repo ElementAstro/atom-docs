@@ -1,11 +1,7 @@
 ---
-title: TypeInfo Class Documentation
-description: Comprehensive documentation for the TypeInfo class in the atom::meta namespace, including methods for type introspection, type registration, and usage examples for runtime type information in C++.
+title: TypeInfo
+description: Comprehensive for the TypeInfo class in the atom::meta namespace, including methods for type introspection, type registration, and usage examples for runtime type information in C++.
 ---
-
-# TypeInfo Class and Related Utilities Documentation
-
-This document provides a comprehensive guide to the `TypeInfo` class and its associated utilities in the `atom::meta` namespace. These tools are designed to enhance type handling and provide rich type information at runtime in C++ applications.
 
 ## Table of Contents
 

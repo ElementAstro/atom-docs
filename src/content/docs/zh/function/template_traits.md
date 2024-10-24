@@ -1,6 +1,6 @@
 ---
-title: Template Traits and Utilities Documentation
-description: Comprehensive documentation for the template_traits.hpp file, including utilities for analyzing and manipulating template types, checking specializations, extracting template parameters, and function traits in C++20.
+title: Template Traits and Utilities
+description: Comprehensive for the template_traits.hpp file, including utilities for analyzing and manipulating template types, checking specializations, extracting template parameters, and function traits in C++20.
 ---
 
 ## 目录

@@ -1,9 +1,7 @@
 ---
-title: FunctionSequence Class Documentation
-description: Detailed documentation for the FunctionSequence class in the atom::meta namespace, including class overview, member functions, usage examples, error handling, and best practices for creating and executing function pipelines.
+title: FunctionSequence
+description: Detailed for the FunctionSequence class in the atom::meta namespace, including class overview, member functions, usage examples, error handling, and best practices for creating and executing function pipelines.
 ---
-
-# FunctionSequence Class Documentation
 
 ## Table of Contents
 

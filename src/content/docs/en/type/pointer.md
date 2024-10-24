@@ -1,9 +1,9 @@
 ---
-title: PointerSentinel Class Documentation
-description: Comprehensive documentation for the PointerSentinel class, including class definition, template parameters, constructors, member functions, helper methods, and usage examples for managing various pointer types in C++.
+title: PointerSentinel
+description: Comprehensive for the PointerSentinel class, including class definition, template parameters, constructors, member functions, helper methods, and usage examples for managing various pointer types in C++.
 ---
 
-# PointerSentinel Class Documentation
+# PointerSentinel
 
 ## Table of Contents
 

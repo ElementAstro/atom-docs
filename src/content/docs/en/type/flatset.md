@@ -1,9 +1,9 @@
 ---
-title: FlatSet Class Documentation
-description: Comprehensive documentation for the FlatSet class in the atom::type namespace, including template parameters, member types, constructors, element access, iterators, capacity, modifiers, lookup, observers, non-member functions, usage examples, and performance considerations.
+title: FlatSet
+description: Comprehensive for the FlatSet class in the atom::type namespace, including template parameters, member types, constructors, element access, iterators, capacity, modifiers, lookup, observers, non-member functions, usage examples, and performance considerations.
 ---
 
-# atom::type::FlatSet Documentation
+# atom::type::FlatSet
 
 The `atom::type::FlatSet` is a flat set implementation using a sorted vector as the underlying container. It provides similar functionality to `std::set` but with potentially better cache locality and memory usage for small to medium-sized sets.
 

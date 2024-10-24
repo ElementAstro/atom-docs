@@ -1,9 +1,9 @@
 ---
-title: SmallVector Class Documentation
-description: Comprehensive documentation for the SmallVector class, including class definition, member types, constructors, element access, iterators, capacity management, modifiers, non-member functions, and usage examples.
+title: SmallVector
+description: Comprehensive for the SmallVector class, including class definition, member types, constructors, element access, iterators, capacity management, modifiers, non-member functions, and usage examples.
 ---
 
-# SmallVector Class Documentation
+# SmallVector
 
 ## Table of Contents
 

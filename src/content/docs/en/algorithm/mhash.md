@@ -1,9 +1,7 @@
 ---
-title: MinHash Implementation Documentation
-description: Detailed documentation for the MinHash algorithm implementation in the atom::algorithm namespace, including utility functions for hexadecimal conversion, class methods for computing signatures, and estimating Jaccard similarity.
+title: MinHash
+description: Detailed for the MinHash algorithm implementation in the atom::algorithm namespace, including utility functions for hexadecimal conversion, class methods for computing signatures, and estimating Jaccard similarity.
 ---
-
-# MinHash Implementation Documentation
 
 ## Overview
 

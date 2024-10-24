@@ -1,11 +1,7 @@
 ---
-title: C++ Signal Classes Documentation
-description: Detailed documentation for the signal classes in the atom::async namespace, including Signal, AsyncSignal, AutoDisconnectSignal, ChainedSignal, TemplateSignal, ThreadSafeSignal, BroadcastSignal, LimitedSignal, DynamicSignal, and ScopedSignal.
+title: C++ Signal Classes
+description: Detailed for the signal classes in the atom::async namespace, including Signal, AsyncSignal, AutoDisconnectSignal, ChainedSignal, TemplateSignal, ThreadSafeSignal, BroadcastSignal, LimitedSignal, DynamicSignal, and ScopedSignal.
 ---
-
-# C++ Signal Classes Documentation
-
-This document provides a detailed explanation of the signal classes and their usage as defined in the `atom::async` namespace.
 
 ## Table of Contents
 
@@ -727,5 +723,3 @@ scopedSignal.emit(10, "Goodbye, Scoped World!");
 9. **Error Handling**: These signal implementations do not inherently provide error handling for slot executions. Consider wrapping slot calls in try-catch blocks within your application code if exception handling is required.
 
 10. **Scalability**: For applications with a large number of signals or slots, consider the memory and performance implications. The `DynamicSignal` class, for instance, allows for runtime management of slots, which can be useful in such scenarios.
-
-By understanding these general principles and the specific behaviors of each signal class, you can effectively utilize these concurrent programming tools in your C++ applications. Choose the appropriate signal class based on your specific requirements for thread safety, performance, and functionality.

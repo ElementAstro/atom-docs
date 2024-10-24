@@ -1,13 +1,7 @@
 ---
-title: Fraction Class Documentation
-description: Comprehensive documentation for the Fraction class in the atom::algorithm namespace, including constructors, arithmetic operations, comparisons, conversions, and usage examples.
+title: Fraction
+description: Comprehensive for the Fraction class in the atom::algorithm namespace, including constructors, arithmetic operations, comparisons, conversions, and usage examples.
 ---
-
-# Fraction Class Documentation
-
-## Overview
-
-The `Fraction` class, defined in `fraction.hpp`, is part of the `atom::algorithm` namespace. It provides a robust implementation of fractions, supporting various arithmetic operations, comparisons, and conversions.
 
 ## Class Definition
 
@@ -240,9 +234,3 @@ Reduces the fraction to its simplest form.
 3. Remember that integer division occurs when converting a fraction to an integer, which may lead to loss of precision.
 4. Utilize the comparison operators for accurate comparisons between fractions instead of converting to floating-point numbers.
 5. When inputting fractions from a stream, ensure the input is in the correct format (numerator/denominator) to avoid parsing errors.
-
-## Notes
-
-- The class uses C++20 features like the spaceship operator (`<=>`) for comparisons when available.
-- The implementation automatically reduces fractions to their simplest form after operations.
-- Error handling for division by zero is not explicitly shown in the header and should be implemented in the class methods.

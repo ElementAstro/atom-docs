@@ -1,9 +1,7 @@
 ---
-title: Asynchronous Compression and Decompression Library Documentation
-description: Detailed documentation for the asynchronous compression and decompression library, including classes for compressing and decompressing files and directories, ZIP file operations, and usage examples.
+title: Asynchronous Compression and Decompression
+description: Detailed for the asynchronous compression and decompression library, including classes for compressing and decompressing files and directories, ZIP file operations, and usage examples.
 ---
-
-# Asynchronous Compression and Decompression Library Documentation
 
 ## Table of Contents
 

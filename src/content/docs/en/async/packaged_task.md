@@ -1,11 +1,7 @@
 ---
-title: EnhancedPackagedTask.hpp Documentation
-description: Detailed documentation for the EnhancedPackagedTask class template in the packaged_task.hpp header file, including constructors, public methods, protected members, specialization for void result type, exception handling, and usage examples.
+title: Enhanced Packaged Task
+description: Detailed for the EnhancedPackagedTask class template in the packaged_task.hpp header file, including constructors, public methods, protected members, specialization for void result type, exception handling, and usage examples.
 ---
-
-# Documentation for packaged_task.hpp
-
-This document provides a detailed overview of the `packaged_task.hpp` header file, which contains the `EnhancedPackagedTask` class template for implementing an enhanced version of `std::packaged_task` with additional features.
 
 ## Table of Contents
 
@@ -189,5 +185,3 @@ try {
     std::cout << "Caught exception: " << e.what() << std::endl;
 }
 ```
-
-These examples demonstrate the basic usage of the `EnhancedPackagedTask` class, including task execution, using completion callbacks, cancelling tasks, and error handling. Remember to handle exceptions appropriately in your actual implementations.

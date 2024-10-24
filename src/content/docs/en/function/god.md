@@ -1,13 +1,7 @@
 ---
-title: God.hpp Documentation
-description: Detailed documentation for the god.hpp file in the atom::meta namespace, including utility functions, type aliases, type traits, and usage examples for type casting, memory alignment, bit manipulation, and type checking.
+title: God of Code
+description: Detailed for the god.hpp file in the atom::meta namespace, including utility functions, type aliases, type traits, and usage examples for type casting, memory alignment, bit manipulation, and type checking.
 ---
-
-# God.hpp Documentation
-
-## Overview
-
-The `god.hpp` file is part of the `atom::meta` namespace and provides a collection of utility functions and type traits. These utilities are designed to assist with common programming tasks such as type casting, memory alignment, bit manipulation, and type checking.
 
 ## Table of Contents
 
@@ -233,5 +227,3 @@ int main() {
 5. The `blessNoBugs` function is a no-op and its purpose is likely humorous or superstitious.
 6. When using template functions like `cast`, be careful about potential narrowing conversions or other unsafe casts.
 7. The `ATOM_INLINE` macro is used frequently. Ensure this macro is properly defined in your project.
-
-Remember to include the necessary headers and compile with C++17 or later support when using this library.

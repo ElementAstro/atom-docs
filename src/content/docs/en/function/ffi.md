@@ -1,9 +1,7 @@
 ---
-title: FFI System Documentation
-description: Detailed documentation for the FFI (Foreign Function Interface) system in the atom::meta namespace, including key components, function templates, class descriptions, error handling, platform compatibility, performance considerations, and usage examples.
+title: FFI System
+description: Detailed for the FFI (Foreign Function Interface) system in the atom::meta namespace, including key components, function templates, class descriptions, error handling, platform compatibility, performance considerations, and usage examples.
 ---
-
-# FFI (Foreign Function Interface) System Documentation
 
 ## Overview
 

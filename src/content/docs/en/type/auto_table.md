@@ -1,9 +1,9 @@
 ---
-title: CountingHashTable Class Documentation
-description: Comprehensive documentation for the CountingHashTable class in the atom::type namespace, including template parameters, class members, constructors, public methods, and usage examples for a thread-safe hash table with access counting.
+title: CountingHashTable
+description: Comprehensive for the CountingHashTable class in the atom::type namespace, including template parameters, class members, constructors, public methods, and usage examples for a thread-safe hash table with access counting.
 ---
 
-# CountingHashTable Class Documentation
+# CountingHashTable
 
 The `CountingHashTable` is a thread-safe hash table implementation that counts the number of accesses to each entry. It is part of the `atom::type` namespace and is defined in the `auto_table.hpp` header file.
 

@@ -1,9 +1,7 @@
 ---
-title: BoxedValue Class Documentation
-description: Detailed documentation for the BoxedValue class in the atom::meta namespace, including constructors, member functions, attribute handling, utility functions, and usage examples.
+title: BoxedValue
+description: Detailed for the BoxedValue class in the atom::meta namespace, including constructors, member functions, attribute handling, utility functions, and usage examples.
 ---
-
-# BoxedValue Class Documentation
 
 ## Overview
 

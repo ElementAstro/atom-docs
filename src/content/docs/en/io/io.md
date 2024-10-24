@@ -1,11 +1,7 @@
 ---
-title: atom::io Namespace Documentation
-description: Detailed documentation for the atom::io namespace, including functions and structures for file and directory operations, symlink management, path validation, file type and size operations, file splitting and merging, and miscellaneous utilities.
+title: Extra IO
+description: Detailed for the atom::io namespace, including functions and structures for file and directory operations, symlink management, path validation, file type and size operations, file splitting and merging, and miscellaneous utilities.
 ---
-
-# atom::io Namespace Documentation
-
-This document provides a detailed explanation of the functions and structures in the `atom::io` namespace, which is defined in the `io.hpp` header file. The namespace contains various utility functions for file and directory operations.
 
 ## Table of Contents
 

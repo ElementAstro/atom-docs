@@ -1,9 +1,9 @@
 ---
-title: HttpHeaderParser Class Documentation
-description: Comprehensive documentation for the HttpHeaderParser class, including constructors, destructor, methods for parsing and manipulating HTTP headers, and usage examples.
+title: HttpHeaderParser
+description: Comprehensive for the HttpHeaderParser class, including constructors, destructor, methods for parsing and manipulating HTTP headers, and usage examples.
 ---
 
-# HttpHeaderParser Class Documentation
+# HttpHeaderParser
 
 ## Overview
 

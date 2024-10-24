@@ -1,9 +1,8 @@
 ---
-title: RingBuffer Class Documentation
-description: Detailed documentation for the RingBuffer class, including constructors, public methods, iterators, and usage examples for implementing a circular buffer in C++.
+title: RingBuffer
+description: Detailed for the RingBuffer class, including constructors, public methods, iterators, and usage examples for implementing a circular buffer in C++.
 ---
 
-# SharedMemory Documentation
 
 ## Table of Contents
 
@@ -512,5 +511,3 @@ int main() {
     return 0;
 }
 ```
-
-These examples demonstrate various use cases and advanced techniques for using the `SharedMemory` class. They cover inter-process communication, error handling, and implementing more complex data structures in shared memory. Remember to compile and link against the necessary libraries and include the appropriate headers when using these examples.

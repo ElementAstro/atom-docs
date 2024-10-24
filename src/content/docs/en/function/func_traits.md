@@ -1,9 +1,7 @@
 ---
-title: Function Traits Documentation
-description: Comprehensive documentation for the func_traits.hpp file in the atom::meta namespace, including tools for compile-time introspection of function types, member functions, lambdas, and function objects.
+title: Function Traits
+description: Comprehensive for the func_traits.hpp file in the atom::meta namespace, including tools for compile-time introspection of function types, member functions, lambdas, and function objects.
 ---
-
-# Function Traits Documentation
 
 ## Overview
 
@@ -206,5 +204,3 @@ int main() {
 5. The method detection macros (`DEFINE_HAS_METHOD`, `DEFINE_HAS_STATIC_METHOD`, and `DEFINE_HAS_CONST_METHOD`) provide a convenient way to check for the existence of methods in classes.
 6. When using the library, be aware of potential compile-time overhead for complex function types.
 7. The library uses template metaprogramming techniques, which may impact compile times for large projects.
-
-Remember to compile with C++20 support enabled (e.g., `-std=c++20` for GCC/Clang) when using this header.

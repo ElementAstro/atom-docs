@@ -1,9 +1,9 @@
 ---
-title: ArgsView Class Documentation
-description: Comprehensive documentation for the ArgsView class, including class definition, member functions, non-member functions, operator overloads, utility functions, and usage examples for managing argument lists in C++.
+title: ArgsView
+description: Comprehensive for the ArgsView class, including class definition, member functions, non-member functions, operator overloads, utility functions, and usage examples for managing argument lists in C++.
 ---
 
-# ArgsView Class Documentation
+# ArgsView
 
 ## Table of Contents
 

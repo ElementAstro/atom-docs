@@ -1,9 +1,7 @@
 ---
-title: Disk Information Module Documentation
-description: Detailed documentation for the Disk Information Module in the atom::system namespace, including functions for retrieving disk usage, drive models, available drives, and file system types, with usage examples and best practices.
+title: Disk Information Module
+description: Detailed for the Disk Information Module in the atom::system namespace, including functions for retrieving disk usage, drive models, available drives, and file system types, with usage examples and best practices.
 ---
-
-# Disk Information Module Documentation
 
 ## Table of Contents
 
@@ -142,8 +140,6 @@ int main() {
 }
 ```
 
-This example demonstrates how to use all the functions provided by the Disk Information Module to print a comprehensive overview of the system's disk information.
-
 ## Best Practices and Considerations
 
 1. **Error Handling**: The functions in this module don't have explicit error handling mechanisms. In a production environment, you might want to add error checking and handling for cases where the information might not be available or accessible.
@@ -158,7 +154,7 @@ This example demonstrates how to use all the functions provided by the Disk Info
 
 6. **File System Changes**: File system information can change dynamically. If your application relies on this information, consider how often you need to refresh it.
 
-7. **Thread Safety**: The documentation doesn't specify thread safety for these functions. If you're using them in a multi-threaded environment, consider adding synchronization mechanisms.
+7. **Thread Safety**: The doesn't specify thread safety for these functions. If you're using them in a multi-threaded environment, consider adding synchronization mechanisms.
 
 8. **Path Handling**: When working with file paths, be mindful of different path formats across operating systems. Use appropriate path manipulation libraries or functions to ensure compatibility.
 

@@ -1,9 +1,9 @@
 ---
-title: Args Class Documentation
-description: Comprehensive documentation for the Args class, including key features, member functions, operator overloads, macro definitions, and usage examples for managing key-value pairs in C++.
+title: Args
+description: Comprehensive for the Args class, including key features, member functions, operator overloads, macro definitions, and usage examples for managing key-value pairs in C++.
 ---
 
-# Args Class Documentation
+# Args
 
 ## Introduction
 

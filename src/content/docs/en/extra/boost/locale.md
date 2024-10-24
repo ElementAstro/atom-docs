@@ -1,9 +1,7 @@
 ---
-title: LocaleWrapper Class Documentation
-description: Detailed documentation for the LocaleWrapper class in the atom::extra::boost namespace, including methods for string conversions, Unicode normalization, tokenization, translation, case conversion, collation, date/time formatting, number formatting, currency formatting, and regular expression operations.
+title: LocaleWrapper
+description: Detailed for the LocaleWrapper class in the atom::extra::boost namespace, including methods for string conversions, Unicode normalization, tokenization, translation, case conversion, collation, date/time formatting, number formatting, currency formatting, and regular expression operations.
 ---
-
-# LocaleWrapper Class Documentation
 
 ## Overview
 

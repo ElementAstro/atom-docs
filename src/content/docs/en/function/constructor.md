@@ -1,9 +1,7 @@
 ---
-title: Constructor and Function Binding Utilities Documentation
-description: Detailed documentation for the constructor and function binding utilities in the atom::meta namespace, including methods for binding member functions, static functions, member variables, and creating various types of constructors.
+title: Constructor and Function Binding Utilities
+description: Detailed for the constructor and function binding utilities in the atom::meta namespace, including methods for binding member functions, static functions, member variables, and creating various types of constructors.
 ---
-
-# Constructor and Function Binding Utilities Documentation
 
 ## Overview
 

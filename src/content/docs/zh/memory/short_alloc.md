@@ -1,6 +1,6 @@
 ---
 title: 快速分配器
-description: Comprehensive documentation for the ShortAlloc library, including the Arena and ShortAlloc classes, allocateUnique function, and usage examples for fixed-size memory allocation in C++.
+description: Comprehensive for the ShortAlloc library, including the Arena and ShortAlloc classes, allocateUnique function, and usage examples for fixed-size memory allocation in C++.
 ---
 
 ## 目录

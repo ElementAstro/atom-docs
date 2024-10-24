@@ -1,9 +1,9 @@
 ---
-title: System Time Management API Documentation
-description: Comprehensive documentation for the System Time Management API, including functions for retrieving, setting, and synchronizing system time and timezone, with usage examples.
+title: System Time Management API
+description: Comprehensive for the System Time Management API, including functions for retrieving, setting, and synchronizing system time and timezone, with usage examples.
 ---
 
-# System Time Management API Documentation
+# System Time Management API
 
 ## Function: getSystemTime
 

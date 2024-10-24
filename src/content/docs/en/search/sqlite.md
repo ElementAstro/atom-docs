@@ -1,9 +1,7 @@
 ---
-title: SqliteDB Class Documentation
-description: Comprehensive documentation for the SqliteDB class, including methods for executing queries, fetching data, updating records, managing transactions, and handling SQLite errors.
+title: SqliteDB
+description: Comprehensive for the SqliteDB class, including methods for executing queries, fetching data, updating records, managing transactions, and handling SQLite errors.
 ---
-
-# SqliteDB Class Documentation
 
 ## Overview
 

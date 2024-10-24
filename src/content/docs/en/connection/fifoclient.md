@@ -1,11 +1,7 @@
 ---
-title: FifoClient Class Documentation
-description: Detailed documentation for the FifoClient class in the atom::connection namespace, including constructors, public methods, and usage examples for interacting with FIFO pipes in C++.
+title: FifoClient
+description: Detailed for the FifoClient class in the atom::connection namespace, including constructors, public methods, and usage examples for interacting with FIFO pipes in C++.
 ---
-
-# FifoClient Class Documentation
-
-The `FifoClient` class is part of the `atom::connection` namespace and provides an interface for interacting with FIFO (First In, First Out) pipes. This class allows reading from and writing to a FIFO pipe with optional timeout functionality.
 
 ## Table of Contents
 

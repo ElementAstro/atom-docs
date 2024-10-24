@@ -1,13 +1,11 @@
 ---
-title: Software-related Functions Documentation
-description: Comprehensive documentation for functions in the atom::system namespace, including checking software installation status, retrieving application versions, paths, and permissions.
+title: Software-related Functions
+description: Comprehensive for functions in the atom::system namespace, including checking software installation status, retrieving application versions, paths, and permissions.
 ---
-
-# Software-related Functions Documentation
 
 ## Overview
 
-This documentation covers a set of functions designed to interact with software installations and applications on a system. These functions are part of the `atom::system` namespace and provide capabilities such as checking software installation status, retrieving application versions, paths, and permissions.
+This covers a set of functions designed to interact with software installations and applications on a system. These functions are part of the `atom::system` namespace and provide capabilities such as checking software installation status, retrieving application versions, paths, and permissions.
 
 ## Function Definitions
 
@@ -163,9 +161,3 @@ int main() {
 4. **Version Comparisons**: When using `getAppVersion`, remember that version strings might not always be directly comparable. You might need to implement a version comparison function.
 
 5. **Permission Handling**: When using `getAppPermissions`, be prepared to handle a variety of permission formats that might differ across operating systems.
-
-## Conclusion
-
-These software-related functions provide a convenient interface for querying information about installed software and applications on a system. They can be particularly useful for system administration tasks, software inventory management, or as part of larger application deployment and management systems.
-
-When using these functions, be mindful of potential performance implications and system-specific behaviors. Always implement proper error checking and handling in your code to ensure robustness across different system configurations.

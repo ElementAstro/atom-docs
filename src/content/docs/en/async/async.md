@@ -1,11 +1,7 @@
 ---
-title: Async.hpp Documentation
-description: Detailed documentation for the async.hpp header file, including classes and functions for managing asynchronous tasks in C++, such as AsyncWorker, AsyncWorkerManager, utility functions, and usage examples.
+title: Extra Async
+description: Detailed for the async.hpp header file, including classes and functions for managing asynchronous tasks in C++, such as AsyncWorker, AsyncWorkerManager, utility functions, and usage examples.
 ---
-
-# Documentation for async.hpp
-
-This document provides a detailed overview of the `async.hpp` header file, which contains classes and functions for managing asynchronous tasks in C++.
 
 ## Table of Contents
 

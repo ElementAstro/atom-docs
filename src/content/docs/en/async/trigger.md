@@ -1,9 +1,7 @@
 ---
-title: Trigger Class Documentation
-description: Detailed documentation for the Trigger class in the atom::async namespace, including class declaration, concepts, type aliases, member functions, and usage examples for handling event-driven callbacks with parameter support.
+title: Trigger
+description: Detailed for the Trigger class in the atom::async namespace, including class declaration, concepts, type aliases, member functions, and usage examples for handling event-driven callbacks with parameter support.
 ---
-
-# Trigger Class Documentation
 
 ## Overview
 
@@ -167,8 +165,6 @@ int main() {
     return 0;
 }
 ```
-
-This example creates a `Trigger` object for events with `std::string` parameters, registers two callbacks for the "greet" event with different priorities, triggers the event immediately, and then schedules another trigger after a 2-second delay.
 
 ## Notes
 

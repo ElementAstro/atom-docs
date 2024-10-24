@@ -1,9 +1,9 @@
 ---
-title: cstream Class Documentation
-description: Comprehensive documentation for the cstream class in the atom::type namespace, including constructors, member functions, container transformations, element access, aggregation operations, utility functions, and usage examples.
+title: cstream
+description: Comprehensive for the cstream class in the atom::type namespace, including constructors, member functions, container transformations, element access, aggregation operations, utility functions, and usage examples.
 ---
 
-# cstream Class Documentation
+# cstream
 
 The `cstream` class is a part of the `atom::type` namespace and provides a stream-like interface for performing operations on containers. It offers a wide range of functionalities for manipulating and analyzing data in containers.
 

@@ -1,9 +1,7 @@
 ---
-title: StorageMonitor Class Documentation
-description: Detailed documentation for the StorageMonitor class in the atom::system namespace, including constructors, member functions, and usage examples for monitoring storage space changes on mounted devices.
+title: StorageMonitor
+description: Detailed for the StorageMonitor class in the atom::system namespace, including constructors, member functions, and usage examples for monitoring storage space changes on mounted devices.
 ---
-
-# StorageMonitor Class Documentation
 
 ## Overview
 
@@ -180,6 +178,6 @@ int main() {
 
 ## See Also
 
-- [std::function documentation](https://en.cppreference.com/w/cpp/utility/functional/function)
-- [std::mutex documentation](https://en.cppreference.com/w/cpp/thread/mutex)
-- Platform-specific documentation for storage monitoring (e.g., Windows API, Linux udev)
+- [std::function](https://en.cppreference.com/w/cpp/utility/functional/function)
+- [std::mutex](https://en.cppreference.com/w/cpp/thread/mutex)
+- Platform-specific for storage monitoring (e.g., Windows API, Linux udev)

@@ -1,11 +1,7 @@
 ---
-title: Atom Test Framework Documentation
-description: Comprehensive documentation for the Atom Test Framework, including key features, core components, test registration and execution, assertions, advanced features, and usage examples.
+title: Atom Test Framework
+description: Comprehensive for the Atom Test Framework, including key features, core components, test registration and execution, assertions, advanced features, and usage examples.
 ---
-
-# Atom Test Framework
-
-The Atom Test Framework is a comprehensive C++ testing library designed for ease of use, flexibility, and performance. It provides a rich set of features for writing and running unit tests, including support for asynchronous testing, parallel test execution, and various assertion types.
 
 ## Table of Contents
 
@@ -198,7 +194,3 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 ```
-
-This example demonstrates basic test registration, an asynchronous test, and running the tests with command-line argument support.
-
-The Atom Test Framework provides a powerful and flexible solution for C++ unit testing, suitable for both small projects and large-scale applications.

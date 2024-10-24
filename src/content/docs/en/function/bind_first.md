@@ -1,9 +1,7 @@
 ---
-title: bindFirst Function Documentation
-description: Detailed documentation for the bindFirst function in the atom::meta namespace, including helper functions, concepts, function overloads, and usage examples for binding the first argument of various types of functions.
+title: bindFirst Function
+description: Detailed for the bindFirst function in the atom::meta namespace, including helper functions, concepts, function overloads, and usage examples for binding the first argument of various types of functions.
 ---
-
-# bindFirst Function Documentation
 
 ## Overview
 

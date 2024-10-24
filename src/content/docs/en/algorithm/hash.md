@@ -1,13 +1,7 @@
 ---
-title: Hash Algorithms Documentation
-description: Comprehensive documentation for the hash.hpp file in the atom::algorithm namespace, including functions for hashing single values, vectors, tuples, arrays, and strings using FNV-1a.
+title: Hash Algorithms
+description: Comprehensive for the hash.hpp file in the atom::algorithm namespace, including functions for hashing single values, vectors, tuples, arrays, and strings using FNV-1a.
 ---
-
-# Hash Algorithms Documentation
-
-## Overview
-
-The `hash.hpp` file provides a collection of hash algorithms and utility functions for computing hash values of various data types. It includes implementations for hashing single values, vectors, tuples, and arrays, as well as a FNV-1a hash implementation for strings.
 
 ## Namespace
 
@@ -195,5 +189,3 @@ int main() {
     return 0;
 }
 ```
-
-This example shows how to use the various hash functions provided in the `hash.hpp` file, including hashing of single values, containers, tuples, and strings.

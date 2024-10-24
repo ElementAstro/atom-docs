@@ -1,13 +1,7 @@
 ---
-title: fnmatch.hpp Documentation
-description: Detailed documentation for the fnmatch.hpp header file in the atom::algorithm namespace, including functions for shell-style pattern matching and filtering in C++.
+title: FnMatch
+description: Detailed for the fnmatch.hpp header file in the atom::algorithm namespace, including functions for shell-style pattern matching and filtering in C++.
 ---
-
-# fnmatch.hpp Documentation
-
-## Overview
-
-The `fnmatch.hpp` header file provides a set of functions for shell-style pattern matching and filtering in C++. These functions are part of the `atom::algorithm` namespace and offer functionality similar to Python's `fnmatch` module.
 
 ## Functions
 

@@ -1,9 +1,7 @@
 ---
-title: Timer Class Documentation
-description: Detailed documentation for the Timer class in the atom::async namespace, including constructors, member functions, task scheduling, and usage examples for managing timed tasks in C++.
+title: Timer
+description: Detailed for the Timer class in the atom::async namespace, including constructors, member functions, task scheduling, and usage examples for managing timed tasks in C++.
 ---
-
-# Timer Class Documentation
 
 ## Overview
 
@@ -215,8 +213,6 @@ int main() {
     return 0;
 }
 ```
-
-This example creates a `Timer` object, sets a timeout for a one-time task, sets an interval for a repeating task, and sets a callback to be called after each task execution. It then waits for 10 seconds before stopping the timer.
 
 ## Notes
 

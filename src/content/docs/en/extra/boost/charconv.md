@@ -1,9 +1,7 @@
 ---
-title: BoostCharConv Class Documentation
-description: Detailed documentation for the BoostCharConv class in the atom::extra::boost namespace, including methods for converting between strings and numeric types using Boost's charconv functionality.
+title: BoostCharConv Wrapper
+description: Detailed for the BoostCharConv class in the atom::extra::boost namespace, including methods for converting between strings and numeric types using Boost's charconv functionality.
 ---
-
-# BoostCharConv Class Documentation
 
 ## Overview
 
@@ -412,4 +410,3 @@ If you need to extend the functionality of `BoostCharConv`, consider the followi
 
 3. **Locale Support**: If locale-aware conversions are needed, you could add methods that take a `std::locale` parameter and use it for conversions.
 
-Remember to maintain the existing error handling and performance characteristics when extending the class.

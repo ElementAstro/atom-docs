@@ -1,9 +1,9 @@
 ---
-title: QuickFlatMap and QuickFlatMultiMap Documentation
-description: Comprehensive documentation for the QuickFlatMap and QuickFlatMultiMap classes in the atom::type namespace, including template parameters, member functions, usage examples, and performance considerations.
+title: QuickFlatMap and QuickFlatMultiMap
+description: Comprehensive for the QuickFlatMap and QuickFlatMultiMap classes in the atom::type namespace, including template parameters, member functions, usage examples, and performance considerations.
 ---
 
-# atom::type::QuickFlatMap and QuickFlatMultiMap Documentation
+# atom::type::QuickFlatMap and QuickFlatMultiMap
 
 The `atom::type` namespace provides two flat map implementations: `QuickFlatMap` and `QuickFlatMultiMap`. These classes offer efficient key-value storage using a sorted vector as the underlying container.
 

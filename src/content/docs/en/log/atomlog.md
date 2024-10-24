@@ -1,11 +1,7 @@
 ---
-title: Logger Class Documentation
-description: Detailed documentation for the Logger class in the atom::log namespace, including constructors, logging methods, configuration methods, sink management, and usage examples.
+title: Logger
+description: Detailed for the Logger class in the atom::log namespace, including constructors, logging methods, configuration methods, sink management, and usage examples.
 ---
-
-# atom::log::Logger Documentation
-
-This document provides a detailed explanation of the `atom::log::Logger` class, its methods, and usage examples.
 
 ## Table of Contents
 

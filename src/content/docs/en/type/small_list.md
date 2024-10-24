@@ -1,9 +1,9 @@
 ---
-title: SmallList Class Documentation
-description: Comprehensive documentation for the SmallList class in the atom::type namespace, including constructors, element access, capacity management, modifiers, operations, iterators, and usage examples.
+title: SmallList
+description: Comprehensive for the SmallList class in the atom::type namespace, including constructors, element access, capacity management, modifiers, operations, iterators, and usage examples.
 ---
 
-# SmallList Class Documentation
+# SmallList
 
 ## Table of Contents
 

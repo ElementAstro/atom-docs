@@ -1,11 +1,7 @@
 ---
-title: Daemon.hpp Documentation
-description: Detailed documentation for the daemon.hpp header file, including classes and functions for managing daemon processes in C++, with platform-specific considerations and usage examples.
+title: Daemon Process
+description: Detailed for the daemon.hpp header file, including classes and functions for managing daemon processes in C++, with platform-specific considerations and usage examples.
 ---
-
-# Documentation for daemon.hpp
-
-This document provides a detailed overview of the `daemon.hpp` header file, which contains classes and functions for managing daemon processes in C++.
 
 ## Table of Contents
 
@@ -161,5 +157,3 @@ Remember to handle signals appropriately and manage the PID file as needed in yo
 - The class handles the forking and execution of child processes, as well as tracking process information.
 - Signal handling and PID file management are important aspects of daemon processes that are supported by the provided utility functions.
 - Platform-specific code ensures compatibility with both Windows and Unix-like systems.
-
-When using this class and its associated functions, make sure to consider proper error handling, logging, and resource management in your daemon processes.

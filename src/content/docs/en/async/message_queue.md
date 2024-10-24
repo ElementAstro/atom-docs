@@ -1,11 +1,7 @@
 ---
-title: MessageQueue.hpp Documentation
-description: Detailed documentation for the MessageQueue class template in the message_queue.hpp header file, including constructors, public methods, private methods, and usage examples for implementing a message queue system with Asio support in C++.
+title: Message Queue
+description: Detailed for the MessageQueue class template in the message_queue.hpp header file, including constructors, public methods, private methods, and usage examples for implementing a message queue system with Asio support in C++.
 ---
-
-# Documentation for message_queue.hpp
-
-This document provides a detailed overview of the `message_queue.hpp` header file, which contains the `MessageQueue` class template for implementing a message queue system with Asio support in C++.
 
 ## Table of Contents
 
@@ -227,5 +223,3 @@ messageQueue.publish("This will be received");
 messageQueue.unsubscribe(callback);
 messageQueue.publish("This will not be received by the temporary subscriber");
 ```
-
-These examples demonstrate the basic usage of the `MessageQueue` class, including subscribing to messages, publishing messages, using priorities and filters, handling timeouts, cancelling messages, and unsubscribing. Remember to handle exceptions and consider thread safety when using the `MessageQueue` in a multi-threaded environment.

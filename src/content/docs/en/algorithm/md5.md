@@ -1,11 +1,7 @@
 ---
-title: MD5 Class Documentation
-description: Detailed documentation for the MD5 class, including member functions, internal state variables, and example usage for calculating MD5 hashes of input data.
+title: MD5
+description: Detailed for the MD5 class, including member functions, internal state variables, and example usage for calculating MD5 hashes of input data.
 ---
-
-# MD5 Class
-
-The MD5 class provides functionality to calculate the MD5 hash of input data using the MD5 algorithm.
 
 ## Member Functions
 

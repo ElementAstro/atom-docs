@@ -1,11 +1,7 @@
 ---
-title: Simulated Annealing Algorithm Implementation
+title: Simulated Annealing Algorithm
 description: Detailed explanation of the Simulated Annealing algorithm implementation in C++, including the SimulatedAnnealing class and an example problem (Traveling Salesman Problem).
 ---
-
-# Simulated Annealing Algorithm Implementation
-
-This document provides a detailed explanation of the Simulated Annealing algorithm implementation in C++, including the `SimulatedAnnealing` class and an example problem (Traveling Salesman Problem) that can be solved using this algorithm.
 
 ## Table of Contents
 
@@ -148,5 +144,3 @@ int main() {
 4. **Early Stopping**: A custom stop condition can be set to terminate the optimization process early if certain criteria are met.
 
 5. **Progress Tracking**: A callback function can be set to monitor the optimization progress in real-time.
-
-These optimizations make the Simulated Annealing implementation efficient and adaptable to various problem types and computational environments.

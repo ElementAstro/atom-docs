@@ -1,11 +1,7 @@
 ---
-title: Pool.hpp Documentation
-description: Detailed documentation for the pool.hpp header file, including implementations of the ThreadSafeQueue and ThreadPool classes, with constructors, methods, and usage examples for thread-safe queue operations and asynchronous task execution.
+title: Thread Pool
+description: Detailed for the pool.hpp header file, including implementations of the ThreadSafeQueue and ThreadPool classes, with constructors, methods, and usage examples for thread-safe queue operations and asynchronous task execution.
 ---
-
-# Documentation for pool.hpp
-
-This document provides a detailed overview of the `pool.hpp` header file, which contains implementations for a thread-safe queue and a thread pool in C++.
 
 ## Table of Contents
 
@@ -169,7 +165,3 @@ int main() {
     return 0;
 }
 ```
-
-These examples demonstrate basic usage of the `ThreadSafeQueue` and `ThreadPool` classes. The `ThreadSafeQueue` example shows how to push, pop, and manage elements in a thread-safe manner. The `ThreadPool` example demonstrates how to enqueue tasks, retrieve results, and wait for task completion.
-
-Remember to include proper error handling and consider the performance implications of using these classes in your actual implementations.

@@ -1,11 +1,7 @@
 ---
-title: Proxy Function Documentation
-description: Detailed documentation for the ProxyFunction and TimerProxyFunction classes in the atom::meta namespace, including constructors, member functions, helper functions, and usage examples for dynamic function wrapping and execution timing.
+title: Proxy Function
+description: Detailed for the ProxyFunction and TimerProxyFunction classes in the atom::meta namespace, including constructors, member functions, helper functions, and usage examples for dynamic function wrapping and execution timing.
 ---
-
-# Proxy Function Documentation
-
-This document describes the usage of the `ProxyFunction` and `TimerProxyFunction` classes from the `atom::meta` namespace, which provide powerful function proxying capabilities.
 
 ## Table of Contents
 
@@ -176,7 +172,3 @@ auto anyCastHelper(std::any& operand) -> decltype(auto);
 template <typename T>
 auto anyCastHelper(const std::any& operand) -> decltype(auto);
 ```
-
-These functions provide various ways to cast `std::any` objects to the desired types, handling references and const-ness correctly.
-
----

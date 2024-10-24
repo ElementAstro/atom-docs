@@ -1,13 +1,7 @@
 ---
-title: Invoke.hpp Documentation
-description: Detailed documentation for the invoke.hpp file, including utility functions for delayed invocation, safe function calling, member function invocation, and exception handling in C++.
+title: Invoke Wrapper
+description: Detailed for the invoke.hpp file, including utility functions for delayed invocation, safe function calling, member function invocation, and exception handling in C++.
 ---
-
-# Invoke.hpp Documentation
-
-## Overview
-
-The `invoke.hpp` file provides a set of utility functions for function invocation, including delayed invocation, safe calling, and exception handling. These utilities are designed to work with C++11 and C++17, offering flexible and safe ways to work with callable objects.
 
 ## Table of Contents
 
@@ -194,4 +188,3 @@ int main() {
 5. These utilities provide a way to handle exceptions and delay function invocations, which can be useful in many scenarios, including asynchronous programming and error handling.
 6. Always consider the performance implications of using these utilities, especially in performance-critical code paths.
 
-Remember to include the necessary headers and compile with C++17 or later support when using this library.

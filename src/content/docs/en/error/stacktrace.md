@@ -1,9 +1,7 @@
 ---
-title: StackTrace Class Documentation
-description: Detailed documentation for the StackTrace class in the atom::error namespace, including constructors, public methods, platform-specific members, and usage examples for capturing and representing stack traces in C++.
+title: StackTrace
+description: Detailed for the StackTrace class in the atom::error namespace, including constructors, public methods, platform-specific members, and usage examples for capturing and representing stack traces in C++.
 ---
-
-# StackTrace Class Documentation
 
 ## Overview
 

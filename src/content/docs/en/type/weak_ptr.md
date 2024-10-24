@@ -1,9 +1,9 @@
 ---
-title: EnhancedWeakPtr Class Documentation
-description: Comprehensive documentation for the EnhancedWeakPtr class template in the atom::type namespace, including constructors, destructors, copy and move operations, basic and advanced features, static methods, helper functions, and usage examples.
+title: EnhancedWeakPtr
+description: Comprehensive for the EnhancedWeakPtr class template in the atom::type namespace, including constructors, destructors, copy and move operations, basic and advanced features, static methods, helper functions, and usage examples.
 ---
 
-# EnhancedWeakPtr Documentation
+# EnhancedWeakPtr
 
 ## Table of Contents
 

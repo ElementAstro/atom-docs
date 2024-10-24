@@ -1,13 +1,7 @@
 ---
-title: Huffman Encoding Documentation
-description: Detailed documentation for the Huffman encoding implementation in the atom::algorithm namespace, including structures, functions, and usage examples for creating Huffman trees, generating codes, compressing, and decompressing text.
+title: Huffman Encoding
+description: Detailed for the Huffman encoding implementation in the atom::algorithm namespace, including structures, functions, and usage examples for creating Huffman trees, generating codes, compressing, and decompressing text.
 ---
-
-# Huffman Encoding Documentation
-
-## Overview
-
-The `huffman.hpp` file provides a simple implementation of Huffman encoding, a data compression algorithm. It includes structures and functions for creating a Huffman tree, generating Huffman codes, compressing text, and decompressing encoded text.
 
 ## Namespace
 
@@ -164,9 +158,3 @@ This example demonstrates the full process of Huffman encoding:
 2. When working with large texts, consider using file I/O instead of storing the entire text in memory.
 3. For efficiency in real-world applications, consider implementing bit-level operations for the compressed data instead of using strings of '0's and '1's.
 4. Always keep the Huffman tree or a serialized version of it along with the compressed data, as it's necessary for decompression.
-
-## Notes
-
-- This implementation uses `std::shared_ptr` for memory management of the Huffman tree nodes.
-- The compression effectiveness depends on the frequency distribution of characters in the input text. It works best when there's a significant variation in character frequencies.
-- While this implementation provides a good understanding of Huffman encoding, for production use, consider using established libraries that have been optimized and thoroughly tested.

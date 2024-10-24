@@ -1,11 +1,7 @@
 ---
 title: Atom Algorithm Library
-description: Detailed documentation of the Atom Algorithm Library, including implementations of various algorithms such as KMP, BloomFilter, and BoyerMoore.
+description: Detailed of the Atom Algorithm Library, including implementations of various algorithms such as KMP, BloomFilter, and BoyerMoore.
 ---
-
-## Overview
-
-The `atom::algorithm` namespace provides implementations of various algorithms, focusing on string searching and data structures. This module is part of the Atom library and is defined in the `ATOM_ALGORITHM_ALGORITHM_HPP` header file.
 
 ## Classes
 
@@ -166,8 +162,3 @@ std::vector<int> matches = bm.search("This is a text with a pattern in it.");
 - The library uses C++17 features, particularly `std::string_view`.
 - The Bloom filter implementation is templated, allowing for customization of the filter size.
 - Both KMP and Boyer-Moore algorithms are efficient string searching algorithms with different performance characteristics depending on the input.
-
-## Dependencies
-
-- C++17 or later
-- Standard library headers: `<bitset>`, `<string>`, `<string_view>`, `<unordered_map>`, `<vector>`

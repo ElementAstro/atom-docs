@@ -1,9 +1,9 @@
 ---
-title: StaticVector Class Documentation
-description: Comprehensive documentation for the StaticVector class, including class definition, member types, constructors, element access, capacity management, modifiers, iterators, non-member functions, and usage examples.
+title: StaticVector
+description: Comprehensive for the StaticVector class, including class definition, member types, constructors, element access, capacity management, modifiers, iterators, non-member functions, and usage examples.
 ---
 
-# StaticVector Class Documentation
+# StaticVector
 
 ## Table of Contents
 

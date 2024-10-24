@@ -1,9 +1,9 @@
 ---
-title: DownloadManager Class Documentation
-description: Comprehensive documentation for the DownloadManager class, including constructors, public methods for managing download tasks, private methods for internal operations, member variables, and usage examples.
+title: DownloadManager
+description: Comprehensive for the DownloadManager class, including constructors, public methods for managing download tasks, private methods for internal operations, member variables, and usage examples.
 ---
 
-# DownloadManager Class Documentation
+# DownloadManager
 
 ## Description
 

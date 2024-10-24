@@ -1,11 +1,7 @@
 ---
-title: SshServer Class Documentation
-description: Detailed documentation for the SshServer class in the atom::connection namespace, including constructors, public methods, and usage examples for setting up and managing an SSH server in C++.
+title: SshServer
+description: Detailed for the SshServer class in the atom::connection namespace, including constructors, public methods, and usage examples for setting up and managing an SSH server in C++.
 ---
-
-# SshServer Class Documentation
-
-The `SshServer` class is part of the `atom::connection` namespace and provides functionality for setting up and managing an SSH server. This class allows users to configure various aspects of an SSH server, including port, listening address, authentication methods, and subsystems.
 
 ## Table of Contents
 
@@ -475,25 +471,3 @@ int main() {
     return 0;
 }
 ```
-
-These examples demonstrate various ways to use and integrate the `SshServer` class in different scenarios, including:
-
-1. Basic server setup and configuration
-2. Configuring authentication methods
-3. Setting up and managing subsystems
-4. Implementing dynamic configuration changes
-5. Creating a simple SSH server monitor
-6. Handling graceful shutdown with signal interrupts
-
-When using the `SshServer` class in your projects, consider the following best practices:
-
-1. Always use secure and up-to-date host keys.
-2. Regularly update and rotate authorized keys for better security.
-3. Limit root login access and use principle of least privilege.
-4. Implement proper logging and monitoring for security and troubleshooting.
-5. Use strong password policies if password authentication is enabled.
-6. Regularly update the SSH server software and apply security patches.
-7. Implement rate limiting and fail2ban-like mechanisms to prevent brute-force attacks.
-8. Use firewalls to restrict SSH access to trusted IP addresses when possible.
-
-By following these practices and leveraging the `SshServer` class effectively, you can build secure and robust SSH server applications tailored to your specific needs.

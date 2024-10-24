@@ -1,9 +1,9 @@
 ---
-title: Indestructible Class Template Documentation
-description: Comprehensive documentation for the Indestructible class template, including class overview, constructors, destructors, copy and move operations, accessor methods, conversion operators, utility methods, usage examples, and best practices.
+title: Indestructible Class Template
+description: Comprehensive for the Indestructible class template, including class overview, constructors, destructors, copy and move operations, accessor methods, conversion operators, utility methods, usage examples, and best practices.
 ---
 
-# Indestructible Class Template Documentation
+# Indestructible Class Template
 
 ## Table of Contents
 

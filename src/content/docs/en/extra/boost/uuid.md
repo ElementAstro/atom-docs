@@ -1,13 +1,7 @@
 ---
-title: UUID Class Documentation
-description: Detailed documentation for the UUID class in the atom::extra::boost namespace, including constructors, methods for generating and manipulating UUIDs, conversion methods, and usage examples.
+title: UUID
+description: Detailed for the UUID class in the atom::extra::boost namespace, including constructors, methods for generating and manipulating UUIDs, conversion methods, and usage examples.
 ---
-
-# UUID Class Documentation
-
-## Overview
-
-The `UUID` class is a C++ wrapper around Boost's UUID implementation, providing a convenient interface for generating, manipulating, and comparing Universally Unique Identifiers (UUIDs). It is defined in the `atom::extra::boost` namespace and offers methods for creating different versions of UUIDs, converting between various formats, and performing UUID-related operations.
 
 ## Table of Contents
 
@@ -400,7 +394,3 @@ When working with the `UUID` class, consider the following best practices:
 6. Use the `format()` method when you need to display UUIDs in a standardized format (e.g., in logs or user interfaces).
 
 7. Leverage the comparison operators and hash function support to use UUIDs in sorted containers or hash-based containers efficiently.
-
-## Conclusion
-
-The `UUID` class provides a robust and feature-rich implementation for working with UUIDs in C++. It offers a wide range of functionality, including generation of different UUID versions, conversion between various formats, and utility methods for UUID manipulation and comparison. By utilizing this class, developers can easily integrate UUID support into their applications, ensuring unique identification across distributed systems and databases.

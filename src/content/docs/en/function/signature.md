@@ -1,11 +1,7 @@
 ---
-title: Function Signature Parsing Utilities Documentation
-description: Detailed documentation for the FunctionSignature class and parseFunctionDefinition function in the atom::meta namespace, including class definitions, member functions, parsing utilities, and usage examples.
+title: Function Signature Parsing Utilities
+description: Detailed for the FunctionSignature class and parseFunctionDefinition function in the atom::meta namespace, including class definitions, member functions, parsing utilities, and usage examples.
 ---
-
-# Function Signature Parsing Utilities
-
-This document describes the usage of the `FunctionSignature` class and the `parseFunctionDefinition` function from the `atom::meta` namespace, which provide utilities for parsing and representing function signatures.
 
 ## Table of Contents
 

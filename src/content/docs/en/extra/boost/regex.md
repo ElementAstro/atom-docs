@@ -1,13 +1,7 @@
 ---
-title: RegexWrapper Class Documentation
-description: Detailed documentation for the RegexWrapper class in the atom::extra::boost namespace, including constructors, basic and advanced regex operations, utility methods, and usage examples.
+title: RegexWrapper
+description: Detailed for the RegexWrapper class in the atom::extra::boost namespace, including constructors, basic and advanced regex operations, utility methods, and usage examples.
 ---
-
-# RegexWrapper Class Documentation
-
-## Overview
-
-The `RegexWrapper` class is a C++ wrapper around Boost.Regex, providing a convenient interface for various regex operations. It is defined in the `atom::extra::boost` namespace and offers methods for matching, searching, replacing, and splitting strings using regular expressions.
 
 ## Table of Contents
 
@@ -419,9 +413,3 @@ int main() {
     return 0;
 }
 ```
-
-This example demonstrates how to use all the methods provided by the `RegexWrapper` class. It covers basic operations like matching, searching, and replacing, as well as more advanced features like working with match groups and using callback functions for replacements. It also shows how to use the utility methods for tasks like escaping strings, benchmarking, and validating regex patterns.
-
-## Conclusion
-
-The `RegexWrapper` class provides a powerful and convenient interface for working with regular expressions in C++. It encapsulates the functionality of Boost.Regex while offering additional utility methods and a more modern C++ interface. This wrapper is particularly useful for projects that require extensive use of regular expressions, as it simplifies common operations and provides a consistent API for regex-related tasks.

@@ -1,11 +1,7 @@
 ---
-title: Registry Manipulation Functions Documentation
-description: Detailed documentation for functions to manipulate the Windows registry, including getting subkeys and values, modifying values, deleting keys and values, recursive enumeration, backup, search, and export operations.
+title: Registry Manipulation Functions
+description: Detailed for functions to manipulate the Windows registry, including getting subkeys and values, modifying values, deleting keys and values, recursive enumeration, backup, search, and export operations.
 ---
-
-# Registry Manipulation Functions
-
-This document describes a set of functions for manipulating the Windows registry.
 
 ## getRegistrySubKeys
 

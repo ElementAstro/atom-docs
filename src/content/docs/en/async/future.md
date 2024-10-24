@@ -1,11 +1,7 @@
 ---
-title: Future.hpp Documentation
-description: Detailed documentation for the future.hpp header file, including enhanced future classes, utility functions for asynchronous programming, exception handling, and usage examples.
+title: Advanced Future
+description: Detailed for the future.hpp header file, including enhanced future classes, utility functions for asynchronous programming, exception handling, and usage examples.
 ---
-
-# Documentation for future.hpp
-
-This document provides a detailed overview of the `future.hpp` header file, which contains enhanced future classes and utility functions for asynchronous programming in C++.
 
 ## Table of Contents
 
@@ -212,7 +208,3 @@ int main() {
     return 0;
 }
 ```
-
-This example demonstrates creating `EnhancedFuture` objects, chaining operations, waiting with timeouts, and using the `whenAll` utility to work with multiple futures concurrently.
-
-Remember to handle exceptions appropriately and consider using the provided exception types and macros for consistent error handling throughout your application.

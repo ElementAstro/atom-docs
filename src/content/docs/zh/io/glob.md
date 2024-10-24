@@ -1,6 +1,6 @@
 ---
 title: Glob模式匹配
-description: Detailed documentation for the glob pattern matching functions in the atom::io namespace, including single and multiple pattern matching, recursive matching, and helper functions for file system operations in C++.
+description: Detailed for the glob pattern matching functions in the atom::io namespace, including single and multiple pattern matching, recursive matching, and helper functions for file system operations in C++.
 ---
 
 ## 目录

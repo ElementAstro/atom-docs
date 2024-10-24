@@ -1,11 +1,7 @@
 ---
-title: SocketHub Class Documentation
-description: Detailed documentation for the SocketHub class in the atom::connection namespace, including constructors, public methods, and usage examples for managing socket connections in C++.
+title: SocketHub Class
+description: Detailed for the SocketHub class in the atom::connection namespace, including constructors, public methods, and usage examples for managing socket connections in C++.
 ---
-
-# SocketHub Class Documentation
-
-The `SocketHub` class is part of the `atom::connection` namespace and provides functionality for managing socket connections. It allows for starting and stopping a socket service, handling multiple client connections, and processing incoming messages through custom handlers.
 
 ## Table of Contents
 

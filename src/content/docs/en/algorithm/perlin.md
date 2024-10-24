@@ -1,9 +1,7 @@
 ---
-title: Perlin Noise Implementation Documentation
-description: Detailed documentation for the Perlin Noise implementation in the atom::algorithm namespace, including class methods, OpenCL and SIMD support, and example usage for generating procedural textures and terrains.
+title: Perlin Noise
+description: Detailed for the Perlin Noise implementation in the atom::algorithm namespace, including class methods, OpenCL and SIMD support, and example usage for generating procedural textures and terrains.
 ---
-
-# Perlin Noise Implementation Documentation
 
 ## Overview
 

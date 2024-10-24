@@ -1,11 +1,7 @@
 ---
-title: ThreadSafeQueue.hpp Documentation
-description: Detailed documentation for the ThreadSafeQueue class template in the queue.hpp header file, including constructors, public methods, advanced operations, and usage examples for implementing a thread-safe queue in C++.
+title: ThreadSafeQueue
+description: Detailed for the ThreadSafeQueue class template in the queue.hpp header file, including constructors, public methods, advanced operations, and usage examples for implementing a thread-safe queue in C++.
 ---
-
-# Documentation for queue.hpp
-
-This document provides a detailed overview of the `queue.hpp` header file, which contains the `ThreadSafeQueue` class template for implementing a thread-safe queue in C++.
 
 ## Table of Contents
 

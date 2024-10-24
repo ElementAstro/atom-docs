@@ -1,9 +1,7 @@
 ---
-title: UdpClient Class Documentation
-description: Detailed documentation for the UdpClient class in the atom::connection namespace, including constructors, public methods, callback setup, and usage examples for UDP communication in C++.
+title: UdpClient
+description: Detailed for the UdpClient class in the atom::connection namespace, including constructors, public methods, callback setup, and usage examples for UDP communication in C++.
 ---
-
-# UDP Client Class Documentation
 
 ## Overview
 

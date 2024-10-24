@@ -1,9 +1,7 @@
 ---
-title: Boost Math Utilities Documentation
-description: Comprehensive documentation for the Boost Math Utilities in the atom::extra::boost namespace, including classes and functions for special functions, statistics, probability distributions, numerical integration, optimization, linear algebra, ODE solving, and financial mathematics.
+title: Boost Math Utilities
+description: Comprehensive for the Boost Math Utilities in the atom::extra::boost namespace, including classes and functions for special functions, statistics, probability distributions, numerical integration, optimization, linear algebra, ODE solving, and financial mathematics.
 ---
-
-# atom::extra::boost Namespace Documentation
 
 ## Overview
 
@@ -397,11 +395,3 @@ int main() {
     return 0;
 }
 ```
-
-## Conclusion
-
-The `atom::extra::boost` namespace provides a comprehensive set of mathematical and statistical tools built on top of the Boost C++ libraries. It offers a high-level interface for complex mathematical operations, making it easier to perform advanced calculations in C++ applications.
-
-When using this namespace, make sure to link against the necessary Boost libraries and include the appropriate headers. The classes and functions in this namespace are designed to work with any numeric type that satisfies the `Numeric` concept, allowing for flexibility in precision and performance.
-
-For more detailed information on the underlying Boost functions and their behavior, refer to the official Boost documentation.

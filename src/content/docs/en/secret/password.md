@@ -1,13 +1,7 @@
 ---
-title: PasswordManager Class Documentation
-description: Comprehensive documentation for the PasswordManager class, including methods for secure password storage, retrieval, and deletion using AES encryption and platform-specific secure storage mechanisms.
+title: PasswordManager
+description: Comprehensive for the PasswordManager class, including methods for secure password storage, retrieval, and deletion using AES encryption and platform-specific secure storage mechanisms.
 ---
-
-# PasswordManager Class Documentation
-
-## Overview
-
-The `PasswordManager` class provides a secure way to store, retrieve, and delete passwords across different platforms (Windows, macOS, and Linux). It uses AES encryption and platform-specific secure storage mechanisms to ensure the safety of sensitive information.
 
 ## Table of Contents
 

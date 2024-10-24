@@ -1,9 +1,7 @@
 ---
-title: User Information Library Documentation
-description: Comprehensive documentation for the User Information Library, including functions for retrieving user groups, username, hostname, user ID, group ID, home directory, and login shell.
+title: User Information
+description: Comprehensive for the User Information Library, including functions for retrieving user groups, username, hostname, user ID, group ID, home directory, and login shell.
 ---
-
-# User Information Library Documentation
 
 ## Function: GetUserGroups
 

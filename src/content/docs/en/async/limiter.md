@@ -1,11 +1,7 @@
 ---
-title: Limiter.hpp Documentation
-description: Detailed documentation for the limiter.hpp header file, including classes for implementing rate limiting, debouncing, and throttling in C++, with constructors, methods, and usage examples.
+title: Limiter
+description: Detailed for the limiter.hpp header file, including classes for implementing rate limiting, debouncing, and throttling in C++, with constructors, methods, and usage examples.
 ---
-
-# Documentation for limiter.hpp
-
-This document provides a detailed overview of the `limiter.hpp` header file, which contains classes for implementing rate limiting, debouncing, and throttling in C++.
 
 ## Table of Contents
 
@@ -230,5 +226,3 @@ int main() {
     return 0;
 }
 ```
-
-These examples demonstrate basic usage of the `RateLimiter`, `Debounce`, and `Throttle` classes. Remember to handle exceptions and edge cases in your actual implementations.

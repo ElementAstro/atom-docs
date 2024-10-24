@@ -1,11 +1,7 @@
 ---
-title: TcpClient Class Documentation
-description: Detailed documentation for the TcpClient class in the atom::connection namespace, including constructors, public methods, callback types, and usage examples for managing TCP client connections in C++.
+title: TcpClient
+description: Detailed for the TcpClient class in the atom::connection namespace, including constructors, public methods, callback types, and usage examples for managing TCP client connections in C++.
 ---
-
-# TcpClient Class Documentation
-
-The `TcpClient` class is part of the `atom::connection` namespace and provides functionality for creating and managing TCP client connections. This class allows users to connect to TCP servers, send and receive data, and handle various events related to the connection.
 
 ## Table of Contents
 
@@ -484,5 +480,3 @@ int main() {
 9. **Error Callbacks**: Implement the error callback to handle and log any errors that occur during operation.
 
 10. **Graceful Shutdown**: Call `stopReceiving()` before `disconnect()` to ensure a clean shutdown of the receiving thread.
-
-By following these best practices and utilizing the examples provided, you can effectively use the `TcpClient` class to create robust TCP client applications in various scenarios, from simple echo clients to more complex network protocols like HTTP.

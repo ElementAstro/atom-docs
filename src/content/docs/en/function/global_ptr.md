@@ -1,9 +1,7 @@
 ---
-title: Global Shared Pointer Manager Documentation
-description: Detailed documentation for the GlobalSharedPtrManager class in the global_ptr.hpp file, including key components, macros, methods, usage examples, and considerations for managing shared and weak pointers in C++.
+title: Global Shared Pointer Manager
+description: Detailed for the GlobalSharedPtrManager class in the global_ptr.hpp file, including key components, macros, methods, usage examples, and considerations for managing shared and weak pointers in C++.
 ---
-
-# Global Shared Pointer Manager Documentation
 
 ## Overview
 

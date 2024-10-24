@@ -1,6 +1,6 @@
 ---
 title: 平凡Vector
-description: Comprehensive documentation for the PodVector class in the atom::type namespace, including class definition, member types, constructors, capacity management, element access, iterators, modifiers, other member functions, and usage examples.
+description: Comprehensive for the PodVector class in the atom::type namespace, including class definition, member types, constructors, capacity management, element access, iterators, modifiers, other member functions, and usage examples.
 ---
 
 ## 目录

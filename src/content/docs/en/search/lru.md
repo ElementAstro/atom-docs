@@ -1,13 +1,7 @@
 ---
-title: ThreadSafeLRUCache Class Documentation
-description: Detailed documentation for the ThreadSafeLRUCache class in the atom::search namespace, including constructors, basic operations, cache management, callbacks, statistics, persistence, and usage examples.
+title: ThreadSafeLRUCache
+description: Detailed for the ThreadSafeLRUCache class in the atom::search namespace, including constructors, basic operations, cache management, callbacks, statistics, persistence, and usage examples.
 ---
-
-# ThreadSafeLRUCache Class Documentation
-
-## Overview
-
-The `ThreadSafeLRUCache` class is a template-based, thread-safe implementation of a Least Recently Used (LRU) cache. It is part of the `atom::search` namespace and provides efficient caching with expiration, persistence, and various utility functions.
 
 ## Table of Contents
 
@@ -434,9 +428,3 @@ auto value = getOrFetch(cache, 42, [](int key) {
     return "Value for key " + std::to_string(key);
 });
 ```
-
-This approach ensures that the cache is always checked first, and only fetches the data from the slow source when necessary.
-
-## Conclusion
-
-The `ThreadSafeLRUCache` class provides a robust, thread-safe implementation of an LRU cache with additional features like TTL, persistence, and performance monitoring. By following the best practices and examples provided, you can effectively use this cache in various scenarios to improve the performance of your applications.

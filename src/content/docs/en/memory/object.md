@@ -1,9 +1,8 @@
 ---
-title: ObjectPool Class Documentation
-description: Detailed documentation for the ObjectPool class, including constructors, public methods, and usage examples for managing reusable objects in a thread-safe manner.
+title: Object Pool
+description: Detailed for the ObjectPool class, including constructors, public methods, and usage examples for managing reusable objects in a thread-safe manner.
 ---
 
-# ObjectPool Documentation
 
 ## Table of Contents
 

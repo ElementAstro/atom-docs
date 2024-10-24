@@ -1,9 +1,7 @@
 ---
-title: DirectoryStack Class Documentation
-description: Detailed documentation for the DirectoryStack class, including asynchronous and synchronous directory management operations, constructors, methods, and comprehensive usage examples.
+title: DirectoryStack
+description: Detailed for the DirectoryStack class, including asynchronous and synchronous directory management operations, constructors, methods, and comprehensive usage examples.
 ---
-
-# DirectoryStack Usage Guide
 
 ## Introduction
 

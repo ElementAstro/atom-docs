@@ -1,11 +1,7 @@
 ---
-title: Raw Name Extraction Utilities Documentation
-description: Detailed documentation for the raw_name.hpp file in the atom::meta namespace, including functions for extracting raw names of types, values, and enum members at compile-time, with usage examples and compiler support details.
+title: Raw Name Extraction Utilities
+description: Detailed for the raw_name.hpp file in the atom::meta namespace, including functions for extracting raw names of types, values, and enum members at compile-time, with usage examples and compiler support details.
 ---
-
-# Raw Name Extraction Utilities
-
-This document describes the usage of the `raw_name_of` functions and related utilities from the `atom::meta` namespace, which provide ways to extract the raw names of types and values at compile-time.
 
 ## Table of Contents
 
@@ -187,5 +183,3 @@ using args_type_of = args_type_of<T>;
 ```
 
 This alias template is provided for extracting argument types, but its implementation is not shown in the given code snippet. It's likely defined elsewhere in the library.
-
----

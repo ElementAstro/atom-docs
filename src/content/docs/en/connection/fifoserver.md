@@ -1,11 +1,7 @@
 ---
-title: FIFOServer Class Documentation
-description: Detailed documentation for the FIFOServer class in the atom::connection namespace, including constructors, public methods, and usage examples for managing a server that handles FIFO messages in C++.
+title: FIFOServer
+description: Detailed for the FIFOServer class in the atom::connection namespace, including constructors, public methods, and usage examples for managing a server that handles FIFO messages in C++.
 ---
-
-# FIFOServer Class Documentation
-
-The `FIFOServer` class is part of the `atom::connection` namespace and provides functionality for managing a server that handles FIFO (First In, First Out) messages.
 
 ## Table of Contents
 

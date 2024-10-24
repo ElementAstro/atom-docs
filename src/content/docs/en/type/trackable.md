@@ -1,9 +1,9 @@
 ---
-title: Trackable Class Template Documentation
-description: Comprehensive documentation for the Trackable class template, including constructors, public methods, operators, usage examples, and best practices for creating observable objects in C++.
+title: Trackable Class Template
+description: Comprehensive for the Trackable class template, including constructors, public methods, operators, usage examples, and best practices for creating observable objects in C++.
 ---
 
-# Trackable Class Template Documentation
+# Trackable Class Template
 
 ## Table of Contents
 

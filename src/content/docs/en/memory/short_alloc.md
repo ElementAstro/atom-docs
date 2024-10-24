@@ -1,9 +1,7 @@
 ---
-title: ShortAlloc Library Documentation
-description: Comprehensive documentation for the ShortAlloc library, including the Arena and ShortAlloc classes, allocateUnique function, and usage examples for fixed-size memory allocation in C++.
+title: ShortAlloc
+description: Comprehensive for the ShortAlloc library, including the Arena and ShortAlloc classes, allocateUnique function, and usage examples for fixed-size memory allocation in C++.
 ---
-
-# ShortAlloc Documentation
 
 ## Table of Contents
 

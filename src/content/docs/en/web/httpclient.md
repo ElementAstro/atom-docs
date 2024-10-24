@@ -1,9 +1,9 @@
 ---
-title: HttpClient Class Documentation
-description: Comprehensive documentation for the HttpClient class, including constructors, methods for sending HTTP requests, SSL configuration, port scanning, server status checking, and usage examples.
+title: HttpClient
+description: Comprehensive for the HttpClient class, including constructors, methods for sending HTTP requests, SSL configuration, port scanning, server status checking, and usage examples.
 ---
 
-# HttpClient Class Documentation
+# HttpClient
 
 ## Overview
 
@@ -223,4 +223,4 @@ int main() {
 }
 ```
 
-This concludes the documentation for the HttpClient class.
+This concludes the for the HttpClient class.

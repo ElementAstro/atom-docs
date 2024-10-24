@@ -1,9 +1,9 @@
 ---
-title: UnshiftedPtr Class Documentation
-description: Comprehensive documentation for the UnshiftedPtr class, including class definition, member functions, usage examples, and best practices for managing objects without dynamic memory allocation.
+title: UnshiftedPtr
+description: Comprehensive for the UnshiftedPtr class, including class definition, member functions, usage examples, and best practices for managing objects without dynamic memory allocation.
 ---
 
-# UnshiftedPtr Class Documentation
+# UnshiftedPtr
 
 ## Table of Contents
 

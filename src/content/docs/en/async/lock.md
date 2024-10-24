@@ -1,11 +1,7 @@
 ---
-title: Lock.hpp Documentation
-description: Detailed documentation for the lock.hpp header file, including various spinlock implementations, scoped lock classes, and usage examples for multi-threaded C++ applications.
+title: Extra Lock
+description: Detailed for the lock.hpp header file, including various spinlock implementations, scoped lock classes, and usage examples for multi-threaded C++ applications.
 ---
-
-# Documentation for lock.hpp
-
-This document provides a detailed overview of the `lock.hpp` header file, which contains various spinlock implementations and associated scoped lock classes for use in multi-threaded C++ applications.
 
 ## Table of Contents
 
@@ -237,5 +233,3 @@ int main() {
     return 0;
 }
 ```
-
-These examples demonstrate the basic usage of the different spinlock types and their associated scoped locks. Remember to include proper error handling and consider the performance implications of spinlocks in your actual implementations.

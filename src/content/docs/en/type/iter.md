@@ -1,9 +1,9 @@
 ---
-title: Iterator Classes Documentation
-description: Comprehensive documentation for various iterator classes implemented in the iter.hpp file, including PointerIterator, EarlyIncIterator, TransformIterator, FilterIterator, ReverseIterator, and ZipIterator, with detailed descriptions, class definitions, key methods, helper functions, and usage examples.
+title: Iterator Classes
+description: Comprehensive for various iterator classes implemented in the iter.hpp file, including PointerIterator, EarlyIncIterator, TransformIterator, FilterIterator, ReverseIterator, and ZipIterator, with detailed descriptions, class definitions, key methods, helper functions, and usage examples.
 ---
 
-# Iterator Classes Documentation
+# Iterator Classes
 
 ## Table of Contents
 

@@ -1,9 +1,7 @@
 ---
-title: Enum Utilities Documentation
-description: Comprehensive documentation for the Enum Utilities in the atom::algorithm namespace, including functions and templates for enum name extraction, conversion between enums and strings/integers, enum validation, and support for flag enums.
+title: Enum Utilities
+description: Comprehensive for the Enum Utilities in the atom::algorithm namespace, including functions and templates for enum name extraction, conversion between enums and strings/integers, enum validation, and support for flag enums.
 ---
-
-# Enum Utilities Documentation
 
 ## Overview
 

@@ -1,13 +1,7 @@
 ---
-title: BigNumber Class Documentation
-description: Comprehensive documentation for the BigNumber class in the atom::algorithm namespace, detailing constructors, arithmetic operations, comparisons, utility functions, operator overloads, and usage examples.
+title: BigNumber
+description: Comprehensive for the BigNumber class in the atom::algorithm namespace, detailing constructors, arithmetic operations, comparisons, utility functions, operator overloads, and usage examples.
 ---
-
-# BigNumber Class Documentation
-
-## Overview
-
-The `BigNumber` class is part of the `atom::algorithm` namespace and provides functionality for handling and manipulating large numbers that exceed the capacity of built-in numeric types. This class allows for arithmetic operations, comparisons, and various utility functions for working with arbitrarily large integers.
 
 ## Table of Contents
 

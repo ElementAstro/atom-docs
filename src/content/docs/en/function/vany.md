@@ -1,9 +1,7 @@
 ---
-title: Any Class Documentation
-description: Comprehensive documentation for the Any class in the atom::meta namespace, including constructors, type checking, casting, value manipulation, special operations, and usage examples.
+title: Any
+description: Comprehensive for the Any class in the atom::meta namespace, including constructors, type checking, casting, value manipulation, special operations, and usage examples.
 ---
-
-# Any Class Documentation
 
 ## Table of Contents
 
@@ -263,5 +261,3 @@ int main() {
 7. **toString() Method**: The default `toString()` implementation may not be suitable for all types. Consider providing custom string conversion for complex types.
 
 8. **Small Object Optimization**: Be aware that the `Any` class uses small object optimization. This means that small objects (typically up to 24 bytes on most systems) are stored directly in the `Any` object, avoiding dynamic memory allocation.
-
-By following these practices, you can effectively utilize the `Any` class in your C++ projects, allowing for more flexible and dynamic type handling while maintaining type safety.

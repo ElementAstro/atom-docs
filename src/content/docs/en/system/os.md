@@ -1,9 +1,7 @@
 ---
-title: C++ System Utility Functions Documentation
-description: Detailed documentation for system utility functions in C++, including the Utsname struct and functions like walk, jwalk, and fwalk for directory traversal and file information retrieval.
+title: C++ System Utility Functions
+description: Detailed for system utility functions in C++, including the Utsname struct and functions like walk, jwalk, and fwalk for directory traversal and file information retrieval.
 ---
-
-# C++ System Utility Functions Documentation
 
 ## Utsname Struct
 
@@ -130,4 +128,4 @@ Utsname systemInfo = uname();
 // Access individual fields like systemInfo.sysname, systemInfo.release, etc.
 ```
 
-This documentation provides detailed information about various C++ system utility functions along with usage examples and expected outputs. Ensure to replace placeholder paths like `"/path/to/directory"` with actual paths when testing these functions in your implementation.
+This provides detailed information about various C++ system utility functions along with usage examples and expected outputs. Ensure to replace placeholder paths like `"/path/to/directory"` with actual paths when testing these functions in your implementation.

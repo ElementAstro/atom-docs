@@ -1,9 +1,7 @@
 ---
-title: Process Management Library Documentation
-description: Comprehensive documentation for the Process Management Library, including the ProcessInfo struct and functions for checking software installation, file existence, user privileges, system shutdown and reboot, process information retrieval, and duplicate process detection.
+title: Process Management
+description: Comprehensive for the Process Management Library, including the ProcessInfo struct and functions for checking software installation, file existence, user privileges, system shutdown and reboot, process information retrieval, and duplicate process detection.
 ---
-
-# Process Management Library Documentation
 
 ## ProcessInfo Struct
 

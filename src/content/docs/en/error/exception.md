@@ -1,9 +1,7 @@
 ---
-title: Exception Class Documentation
-description: Detailed documentation for the Exception class in the atom::error namespace, including constructors, public methods, static methods, and usage examples for enhanced exception handling in C++.
+title: Exception
+description: Detailed for the Exception class in the atom::error namespace, including constructors, public methods, static methods, and usage examples for enhanced exception handling in C++.
 ---
-
-# Exception Class Documentation
 
 ## Overview
 
@@ -178,9 +176,3 @@ int main() {
 4. **Thread Safety**: Be aware that the `Exception` class captures the thread ID. This can be useful for debugging multi-threaded applications.
 
 5. **Nested Exceptions**: Use `rethrowNested` when you want to add context to an exception while preserving the original error information.
-
-## Notes
-
-- The `Exception` class is designed to provide rich context for debugging and error handling.
-- It automatically captures the stack trace at the point of exception creation.
-- The `ATOM_NOEXCEPT` macro is used for the `what()` method, which should be defined in your project to handle noexcept specifications correctly.

@@ -1,9 +1,8 @@
 ---
-title: RingBuffer Class Documentation
-description: Detailed documentation for the RingBuffer class, including constructors, public methods, iterators, and usage examples for implementing a circular buffer in C++.
+title: Ring Buffer
+description: Detailed for the RingBuffer class, including constructors, public methods, iterators, and usage examples for implementing a circular buffer in C++.
 ---
 
-# RingBuffer Documentation
 
 ## Table of Contents
 

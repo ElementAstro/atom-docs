@@ -1,13 +1,7 @@
 ---
-title: Advanced Error Calibration Library
-description: Comprehensive documentation for the Advanced Error Calibration Library in the atom::algorithm namespace, including methods for linear and polynomial calibration, residual analysis, outlier detection, and cross-validation.
+title: Error Calibration
+description: Comprehensive for the Advanced Error Calibration Library in the atom::algorithm namespace, including methods for linear and polynomial calibration, residual analysis, outlier detection, and cross-validation.
 ---
-
-# Advanced Error Calibration Library
-
-## Overview
-
-The Advanced Error Calibration Library is part of the `atom::algorithm` namespace and provides a comprehensive set of tools for error calibration, analysis, and validation. This library is designed to work with floating-point data types and includes methods for linear and polynomial calibration, residual analysis, outlier detection, and cross-validation.
 
 ## Table of Contents
 
@@ -233,5 +227,3 @@ int main() {
     return 0;
 }
 ```
-
-These examples demonstrate how to use the Advanced Error Calibration library for basic linear and polynomial calibration, as well as outlier detection. The library provides a comprehensive set of tools for error analysis and calibration, making it suitable for various scientific and engineering applications.

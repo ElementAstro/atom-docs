@@ -1,9 +1,7 @@
 ---
-title: CPU Information Module Documentation
-description: Detailed documentation for the CPU Information Module in the atom::system namespace, including structures, functions, usage examples, and best practices for retrieving CPU details such as usage, temperature, model, frequency, and cache sizes.
+title: CPU Information Module
+description: Detailed for the CPU Information Module in the atom::system namespace, including structures, functions, usage examples, and best practices for retrieving CPU details such as usage, temperature, model, frequency, and cache sizes.
 ---
-
-# CPU Information Module Documentation
 
 ## Table of Contents
 
@@ -163,8 +161,6 @@ int main() {
 }
 ```
 
-This example demonstrates how to use all the functions provided by the CPU Information Module to print a comprehensive overview of the system's CPU information.
-
 ## Best Practices and Considerations
 
 1. **Error Handling**: The functions in this module don't have explicit error handling mechanisms. In a production environment, you might want to add error checking and handling for cases where the information might not be available.
@@ -177,7 +173,7 @@ This example demonstrates how to use all the functions provided by the CPU Infor
 
 5. **Frequency of Updates**: CPU usage and temperature can change rapidly. If you're monitoring these values, consider how often you need to update them based on your application's requirements.
 
-6. **Thread Safety**: The documentation doesn't specify thread safety for these functions. If you're using them in a multi-threaded environment, consider adding synchronization mechanisms.
+6. **Thread Safety**: The doesn't specify thread safety for these functions. If you're using them in a multi-threaded environment, consider adding synchronization mechanisms.
 
 7. **Cache Size Interpretation**: When interpreting cache sizes, remember that they are returned in bytes. You might want to convert them to more readable units (KB or MB) as shown in the example.
 

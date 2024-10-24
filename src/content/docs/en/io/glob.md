@@ -1,11 +1,7 @@
 ---
-title: Glob Pattern Matching Documentation
-description: Detailed documentation for the glob pattern matching functions in the atom::io namespace, including single and multiple pattern matching, recursive matching, and helper functions for file system operations in C++.
+title: Glob Pattern Matching
+description: Detailed for the glob pattern matching functions in the atom::io namespace, including single and multiple pattern matching, recursive matching, and helper functions for file system operations in C++.
 ---
-
-# atom::io Namespace Documentation
-
-The `atom::io` namespace provides utilities for file system operations, particularly focusing on glob-style pattern matching for file and directory paths. This document covers the main functions and their usage.
 
 ## Table of Contents
 

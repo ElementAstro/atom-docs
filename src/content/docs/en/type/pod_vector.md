@@ -1,9 +1,9 @@
 ---
-title: PodVector Class Documentation
-description: Comprehensive documentation for the PodVector class in the atom::type namespace, including class definition, member types, constructors, capacity management, element access, iterators, modifiers, other member functions, and usage examples.
+title: PodVector
+description: Comprehensive for the PodVector class in the atom::type namespace, including class definition, member types, constructors, capacity management, element access, iterators, modifiers, other member functions, and usage examples.
 ---
 
-# PodVector Class Documentation
+# PodVector
 
 ## Table of Contents
 

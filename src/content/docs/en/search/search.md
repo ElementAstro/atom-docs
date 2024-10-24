@@ -1,13 +1,7 @@
 ---
-title: SearchEngine Class Documentation
-description: Comprehensive documentation for the SearchEngine class in the atom::search namespace, including methods for adding documents, tag-based search, content-based search, boolean search, autocomplete, and usage examples.
+title: SearchEngine
+description: Comprehensive for the SearchEngine class in the atom::search namespace, including methods for adding documents, tag-based search, content-based search, boolean search, autocomplete, and usage examples.
 ---
-
-# SearchEngine Class Documentation
-
-## Overview
-
-The `SearchEngine` class is part of the `atom::search` namespace and provides a versatile search functionality for documents. It supports various search methods including tag-based search, content-based search, boolean search, and autocomplete suggestions.
 
 ## Table of Contents
 

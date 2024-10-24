@@ -1,9 +1,7 @@
 ---
-title: PriorityManager Class Documentation
-description: Comprehensive documentation for the PriorityManager class, including methods for managing process and thread priorities, scheduling policies, CPU affinities, and usage examples.
+title: PriorityManager
+description: Comprehensive for the PriorityManager class, including methods for managing process and thread priorities, scheduling policies, CPU affinities, and usage examples.
 ---
-
-# Priority Manager Class Documentation
 
 ## Table of Contents
 

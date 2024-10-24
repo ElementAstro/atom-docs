@@ -1,13 +1,7 @@
 ---
-title: Thread Wrapper Documentation
-description: Comprehensive documentation for the Thread class in the thread_wrapper.hpp header file, including constructors, member functions, and usage examples for managing C++20 std::jthread objects.
+title: Thread Wrapper
+description: Comprehensive for the Thread class in the thread_wrapper.hpp header file, including constructors, member functions, and usage examples for managing C++20 std::jthread objects.
 ---
-
-# Thread Wrapper Documentation
-
-## Overview
-
-The `Thread` class is a wrapper for managing C++20 `std::jthread` objects, providing a convenient interface for starting, stopping, and joining threads. It is defined in the `atom::async` namespace and is part of the `thread_wrapper.hpp` header file.
 
 ## Class Declaration
 
@@ -157,8 +151,6 @@ int main() {
     return 0;
 }
 ```
-
-This example creates a `Thread` object, starts a new thread that runs for a specified duration or until stopped, waits for 3 seconds, requests the thread to stop, and then joins the thread.
 
 ## Notes
 

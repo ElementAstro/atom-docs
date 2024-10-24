@@ -1,11 +1,7 @@
 ---
-title: TTYBase Class Documentation
-description: Detailed documentation for the TTYBase class, including methods for handling TTY connections, reading and writing data, managing connections, and error handling.
+title: TTYBase
+description: Detailed for the TTYBase class, including methods for handling TTY connections, reading and writing data, managing connections, and error handling.
 ---
-
-# TTYBase Class Documentation
-
-The `TTYBase` class provides a foundation for handling TTY (Teletypewriter) connections. It offers methods for reading from and writing to TTY devices, as well as managing connections and error handling.
 
 ## Table of Contents
 

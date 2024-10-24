@@ -1,13 +1,7 @@
 ---
-title: TTLCache Class Documentation
-description: Comprehensive documentation for the TTLCache class in the atom::search namespace, including constructors, basic operations, cache management, statistics, thread safety, and usage examples.
+title: TTLCache
+description: Comprehensive for the TTLCache class in the atom::search namespace, including constructors, basic operations, cache management, statistics, thread safety, and usage examples.
 ---
-
-# TTLCache Class Documentation
-
-## Overview
-
-The `TTLCache` class is a template-based implementation of a Time-to-Live (TTL) cache with a maximum capacity and Least Recently Used (LRU) eviction policy. It is part of the `atom::search` namespace and provides efficient caching with automatic expiration of items.
 
 ## Table of Contents
 

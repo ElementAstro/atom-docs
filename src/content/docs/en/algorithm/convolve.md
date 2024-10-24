@@ -1,11 +1,7 @@
 ---
 title: Convolution and Deconvolution
-description: Detailed documentation of the convolution and deconvolution functions in the Atom Algorithm Library, including 1D and 2D operations, Fourier transforms, Gaussian filters, and usage examples.
+description: Detailed of the convolution and deconvolution functions in the Atom Algorithm Library, including 1D and 2D operations, Fourier transforms, Gaussian filters, and usage examples.
 ---
-
-# Atom Algorithm Library: Convolution and Deconvolution
-
-This document provides a detailed explanation of the convolution and deconvolution functions implemented in the Atom Algorithm Library. These functions are part of the `atom::algorithm` namespace and are designed for signal and image processing tasks.
 
 ## Table of Contents
 
@@ -204,5 +200,3 @@ int main() {
     return 0;
 }
 ```
-
-These examples demonstrate basic usage of the convolution and Gaussian filtering functions. The library provides powerful tools for signal and image processing tasks, allowing for efficient manipulation of 1D and 2D data.

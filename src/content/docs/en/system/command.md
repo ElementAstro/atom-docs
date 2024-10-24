@@ -1,11 +1,7 @@
 ---
-title: Atom System Command Library Documentation
-description: Comprehensive documentation for the Atom System Command Library, detailing functions for executing system commands, managing processes, and handling command output in the atom::system namespace.
+title: System Command
+description: Comprehensive for the Atom System Command Library, detailing functions for executing system commands, managing processes, and handling command output in the atom::system namespace.
 ---
-
-# Atom System Command Library Documentation
-
-This document provides a detailed explanation of the functions available in the `atom::system` namespace for executing system commands and managing processes.
 
 ## Table of Contents
 

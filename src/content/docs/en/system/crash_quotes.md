@@ -1,11 +1,7 @@
 ---
-title: Atom System Crash Quotes Library Documentation
-description: Detailed documentation for the Quote and QuoteManager classes in the atom::system namespace, including methods for managing, displaying, and manipulating quotes in crash reports.
+title: System Crash Quotes
+description: Detailed for the Quote and QuoteManager classes in the atom::system namespace, including methods for managing, displaying, and manipulating quotes in crash reports.
 ---
-
-# Atom System Crash Quotes Library Documentation
-
-This document provides a detailed explanation of the `Quote` and `QuoteManager` classes available in the `atom::system` namespace for managing quotes in crash reports.
 
 ## Table of Contents
 

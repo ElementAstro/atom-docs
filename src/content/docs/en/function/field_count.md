@@ -1,13 +1,7 @@
 ---
-title: Field Count Documentation
-description: Detailed documentation for the field_count.hpp file in the atom::meta namespace, including utilities for counting fields in aggregate types at compile-time, with structs, functions, and usage examples.
+title: Field Count
+description: Detailed for the field_count.hpp file in the atom::meta namespace, including utilities for counting fields in aggregate types at compile-time, with structs, functions, and usage examples.
 ---
-
-# Field Count Documentation
-
-## Overview
-
-The `field_count.hpp` file provides utilities for counting the number of fields in aggregate types at compile-time. This is part of the `atom::meta` namespace and is designed to work with C++20 or later.
 
 ## Contents
 
@@ -146,5 +140,3 @@ Fields in ComplexType: 3
 4. For arrays, a specialized `fieldCountOf` function returns the number of elements.
 5. This method of field counting has limitations and may not work for all types, especially those with complex structures or non-public members.
 6. The `Any` struct and `isBracesConstructible` function are implementation details used by the `fieldCount` function to perform the compile-time field counting.
-
-Remember to compile with C++20 support enabled (e.g., `-std=c++20` for GCC/Clang) when using this header.

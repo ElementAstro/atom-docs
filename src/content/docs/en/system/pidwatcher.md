@@ -1,11 +1,7 @@
 ---
-title: PidWatcher Class Documentation
-description: Detailed documentation for the PidWatcher class in the atom::system namespace, including constructors, public methods, usage examples, best practices, and implementation details for monitoring processes by their PID.
+title: PidWatcher
+description: Detailed for the PidWatcher class in the atom::system namespace, including constructors, public methods, usage examples, best practices, and implementation details for monitoring processes by their PID.
 ---
-
-# Atom System PID Watcher Library Documentation
-
-This document provides a detailed explanation of the `PidWatcher` class available in the `atom::system` namespace for monitoring processes by their PID.
 
 ## Table of Contents
 
@@ -201,5 +197,3 @@ The implementation adapts based on the C++ standard version:
     std::thread exit_thread_;
 #endif
 ```
-
-This ensures compatibility with both C++20 (using `std::jthread`) and earlier versions (using `std::thread`).

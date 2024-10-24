@@ -1,9 +1,7 @@
 ---
-title: Stat Class Documentation
-description: Comprehensive documentation for the Stat class in the atom::system namespace, including constructors, methods for retrieving file statistics, and usage examples for both Windows and Linux systems.
+title: Stat
+description: Comprehensive for the Stat class in the atom::system namespace, including constructors, methods for retrieving file statistics, and usage examples for both Windows and Linux systems.
 ---
-
-# Stat Class Documentation
 
 ## Overview
 
@@ -183,5 +181,5 @@ int main() {
 
 ## See Also
 
-- [std::filesystem documentation](https://en.cppreference.com/w/cpp/filesystem)
-- [Python os.stat() documentation](https://docs.python.org/3/library/os.html#os.stat) for comparison with the Python equivalent
+- [std::filesystem](https://en.cppreference.com/w/cpp/filesystem)
+- [Python os.stat()](https://docs.python.org/3/library/os.html#os.stat) for comparison with the Python equivalent

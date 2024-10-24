@@ -1,11 +1,7 @@
 ---
-title: SSHClient Class Documentation
-description: Detailed documentation for the SSHClient class in the atom::connection namespace, including methods for connecting to SSH servers, executing commands, and performing file operations on remote servers.
+title: SSHClient
+description: Detailed for the SSHClient class in the atom::connection namespace, including methods for connecting to SSH servers, executing commands, and performing file operations on remote servers.
 ---
-
-# SSHClient Class Documentation
-
-The `SSHClient` class is part of the `atom::connection` namespace and provides functionality for SSH client connections and file operations. This class allows users to connect to SSH servers, execute commands, and perform various file operations on remote servers.
 
 ## Table of Contents
 
@@ -447,15 +443,3 @@ int main() {
     return 0;
 }
 ```
-
-These examples demonstrate various use cases of the `SSHClient` class, including file and directory operations, command execution, and retrieving file information. Remember to handle exceptions appropriately in your applications and ensure proper error handling and resource management.
-
-When using the `SSHClient` class in your projects, make sure to:
-
-1. Include proper error handling and logging.
-2. Use secure practices for storing and handling credentials.
-3. Implement appropriate timeout mechanisms for network operations.
-4. Consider using key-based authentication instead of password authentication for improved security.
-5. Be mindful of the permissions and ownership of files and directories you create or modify on the remote server.
-
-By following these best practices and utilizing the `SSHClient` class effectively, you can build robust applications that interact with remote servers securely and efficiently.

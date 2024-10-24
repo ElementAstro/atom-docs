@@ -1,9 +1,7 @@
 ---
-title: Decorator System Documentation
-description: Detailed documentation for the decorator system in the atom::meta namespace, including key components like Switchable, decorator, LoopDecorator, ConditionCheckDecorator, BaseDecorator, and DecorateStepper, with usage examples and performance considerations.
+title: Decorator System
+description: Detailed for the decorator system in the atom::meta namespace, including key components like Switchable, decorator, LoopDecorator, ConditionCheckDecorator, BaseDecorator, and DecorateStepper, with usage examples and performance considerations.
 ---
-
-# Decorator System Documentation
 
 ## Overview
 

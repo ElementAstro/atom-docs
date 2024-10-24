@@ -1,9 +1,7 @@
 ---
-title: MysqlDB Class Documentation
-description: Comprehensive documentation for the MysqlDB class, including constructors, methods for executing queries, retrieving data, managing transactions, and handling errors, with detailed usage examples.
+title: MysqlDB
+description: Comprehensive for the MysqlDB class, including constructors, methods for executing queries, retrieving data, managing transactions, and handling errors, with detailed usage examples.
 ---
-
-# MysqlDB Class Documentation
 
 ## Introduction
 

@@ -1,9 +1,7 @@
 ---
-title: Atom System Process Management Library Documentation
-description: Comprehensive documentation for the Atom System Process Management Library, including the ProcessManager class, global functions, structures, usage examples, best practices, and platform-specific considerations.
+title: System Process Management
+description: Comprehensive for the Atom System Process Management Library, including the ProcessManager class, global functions, structures, usage examples, best practices, and platform-specific considerations.
 ---
-
-# Atom System Process Management Library Documentation
 
 ## Table of Contents
 

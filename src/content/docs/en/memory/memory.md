@@ -1,11 +1,7 @@
 ---
-title: MemoryPool Class Documentation
-description: Detailed documentation for the MemoryPool class template, including constructors, public and protected methods, private methods, and usage examples for efficient memory management in C++.
+title: Memory Pool
+description: Detailed for the MemoryPool class template, including constructors, public and protected methods, private methods, and usage examples for efficient memory management in C++.
 ---
-
-# MemoryPool Documentation
-
-This document provides a detailed explanation of the `MemoryPool` class template, its methods, and usage examples.
 
 ## Table of Contents
 

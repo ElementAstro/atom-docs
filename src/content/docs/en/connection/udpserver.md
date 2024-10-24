@@ -1,9 +1,7 @@
 ---
-title: UdpSocketHub Class Documentation
-description: Detailed documentation for the UdpSocketHub class in the atom::connection namespace, including constructors, public methods, message handling, and usage examples for managing UDP socket communication in C++.
+title: UdpSocketHub
+description: Detailed for the UdpSocketHub class in the atom::connection namespace, including constructors, public methods, message handling, and usage examples for managing UDP socket communication in C++.
 ---
-
-# UDP Socket Hub Class Documentation
 
 ## Overview
 

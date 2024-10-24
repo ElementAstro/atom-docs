@@ -1,13 +1,13 @@
 ---
-title: CurlWrapper Class Documentation
-description: Comprehensive documentation for the CurlWrapper class, including constructors, methods for setting request options, performing synchronous and asynchronous HTTP requests, handling callbacks, and usage examples.
+title: CurlWrapper
+description: Comprehensive for the CurlWrapper class, including constructors, methods for setting request options, performing synchronous and asynchronous HTTP requests, handling callbacks, and usage examples.
 ---
 
-# CurlWrapper Class Documentation
+# CurlWrapper
 
 ## Introduction
 
-The `CurlWrapper` class is a C++ wrapper for making HTTP requests using the libcurl library. It provides various methods to set request options, perform synchronous and asynchronous requests, and handle response callbacks. This documentation provides detailed information about the class and its usage, along with code examples for each method.
+The `CurlWrapper` class is a C++ wrapper for making HTTP requests using the libcurl library. It provides various methods to set request options, perform synchronous and asynchronous requests, and handle response callbacks. This provides detailed information about the class and its usage, along with code examples for each method.
 
 ### Class Definition
 

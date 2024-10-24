@@ -1,13 +1,11 @@
 ---
-title: User Information Library Documentation
-description: Comprehensive documentation for the User Information Library, including functions for retrieving user groups, username, hostname, user ID, group ID, home directory, and login shell.
+title: User Information
+description: Comprehensive for the User Information Library, including functions for retrieving user groups, username, hostname, user ID, group ID, home directory, and login shell.
 ---
-
-# Windows Registry Functions Documentation
 
 ## Overview
 
-This documentation covers a set of functions designed to interact with the Windows Registry. These functions are part of the `atom::system` namespace and provide capabilities such as querying, modifying, and deleting registry keys and values, as well as more advanced operations like recursive enumeration, backup, and export.
+This covers a set of functions designed to interact with the Windows Registry. These functions are part of the `atom::system` namespace and provide capabilities such as querying, modifying, and deleting registry keys and values, as well as more advanced operations like recursive enumeration, backup, and export.
 
 ## Important Note
 
@@ -252,12 +250,4 @@ int main() {
 
 5. **Validation**: When modifying registry values, validate the data you're writing to ensure it's in the correct format and within expected ranges.
 
-6. **Documentation**: Keep clear documentation of what registry keys and values your application uses, modifies, or depends on.
-
-## Conclusion
-
-These Windows Registry functions provide a powerful interface for interacting with the Windows Registry using C++. They offer a range of capabilities from simple key-value operations to more complex tasks like recursive enumeration and registry backups.
-
-When using these functions, always be mindful of the potential system-wide impact of registry modifications. Thoroughly test your application's registry interactions in a controlled environment before deploying to production systems.
-
-Remember that these functions are Windows-specific and should be properly isolated in cross-platform code. Use conditional compilation (`#ifdef _WIN32`) to ensure these functions are only compiled and used on Windows systems.
+6. **Documentation**: Keep clear of what registry keys and values your application uses, modifies, or depends on.

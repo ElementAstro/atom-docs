@@ -1,11 +1,7 @@
 ---
-title: EventStack.hpp Documentation
-description: Detailed documentation for the EventStack class template in the eventstack.hpp header file, including constructors, public methods, private members, and usage examples for managing events in a thread-safe manner.
+title: Event Stack
+description: Detailed for the EventStack class template in the eventstack.hpp header file, including constructors, public methods, private members, and usage examples for managing events in a thread-safe manner.
 ---
-
-# Documentation for eventstack.hpp
-
-This document provides a detailed overview of the `eventstack.hpp` header file, which contains the `EventStack` class template for managing events in a thread-safe manner.
 
 ## Table of Contents
 
@@ -278,7 +274,3 @@ int main() {
     return 0;
 }
 ```
-
-This example demonstrates various operations on the `EventStack`, including pushing and popping events, checking the stack's properties, filtering, serializing, deserializing, sorting, and counting events.
-
-Remember that the `EventStack` is thread-safe, so you can use it in multi-threaded applications without additional synchronization.

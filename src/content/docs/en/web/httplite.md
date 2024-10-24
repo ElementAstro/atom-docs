@@ -1,9 +1,9 @@
 ---
-title: HttpClient and HttpRequestBuilder Class Documentation
-description: Comprehensive documentation for the HttpClient and HttpRequestBuilder classes, including constructors, methods for setting error handlers, connecting to servers, sending requests, receiving responses, and usage examples.
+title: HttpClient and HttpRequestBuilder
+description: Comprehensive for the HttpClient and HttpRequestBuilder classes, including constructors, methods for setting error handlers, connecting to servers, sending requests, receiving responses, and usage examples.
 ---
 
-# HttpClient Class Documentation
+# HttpClient
 
 The `HttpClient` class is used to establish a connection to a server and send requests while receiving responses.
 
@@ -94,7 +94,7 @@ HttpResponse response = client.receiveResponse();
 
 ---
 
-## HttpRequestBuilder Class Documentation
+## HttpRequestBuilder
 
 The `HttpRequestBuilder` class is used to construct HTTP requests.
 

@@ -1,9 +1,9 @@
 ---
-title: Optional Class Template Documentation
-description: Comprehensive documentation for the Optional class template in the atom::type namespace, including constructors, operators, methods, advanced operations, usage examples, and best practices for managing optional values in C++.
+title: Optional Class Template
+description: Comprehensive for the Optional class template in the atom::type namespace, including constructors, operators, methods, advanced operations, usage examples, and best practices for managing optional values in C++.
 ---
 
-# Optional Class Template Documentation
+# Optional Class Template
 
 ## Table of Contents
 

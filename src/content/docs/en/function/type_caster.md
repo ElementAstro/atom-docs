@@ -1,11 +1,7 @@
 ---
-title: TypeCaster Class Documentation
-description: Detailed documentation for the TypeCaster class in the atom::meta namespace, including constructors, key methods, type conversions, enum handling, and usage examples.
+title: TypeCaster
+description: Detailed for the TypeCaster class in the atom::meta namespace, including constructors, key methods, type conversions, enum handling, and usage examples.
 ---
-
-# TypeCaster Class Documentation
-
-The `TypeCaster` class is part of the `atom::meta` namespace and provides advanced type casting functionality with features such as type inference, aliasing, multi-stage conversion, and logging. This document explains its usage and provides examples.
 
 ## Table of Contents
 
@@ -359,9 +355,3 @@ int main() {
 5. **Custom Types**: When working with custom types, always register them and their conversions before using them with the `TypeCaster`.
 
 6. **Enum Handling**: For better type safety when working with enums, consider using strongly typed enums (`enum class`) and registering them with `TypeCaster`.
-
-## Conclusion
-
-The `TypeCaster` class provides a powerful and flexible system for handling complex type conversions in C++ applications. By leveraging its features such as custom conversions, type aliases, and multi-stage conversions, developers can create more robust and adaptable code, especially when dealing with diverse data types and formats.
-
-Remember to always consider the trade-offs between flexibility and type safety when using dynamic type casting, and use the `TypeCaster` class judiciously in your applications.

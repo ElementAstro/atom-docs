@@ -1,13 +1,7 @@
 ---
-title: ResourceCache Class Documentation
-description: Detailed documentation for the ResourceCache class in the atom::search namespace, including class declaration, constructors, basic operations, asynchronous operations, cache management, expiration, cleanup, persistence, bulk operations, and usage examples.
+title: ResourceCache
+description: Detailed for the ResourceCache class in the atom::search namespace, including class declaration, constructors, basic operations, asynchronous operations, cache management, expiration, cleanup, persistence, bulk operations, and usage examples.
 ---
-
-# ResourceCache Class Documentation
-
-## Overview
-
-The `ResourceCache` class is a template-based caching system designed for efficient storage and retrieval of resources. It's part of the `atom::search` namespace and provides various features such as expiration, least recently used (LRU) eviction, asynchronous operations, and persistent storage.
 
 ## Table of Contents
 

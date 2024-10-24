@@ -1,9 +1,7 @@
 ---
-title: Benchmark Class Documentation
-description: Comprehensive documentation for the Benchmark class, including constructors, configuration options, member functions, and usage examples for benchmarking code performance in C++.
+title: Benchmark
+description: Comprehensive for the Benchmark class, including constructors, configuration options, member functions, and usage examples for benchmarking code performance in C++.
 ---
-
-# Benchmark Class Documentation
 
 ## Overview
 
@@ -211,7 +209,3 @@ int main() {
 5. **Environment Control**: Document and control the environment (hardware, OS, compiler settings) in which benchmarks are run for reproducibility.
 
 6. **Result Analysis**: Use the provided statistics (average, median, standard deviation) to gain a comprehensive understanding of the performance characteristics.
-
-## Conclusion
-
-The `Benchmark` class provides a powerful and flexible tool for performance testing in C++. By offering features like warmup runs, asynchronous execution, and detailed CPU and memory statistics, it allows for comprehensive analysis of code performance. When used correctly, it can provide valuable insights for optimization efforts and performance comparisons.

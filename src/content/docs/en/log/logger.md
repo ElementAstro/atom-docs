@@ -1,11 +1,7 @@
 ---
-title: LoggerManager Class Documentation
-description: Detailed documentation for the LoggerManager class in the lithium namespace, including constructors, public methods, LogEntry struct, and usage examples for managing and analyzing log files.
+title: LoggerManager
+description: Detailed for the LoggerManager class in the lithium namespace, including constructors, public methods, LogEntry struct, and usage examples for managing and analyzing log files.
 ---
-
-# LoggerManager Documentation
-
-This document provides a detailed explanation of the `lithium::LoggerManager` class, its methods, and usage examples.
 
 ## Table of Contents
 

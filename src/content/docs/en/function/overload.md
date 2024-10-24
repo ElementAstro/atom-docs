@@ -1,13 +1,7 @@
 ---
-title: Overload.hpp Documentation
-description: Detailed documentation for the overload.hpp file in the atom::meta namespace, including utilities for casting overloaded functions, the OverloadCast struct, the overload_cast variable template, the decayCopy function, and usage examples.
+title: Overload
+description: Detailed for the overload.hpp file in the atom::meta namespace, including utilities for casting overloaded functions, the OverloadCast struct, the overload_cast variable template, the decayCopy function, and usage examples.
 ---
-
-# Overload.hpp Documentation
-
-## Overview
-
-The `overload.hpp` file, part of the `atom::meta` namespace, provides utility functions to simplify the casting of overloaded member functions and free functions. It introduces the `OverloadCast` struct and the `overload_cast` helper variable template, which allow for better type deduction when working with function overloads.
 
 ## Table of Contents
 

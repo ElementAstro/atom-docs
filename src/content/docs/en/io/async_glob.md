@@ -1,9 +1,7 @@
 ---
-title: AsyncGlob Class Documentation
-description: Detailed documentation for the AsyncGlob class in the atom::io namespace, including constructors, public methods, usage examples, best practices, and advanced topics for asynchronous file and directory pattern matching.
+title: AsyncGlob
+description: Detailed for the AsyncGlob class in the atom::io namespace, including constructors, public methods, usage examples, best practices, and advanced topics for asynchronous file and directory pattern matching.
 ---
-
-# AsyncGlob Class Documentation
 
 ## Table of Contents
 

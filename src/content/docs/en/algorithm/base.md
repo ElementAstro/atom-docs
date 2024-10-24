@@ -1,11 +1,7 @@
 ---
-title: Base64 and XOR Encryption
-description: Detailed documentation of Base64 encoding/decoding and XOR encryption/decryption functions in the Atom Algorithm Library, including runtime and compile-time implementations.
+title: Base64 and XOR
+description: Detailed of Base64 encoding/decoding and XOR encryption/decryption functions in the Atom Algorithm Library, including runtime and compile-time implementations.
 ---
-
-# Atom Algorithm Library: Base64 and XOR Encryption
-
-This document provides a detailed explanation of the Base64 encoding/decoding and XOR encryption/decryption functions implemented in the Atom Algorithm Library.
 
 ## Table of Contents
 
@@ -185,5 +181,3 @@ int main() {
     return 0;
 }
 ```
-
-These examples demonstrate how to use the Base64 encoding/decoding and XOR encryption/decryption functions provided by the Atom Algorithm Library. The library offers both runtime and compile-time options for Base64 operations, allowing for flexibility in different use cases.

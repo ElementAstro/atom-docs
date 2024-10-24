@@ -1,9 +1,7 @@
 ---
-title: Signal Handling Library Documentation
-description: Comprehensive documentation for the Signal Handling Library, including the SignalHandlerRegistry and SafeSignalManager classes, key methods, usage examples, and best practices for managing signals in C++ applications.
+title: Signal Handling
+description: Comprehensive for the Signal Handling Library, including the SignalHandlerRegistry and SafeSignalManager classes, key methods, usage examples, and best practices for managing signals in C++ applications.
 ---
-
-# Signal Handling Library Documentation
 
 ## Table of Contents
 

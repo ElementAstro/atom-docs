@@ -1,9 +1,7 @@
 ---
-title: DemangleHelper Class Documentation
-description: Detailed documentation for the DemangleHelper class in the atom::meta namespace, including methods for demangling C++ type names, visualizing complex types, and usage examples.
+title: DemangleHelper
+description: Detailed for the DemangleHelper class in the atom::meta namespace, including methods for demangling C++ type names, visualizing complex types, and usage examples.
 ---
-
-# DemangleHelper Class Documentation
 
 ## Overview
 

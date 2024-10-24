@@ -1,6 +1,6 @@
 ---
 title: 线程安全的LRU缓存
-description: Detailed documentation for the ThreadSafeLRUCache class in the atom::search namespace, including constructors, basic operations, cache management, callbacks, statistics, persistence, and usage examples.
+description: Detailed for the ThreadSafeLRUCache class in the atom::search namespace, including constructors, basic operations, cache management, callbacks, statistics, persistence, and usage examples.
 ---
 
 ## 目录

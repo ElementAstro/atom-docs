@@ -1,11 +1,7 @@
 ---
-title: Registry Class Documentation
-description: Detailed documentation for the Registry class in the atom::system namespace, including constructors, methods for managing registry keys and values, backup and restore operations, and usage examples.
+title: Registry
+description: Detailed for the Registry class in the atom::system namespace, including constructors, methods for managing registry keys and values, backup and restore operations, and usage examples.
 ---
-
-# Atom System Registry Management Library Documentation
-
-This document provides a detailed explanation of the `Registry` class available in the `atom::system` namespace for managing registry operations.
 
 ## Table of Contents
 
@@ -401,5 +397,3 @@ The actual implementation of the registry operations is likely platform-specific
    bool hasWriteAccess(const std::string& keyName);
    void setKeyPermissions(const std::string& keyName, const Permissions& permissions);
    ```
-
-By considering these potential extensions, you can enhance the functionality of the `Registry` class to meet more advanced requirements and use cases.

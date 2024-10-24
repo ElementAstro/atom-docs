@@ -1,9 +1,7 @@
 ---
-title: WeightSelector Class Documentation
-description: Detailed documentation for the WeightSelector class in the atom::algorithm namespace, including constructors, member functions, selection strategies, and usage examples.
+title: WeightSelector
+description: Detailed for the WeightSelector class in the atom::algorithm namespace, including constructors, member functions, selection strategies, and usage examples.
 ---
-
-# WeightSelector Class Documentation
 
 ## Overview
 

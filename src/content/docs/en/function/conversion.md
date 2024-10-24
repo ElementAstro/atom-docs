@@ -1,9 +1,7 @@
 ---
-title: Type Conversion System Documentation
-description: Comprehensive documentation for the type conversion system in the atom::meta namespace, including static and dynamic conversions, container conversions, key components, usage examples, error handling, performance considerations, and extensibility.
+title: Type Conversion System
+description: Comprehensive for the type conversion system in the atom::meta namespace, including static and dynamic conversions, container conversions, key components, usage examples, error handling, performance considerations, and extensibility.
 ---
-
-# Type Conversion System Documentation
 
 ## Overview
 

@@ -1,9 +1,7 @@
 ---
-title: AsyncFile and AsyncDirectory Classes Documentation
-description: Detailed documentation for the AsyncFile and AsyncDirectory classes in the atom::async::io namespace, including constructors, methods, and usage examples for asynchronous file and directory operations using the ASIO library.
+title: AsyncFile and AsyncDirectory Classes
+description: Detailed for the AsyncFile and AsyncDirectory classes in the atom::async::io namespace, including constructors, methods, and usage examples for asynchronous file and directory operations using the ASIO library.
 ---
-
-# AsyncFile and AsyncDirectory Classes Documentation
 
 ## Table of Contents
 

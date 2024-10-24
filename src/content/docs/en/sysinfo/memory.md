@@ -1,9 +1,7 @@
 ---
-title: Memory Information Module Documentation
-description: Detailed documentation for the Memory Information Module in the atom::system namespace, including structures, functions, usage examples, and best practices for retrieving and managing system memory details.
+title: Memory Information Module
+description: Detailed for the Memory Information Module in the atom::system namespace, including structures, functions, usage examples, and best practices for retrieving and managing system memory details.
 ---
-
-# Memory Information Module Documentation
 
 ## Table of Contents
 
@@ -200,8 +198,6 @@ int main() {
 }
 ```
 
-This example demonstrates how to use all the functions provided by the Memory Information Module to print a comprehensive overview of the system's memory information.
-
 ## Best Practices and Considerations
 
 1. **Error Handling**: The functions in this module don't have explicit error handling mechanisms. In a production environment, you might want to add error checking and handling for cases where the information might not be available or accessible.
@@ -216,7 +212,7 @@ This example demonstrates how to use all the functions provided by the Memory In
 
 6. **Memory Pressure**: Be aware that high memory usage or low available memory can impact system performance. Consider implementing warnings or actions based on these values in your application.
 
-7. **Thread Safety**: The documentation doesn't specify thread safety for these functions. If you're using them in a multi-threaded environment, consider adding synchronization mechanisms.
+7. **Thread Safety**: The doesn't specify thread safety for these functions. If you're using them in a multi-threaded environment, consider adding synchronization mechanisms.
 
 8. **Virtual Memory vs Physical Memory**: Understand the difference between virtual and physical memory when interpreting these values. High virtual memory usage doesn't necessarily indicate a problem if physical memory usage is reasonable.
 

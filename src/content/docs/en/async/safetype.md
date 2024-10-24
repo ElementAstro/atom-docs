@@ -1,11 +1,7 @@
 ---
-title: C++ Concurrent Data Structures Documentation
-description: Detailed documentation for concurrent data structures in the atom::async namespace, including LockFreeStack, LockFreeHashTable, ThreadSafeVector, and LockFreeList, with constructors, methods, and usage examples.
+title: C++ Concurrent Data Structures
+description: Detailed for concurrent data structures in the atom::async namespace, including LockFreeStack, LockFreeHashTable, ThreadSafeVector, and LockFreeList, with constructors, methods, and usage examples.
 ---
-
-# C++ Concurrent Data Structures Documentation
-
-This document provides a detailed explanation of the concurrent data structures and their usage as defined in the `atom::async` namespace.
 
 ## Table of Contents
 
@@ -467,5 +463,3 @@ for (const auto& value : list) {
 4. **Memory Usage**: Be mindful of the memory usage, especially with `ThreadSafeVector`. Use `shrinkToFit()` when appropriate to optimize memory consumption.
 
 5. **Performance Tuning**: For `LockFreeHashTable`, choose an appropriate initial number of buckets based on the expected number of elements to minimize collisions and resizing operations.
-
-By following these guidelines and understanding the characteristics of each data structure, you can effectively use these concurrent data structures in your multithreaded C++ applications.

@@ -1,11 +1,7 @@
 ---
-title: FunctionParams Class Documentation
-description: Detailed documentation for the FunctionParams class in the proxy_params.hpp file, including constructors, member functions, and usage examples for encapsulating function parameters using std::any in C++.
+title: FunctionParams
+description: Detailed for the FunctionParams class in the proxy_params.hpp file, including constructors, member functions, and usage examples for encapsulating function parameters using std::any in C++.
 ---
-
-# FunctionParams Class Documentation
-
-The `FunctionParams` class is designed to encapsulate function parameters using `std::any`. This class provides a flexible way to store and manage parameters of various types.
 
 ## Table of Contents
 
@@ -182,7 +178,3 @@ int main() {
     return 0;
 }
 ```
-
-This example demonstrates various operations using the `FunctionParams` class, including creation, accessing elements, type-safe retrieval, slicing, filtering, and updating values.
-
-Remember to include proper error handling in your actual code, as some operations may throw exceptions if used incorrectly.

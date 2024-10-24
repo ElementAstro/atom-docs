@@ -1,13 +1,7 @@
 ---
-title: Boost System Wrapper Documentation
-description: Detailed documentation for the Boost System Wrapper in the atom::extra::boost namespace, including custom Error, Exception, and Result classes for simplified error handling in C++.
+title: Boost System Wrapper
+description: Detailed for the Boost System Wrapper in the atom::extra::boost namespace, including custom Error, Exception, and Result classes for simplified error handling in C++.
 ---
-
-# Boost System Wrapper Documentation
-
-## Overview
-
-This C++ header file provides a wrapper around Boost.System's error handling mechanisms. It defines custom `Error`, `Exception`, and `Result` classes in the `atom::extra::boost` namespace. These classes aim to simplify error handling and provide a more modern C++ interface for dealing with errors and results.
 
 ## Table of Contents
 

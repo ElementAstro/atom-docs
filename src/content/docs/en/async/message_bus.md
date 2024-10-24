@@ -1,11 +1,7 @@
 ---
-title: MessageBus.hpp Documentation
-description: Detailed documentation for the MessageBus class in the message_bus.hpp header file, including constructors, publishing, subscription, unsubscription methods, query methods, utility methods, and usage examples.
+title: Message Bus
+description: Detailed for the MessageBus class in the message_bus.hpp header file, including constructors, publishing, subscription, unsubscription methods, query methods, utility methods, and usage examples.
 ---
-
-# Documentation for message_bus.hpp
-
-This document provides a detailed overview of the `message_bus.hpp` header file, which contains the `MessageBus` class for implementing a message bus system with Asio support in C++.
 
 ## Table of Contents
 
@@ -250,5 +246,3 @@ for (const auto& ns : activeNamespaces) {
 }
 std::cout << std::endl;
 ```
-
-These examples demonstrate the basic usage of the `MessageBus` class, including subscribing to messages, publishing messages, using filters, namespace-based routing, and querying the message bus state. Remember to handle exceptions and consider thread safety when using the `MessageBus` in a multi-threaded environment.

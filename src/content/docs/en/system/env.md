@@ -1,11 +1,7 @@
 ---
-title: Env Class Documentation
-description: Detailed documentation for the Env class in the atom::utils namespace, including constructors, static methods, instance methods, and usage examples for managing environment variables and command-line arguments in C++.
+title: Env
+description: Detailed for the Env class in the atom::utils namespace, including constructors, static methods, instance methods, and usage examples for managing environment variables and command-line arguments in C++.
 ---
-
-# Atom Utils Environment Management Library Documentation
-
-This document provides a detailed explanation of the `Env` class available in the `atom::utils` namespace for managing program environment variables, command-line arguments, and other related information.
 
 ## Table of Contents
 
@@ -450,5 +446,3 @@ int main() {
     // ... use TEMP_VAR ...
     env.unsetVariable("TEMP_VAR");  // Clean up when done
     ```
-
-By following these best practices, you can effectively use the `atom::utils::Env` class to manage your application's environment, improve its configurability, and ensure consistent behavior across different execution contexts.

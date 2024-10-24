@@ -1,13 +1,11 @@
 ---
-title: TypeMetadata and TypeRegistry Documentation
-description: Comprehensive documentation for the TypeMetadata and TypeRegistry classes in the atom::meta namespace, including methods for dynamic reflection, method overloading, and event handling in C++.
+title: TypeMetadata and TypeRegistry
+description: Comprehensive for the TypeMetadata and TypeRegistry classes in the atom::meta namespace, including methods for dynamic reflection, method overloading, and event handling in C++.
 ---
-
-# TypeMetadata and TypeRegistry Documentation
 
 ## Overview
 
-This documentation covers the `TypeMetadata` and `TypeRegistry` classes, along with related helper functions and the `TypeRegistrar` template class. These components are part of the `atom::meta` namespace and provide a system for dynamic reflection, method overloading, and event handling in C++.
+This covers the `TypeMetadata` and `TypeRegistry` classes, along with related helper functions and the `TypeRegistrar` template class. These components are part of the `atom::meta` namespace and provide a system for dynamic reflection, method overloading, and event handling in C++.
 
 ## TypeMetadata Class
 
@@ -141,4 +139,4 @@ atom::meta::fireEvent(obj, "onCreate", {});
 - The `TypeRegistry` is thread-safe, using a shared mutex for concurrent access.
 - Error handling is implemented using custom exceptions (e.g., `THROW_NOT_FOUND`).
 - The `TypeRegistrar` provides a basic implementation for registering types. You may need to extend it for more complex type registrations.
-- The system relies on the `BoxedValue` class (not shown in this documentation) for type-erased value storage.
+- The system relies on the `BoxedValue` class (not shown in this) for type-erased value storage.

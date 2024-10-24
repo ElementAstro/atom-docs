@@ -1,11 +1,7 @@
 ---
-title: EnhancedPromise.hpp Documentation
-description: Detailed documentation for the EnhancedPromise class template in the promise.hpp header file, including constructors, public methods, specialization for void, and usage examples.
+title: Enhanced Promise
+description: Detailed for the EnhancedPromise class template in the promise.hpp header file, including constructors, public methods, specialization for void, and usage examples.
 ---
-
-# Documentation for promise.hpp
-
-This document provides a detailed overview of the `promise.hpp` header file, which contains the `EnhancedPromise` class template for implementing an enhanced version of `std::promise` with additional features.
 
 ## Table of Contents
 

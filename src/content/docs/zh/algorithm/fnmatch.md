@@ -3,10 +3,6 @@ title: FnMatch
 description: shell 风格模式匹配和过滤函数
 ---
 
-## 概述
-
-`fnmatch.hpp` 头文件提供了一组用于 C++ 中 shell 风格模式匹配和过滤的函数。这些函数是 `atom::algorithm` 命名空间的一部分，提供了类似于 Python 的 `fnmatch` 模块的功能。
-
 ## 函数
 
 ### `fnmatch`

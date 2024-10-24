@@ -1,5 +1,5 @@
 ---
-title: BoostCharConv 类文档
+title: BoostCharConv包装
 description: BoostCharConv 类在 atom::extra::boost 命名空间中的详细文档，包括使用 Boost 的 charconv 功能在字符串和数值类型之间转换的方法。
 ---
 
@@ -393,5 +393,3 @@ for (double value : largeArrayOfDoubles) {
     // 处理 str...
 }
 ```
-
-4. **异常处理**：虽然异常提供了处理错误的强大方法，但它们可能会影响性能，尤其是在关键循环中。在性能敏感的代码中，您可能希望使用错误代码或其他轻量级错误处理机制。

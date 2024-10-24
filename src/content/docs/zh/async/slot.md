@@ -721,9 +721,3 @@ scopedSignal.emit(10, "Goodbye, Scoped World!");
 8. **模板使用**：所有这些信号类都是模板化的，允许类型安全的槽连接和发射。确保槽签名与信号的模板参数匹配，以避免编译错误。
 
 9. **错误处理**：这些信号实现并不内置对槽执行的错误处理。在您的应用程序代码中考虑将槽调用包装在 try-catch 块中，如果需要异常处理。
-
-10. **可扩展性**：`WeightSelector` 类设计为可扩展：
-
-- 您可以通过从 `SelectionStrategy` 基类继承来创建自定义选择策略。
-- `applyFunctionToWeights` 方法允许自定义权重转换。
-- 您可以扩展 `WeightSelector` 类本身以添加特定领域的功能。

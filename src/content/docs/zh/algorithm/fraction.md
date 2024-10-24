@@ -1,11 +1,7 @@
 ---
-title: Fraction 类文档
+title: 分数
 description: Fraction 类的全面文档，包括构造函数、算术运算、比较、转换和使用示例。
 ---
-
-## 概述
-
-`Fraction` 类定义在 `fraction.hpp` 中，是 `atom::algorithm` 命名空间的一部分。它提供了一个强大的分数实现，支持各种算术运算、比较和转换。
 
 ## 类定义
 

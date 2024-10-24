@@ -226,5 +226,3 @@ messageQueue.publish("这将被接收");
 messageQueue.unsubscribe(callback);
 messageQueue.publish("这不会被临时订阅者接收");
 ```
-
-这些示例演示了 `MessageQueue` 类的基本用法，包括订阅消息、发布消息、使用优先级和过滤器、处理超时、取消消息和取消订阅。请记得在多线程环境中使用时，适当地处理异常并考虑线程安全。

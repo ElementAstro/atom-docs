@@ -1,9 +1,7 @@
 ---
-title: Async.hpp
+title: 额外异步操作
 description: 管理 C++ 中异步任务的类和函数，如 AsyncWorker、AsyncWorkerManager、实用函数和使用示例
 ---
-
-本文档提供了 `async.hpp` 头文件的详细概述，该文件包含用于管理 C++ 中异步任务的类和函数。
 
 ## 目录
 

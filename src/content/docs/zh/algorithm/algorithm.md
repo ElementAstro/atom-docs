@@ -3,10 +3,6 @@ title: 通用算法
 description: 算法库的详细文档，包括各种算法的实现，如 KMP、布隆过滤器和博耶-摩尔算法。
 ---
 
-## 概述
-
-`atom::algorithm` 命名空间提供了各种算法的实现，重点是字符串搜索和数据结构。此模块是 Atom 库的一部分，定义在 `ATOM_ALGORITHM_ALGORITHM_HPP` 头文件中。
-
 ## 类
 
 ### KMP（Knuth-Morris-Pratt）
@@ -166,8 +162,3 @@ std::vector<int> matches = bm.search("This is a text with a pattern in it.");
 - 该库使用 C++17 特性，特别是 `std::string_view`。
 - 布隆过滤器的实现是模板化的，允许自定义过滤器大小。
 - KMP 和博耶-摩尔算法都是高效的字符串搜索算法，具有不同的性能特征，具体取决于输入。
-
-## 依赖项
-
-- C++17 或更高版本
-- 标准库头文件：`<bitset>`、`<string>`、`<string_view>`、`<unordered_map>`、`<vector>`

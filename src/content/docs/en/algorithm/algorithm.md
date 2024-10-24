@@ -3,8 +3,6 @@ title: Atom Algorithm Library
 description: Detailed documentation of the Atom Algorithm Library, including implementations of various algorithms such as KMP, BloomFilter, and BoyerMoore.
 ---
 
-# Atom Algorithm Library
-
 ## Overview
 
 The `atom::algorithm` namespace provides implementations of various algorithms, focusing on string searching and data structures. This module is part of the Atom library and is defined in the `ATOM_ALGORITHM_ALGORITHM_HPP` header file.

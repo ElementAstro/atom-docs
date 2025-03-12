@@ -3,227 +3,322 @@ title: Error Calibration
 description: Comprehensive for the Advanced Error Calibration Library in the atom::algorithm namespace, including methods for linear and polynomial calibration, residual analysis, outlier detection, and cross-validation.
 ---
 
-## Table of Contents
+## Overview
 
-1. [Class Definition](#class-definition)
-2. [Constructor](#constructor)
-3. [Public Methods](#public-methods)
-4. [Private Methods](#private-methods)
-5. [Usage Examples](#usage-examples)
+The Atom Algorithm Convolution Library provides high-performance implementations of one-dimensional and two-dimensional convolution and deconvolution operations. It offers optional acceleration via OpenCL and SIMD optimizations, making it suitable for image processing, signal processing, and scientific computing applications.
 
-## Class Definition
+## Features
+
+- 2D convolution and deconvolution with multi-threading support
+- Discrete Fourier Transform (DFT) and inverse DFT implementations
+- Gaussian kernel generation and filtering
+- Hardware acceleration via OpenCL (optional)
+- SIMD optimization for improved performance on modern CPUs
+- Thread-safe implementations with C++20 features
+
+## Installation
+
+The library is header-only, so you just need to include `convolve.hpp` in your project:
 
 ```cpp
-template <std::floating_point T>
-class AdvancedErrorCalibration {
-    // ... (class members and methods)
-};
+#include "atom/algorithm/convolve.hpp"
 ```
 
-The `AdvancedErrorCalibration` class is templated to work with any floating-point type.
+### Dependencies
 
-## Constructor
+- C++20 compatible compiler
+- Standard Library with support for `<complex>`, `<thread>`, and `<vector>`
+- OpenCL development libraries (optional)
 
-The class does not have an explicit constructor. Members are initialized with default values.
+## Configuration
 
-## Public Methods
-
-### Linear Calibration
+The library provides two configuration options:
 
 ```cpp
-void linearCalibrate(const std::vector<T>& measured, const std::vector<T>& actual);
+// Enable/disable OpenCL support (default: disabled)
+#define USE_OPENCL 0
+
+// Enable/disable SIMD optimizations (default: enabled)
+#define USE_SIMD 1
 ```
 
-Performs linear calibration using the least squares method.
-
-- **Parameters:**
-  - `measured`: Vector of measured values
-  - `actual`: Vector of actual values
-
-### Polynomial Calibration
+You can configure these options by defining them before including the header:
 
 ```cpp
-void polynomialCalibrate(const std::vector<T>& measured, const std::vector<T>& actual, int degree);
+#define USE_OPENCL 1  // Enable OpenCL support
+#include "atom/algorithm/convolve.hpp"
 ```
 
-Performs polynomial calibration using the least squares method.
+## API Reference
 
-- **Parameters:**
-  - `measured`: Vector of measured values
-  - `actual`: Vector of actual values
-  - `degree`: Degree of the polynomial
-
-### Apply Calibration
+### 2D Convolution
 
 ```cpp
-[[nodiscard]] auto apply(T value) const -> T;
+auto convolve2D(
+    const std::vector<std::vector<double>>& input,
+    const std::vector<std::vector<double>>& kernel,
+    int numThreads = availableThreads
+) -> std::vector<std::vector<double>>;
 ```
 
-Applies the calibration to a single value.
+Parameters:
 
-- **Parameters:**
-  - `value`: The value to calibrate
-- **Returns:** The calibrated value
+- `input`: 2D matrix to be convolved
+- `kernel`: 2D kernel to convolve with
+- `numThreads`: Number of threads to use (default: all available cores)
 
-### Print Parameters
+Returns:
+
+- Result of the convolution operation as a 2D vector
+
+Throws:
+
+- `InvalidArgumentException` if input or kernel matrices are empty or have inconsistent dimensions
+
+Description:
+Performs a 2D convolution operation, which is fundamental in image processing for operations like blurring, sharpening, and edge detection. The implementation supports multi-threading for improved performance.
+
+### 2D Deconvolution
 
 ```cpp
-void printParameters() const;
+auto deconvolve2D(
+    const std::vector<std::vector<double>>& signal,
+    const std::vector<std::vector<double>>& kernel,
+    int numThreads = availableThreads
+) -> std::vector<std::vector<double>>;
 ```
 
-Prints the calibration parameters (slope, intercept, R-squared, MSE, MAE).
+Parameters:
 
-### Get Residuals
+- `signal`: 2D matrix signal (result of convolution)
+- `kernel`: 2D kernel used for convolution
+- `numThreads`: Number of threads to use (default: all available cores)
+
+Returns:
+
+- Original input recovered via deconvolution
+
+Throws:
+
+- `RuntimeException` if deconvolution fails
+- `InvalidArgumentException` if signal or kernel matrices are empty or have inconsistent dimensions
+
+Description:
+Performs the inverse operation of convolution, attempting to recover the original signal. Useful for image restoration and signal processing applications.
+
+### 2D Discrete Fourier Transform
 
 ```cpp
-[[nodiscard]] auto getResiduals() const -> std::vector<T>;
+auto dfT2D(
+    const std::vector<std::vector<double>>& signal,
+    int numThreads = availableThreads
+) -> std::vector<std::vector<std::complex<double>>>;
 ```
 
-Returns the vector of residuals from the last calibration.
+Parameters:
 
-### Plot Residuals
+- `signal`: 2D input signal in spatial domain
+- `numThreads`: Number of threads to use (default: all available cores)
+
+Returns:
+
+- Frequency domain representation of the input signal
+
+Description:
+Computes the 2D Discrete Fourier Transform of a signal, converting it from the spatial domain to the frequency domain. This is useful for frequency analysis and as an intermediate step in many signal processing operations.
+
+### Inverse 2D Discrete Fourier Transform
 
 ```cpp
-void plotResiduals(const std::string& filename) const;
+auto idfT2D(
+    const std::vector<std::vector<std::complex<double>>>& spectrum,
+    int numThreads = availableThreads
+) -> std::vector<std::vector<double>>;
 ```
 
-Writes residual data to a CSV file for plotting.
+Parameters:
 
-- **Parameters:**
-  - `filename`: The name of the file to write the data to
+- `spectrum`: 2D input in frequency domain
+- `numThreads`: Number of threads to use (default: all available cores)
 
-### Bootstrap Confidence Interval
+Returns:
+
+- Spatial domain representation of the input spectrum
+
+Description:
+Computes the inverse 2D Discrete Fourier Transform, converting a signal from the frequency domain back to the spatial domain. This complements the DFT operation and is essential for many frequency-domain signal processing techniques.
+
+### Gaussian Kernel Generation
 
 ```cpp
-auto bootstrapConfidenceInterval(const std::vector<T>& measured, const std::vector<T>& actual,
-                                 int n_iterations = 1000, double confidence_level = 0.95) -> std::pair<T, T>;
+auto generateGaussianKernel(
+    int size,
+    double sigma
+) -> std::vector<std::vector<double>>;
 ```
 
-Calculates the bootstrap confidence interval for the slope.
+Parameters:
 
-- **Parameters:**
-  - `measured`: Vector of measured values
-  - `actual`: Vector of actual values
-  - `n_iterations`: Number of bootstrap iterations
-  - `confidence_level`: Confidence level for the interval
-- **Returns:** A pair of lower and upper bounds of the confidence interval
+- `size`: Size of the kernel (should be odd)
+- `sigma`: Standard deviation of the Gaussian distribution
 
-### Outlier Detection
+Returns:
+
+- Gaussian kernel as a 2D vector
+
+Description:
+Generates a 2D Gaussian kernel that can be used for image blurring/smoothing. The `sigma` parameter controls the amount of blurring - larger values create more blurring effect.
+
+### Gaussian Filter Application
 
 ```cpp
-auto outlierDetection(const std::vector<T>& measured, const std::vector<T>& actual,
-                      T threshold = 2.0) -> std::tuple<T, T, T>;
+auto applyGaussianFilter(
+    const std::vector<std::vector<double>>& image,
+    const std::vector<std::vector<double>>& kernel
+) -> std::vector<std::vector<double>>;
 ```
 
-Detects outliers using the residuals of the calibration.
+Parameters:
 
-- **Parameters:**
-  - `measured`: Vector of measured values
-  - `actual`: Vector of actual values
-  - `threshold`: Threshold for outlier detection
-- **Returns:** A tuple of mean residual, standard deviation, and threshold
+- `image`: Input image as 2D matrix
+- `kernel`: Gaussian kernel to apply
 
-### Cross Validation
+Returns:
+
+- Filtered image as a 2D vector
+
+Description:
+Applies a Gaussian filter to an image, which typically results in a smoothing/blurring effect. This is commonly used for noise reduction in image processing.
+
+### OpenCL Accelerated Functions (if USE_OPENCL=1)
 
 ```cpp
-void crossValidation(const std::vector<T>& measured, const std::vector<T>& actual, int k = 5);
+auto convolve2DOpenCL(
+    const std::vector<std::vector<double>>& input,
+    const std::vector<std::vector<double>>& kernel,
+    int numThreads = availableThreads
+) -> std::vector<std::vector<double>>;
+
+auto deconvolve2DOpenCL(
+    const std::vector<std::vector<double>>& signal,
+    const std::vector<std::vector<double>>& kernel,
+    int numThreads = availableThreads
+) -> std::vector<std::vector<double>>;
 ```
 
-Performs k-fold cross-validation.
+Description:
+These functions provide OpenCL-accelerated versions of the convolution and deconvolution operations, which can significantly improve performance on supported hardware. The `numThreads` parameter is used for fallback if OpenCL fails.
 
-- **Parameters:**
-  - `measured`: Vector of measured values
-  - `actual`: Vector of actual values
-  - `k`: Number of folds
+## Usage Example
 
-### Getter Methods
+The following example demonstrates how to use the library to apply a Gaussian blur to a simulated image:
 
 ```cpp
-[[nodiscard]] auto getSlope() const -> T;
-[[nodiscard]] auto getIntercept() const -> T;
-[[nodiscard]] auto getRSquared() const -> std::optional<T>;
-[[nodiscard]] auto getMse() const -> T;
-[[nodiscard]] auto getMae() const -> T;
-```
-
-These methods return the calibration parameters and metrics.
-
-## Private Methods
-
-### Calculate Metrics
-
-```cpp
-void calculateMetrics(const std::vector<T>& measured, const std::vector<T>& actual);
-```
-
-Calculates various metrics after calibration (R-squared, MSE, MAE, residuals).
-
-### Levenberg-Marquardt Algorithm
-
-```cpp
-auto levenbergMarquardt(const std::vector<T>& x, const std::vector<T>& y,
-                        NonlinearFunction func, std::vector<T> initial_params,
-                        int max_iterations = 100, T lambda = 0.01, T epsilon = 1e-8) -> std::vector<T>;
-```
-
-Implements the Levenberg-Marquardt algorithm for nonlinear least squares fitting.
-
-### Solve Linear System
-
-```cpp
-auto solveLinearSystem(const std::vector<std::vector<T>>& A, const std::vector<T>& b) -> std::vector<T>;
-```
-
-Solves a system of linear equations using Gaussian elimination.
-
-## Usage Examples
-
-### Linear Calibration
-
-```cpp
-#include "atom/algorithm/error_calibration.hpp"
 #include <iostream>
 #include <vector>
+#include "atom/algorithm/convolve.hpp"
 
 int main() {
-    std::vector<double> measured = {1.0, 2.0, 3.0, 4.0, 5.0};
-    std::vector<double> actual = {1.1, 2.2, 2.9, 4.1, 5.0};
-
-    atom::algorithm::AdvancedErrorCalibration<double> calibrator;
-    calibrator.linearCalibrate(measured, actual);
-
-    calibrator.printParameters();
-
-    double test_value = 3.5;
-    std::cout << "Calibrated value of " << test_value << " is "
-              << calibrator.apply(test_value) << std::endl;
-
+    try {
+        // Create a sample 10x10 image (a simple gradient)
+        std::vector<std::vector<double>> image(10, std::vector<double>(10, 0.0));
+        for (int i = 0; i < 10; ++i) {
+            for (int j = 0; j < 10; ++j) {
+                image[i][j] = static_cast<double>(i + j) / 20.0;
+            }
+        }
+        
+        // Print original image
+        std::cout << "Original Image:" << std::endl;
+        for (const auto& row : image) {
+            for (double pixel : row) {
+                std::cout << pixel << " ";
+            }
+            std::cout << std::endl;
+        }
+        
+        // Generate a 3x3 Gaussian kernel with sigma = 1.0
+        auto kernel = atom::algorithm::generateGaussianKernel(3, 1.0);
+        
+        std::cout << "\nGaussian Kernel:" << std::endl;
+        for (const auto& row : kernel) {
+            for (double value : row) {
+                std::cout << value << " ";
+            }
+            std::cout << std::endl;
+        }
+        
+        // Apply convolution (blur the image)
+        auto blurredImage = atom::algorithm::convolve2D(image, kernel);
+        
+        std::cout << "\nBlurred Image:" << std::endl;
+        for (const auto& row : blurredImage) {
+            for (double pixel : row) {
+                std::cout << pixel << " ";
+            }
+            std::cout << std::endl;
+        }
+        
+        // Try to recover the original image with deconvolution
+        auto recoveredImage = atom::algorithm::deconvolve2D(blurredImage, kernel);
+        
+        std::cout << "\nRecovered Image:" << std::endl;
+        for (const auto& row : recoveredImage) {
+            for (double pixel : row) {
+                std::cout << pixel << " ";
+            }
+            std::cout << std::endl;
+        }
+        
+        // Compute the DFT of the image
+        auto frequencyDomain = atom::algorithm::dfT2D(image);
+        
+        std::cout << "\nFrequency Domain (magnitude of first few elements):" << std::endl;
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                std::cout << std::abs(frequencyDomain[i][j]) << " ";
+            }
+            std::cout << std::endl;
+        }
+        
+        // Convert back to spatial domain
+        auto spatialDomain = atom::algorithm::idfT2D(frequencyDomain);
+        
+        std::cout << "\nBack to Spatial Domain (first few elements):" << std::endl;
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                std::cout << spatialDomain[i][j] << " ";
+            }
+            std::cout << std::endl;
+        }
+        
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        return 1;
+    }
+    
     return 0;
 }
 ```
 
-### Polynomial Calibration and Outlier Detection
+## Performance Considerations
 
-```cpp
-#include "atom/algorithm/error_calibration.hpp"
-#include <iostream>
-#include <vector>
+- Use multiple threads when processing large images or signals
+- Enable OpenCL if you have compatible GPU hardware for maximum performance
+- The SIMD optimizations provide significant speedup on modern CPUs when enabled
+- For very large matrices, consider breaking them into smaller blocks to improve cache efficiency
 
-int main() {
-    std::vector<double> measured = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0};
-    std::vector<double> actual = {1.1, 2.2, 2.9, 4.1, 5.0, 7.5};
+## Thread Safety
 
-    atom::algorithm::AdvancedErrorCalibration<double> calibrator;
-    calibrator.polynomialCalibrate(measured, actual, 2);  // 2nd degree polynomial
+All functions in this library are designed to be thread-safe when used with different data. The multi-threaded implementations use `std::jthread` from C++20 for automatic resource management.
 
-    calibrator.printParameters();
+## Error Handling
 
-    auto [mean_residual, std_dev, threshold] = calibrator.outlierDetection(measured, actual);
-    std::cout << "Outlier detection results:" << std::endl;
-    std::cout << "Mean residual: " << mean_residual << std::endl;
-    std::cout << "Standard deviation: " << std_dev << std::endl;
-    std::cout << "Threshold: " << threshold << std::endl;
+The library uses exception-based error handling. Functions will throw exceptions from the `atom::error` namespace when they encounter issues like:
 
-    return 0;
-}
-```
+- Invalid input dimensions
+- Empty matrices
+- OpenCL initialization failures
+- Memory allocation errors
+
+Always use try-catch blocks when using this library in production code.

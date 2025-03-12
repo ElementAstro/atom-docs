@@ -3,234 +3,328 @@ title: Fraction
 description: Comprehensive for the Fraction class in the atom::algorithm namespace, including constructors, arithmetic operations, comparisons, conversions, and usage examples.
 ---
 
+## Overview
+
+The Fraction class provides a comprehensive implementation for working with mathematical fractions. It supports arithmetic operations, comparison, conversion to different numeric types, and various utility functions for fraction manipulation.
+
+Located in the `atom::algorithm` namespace, this class offers a robust alternative to floating-point arithmetic when exact rational number calculations are required.
+
+## Features
+
+- Precise rational number representation with numerator and denominator
+- Arithmetic operations (addition, subtraction, multiplication, division)
+- Automatic reduction to simplest form
+- Comparison operators for equality and ordering
+- Type conversions to and from various numeric types
+- Error handling for common fraction-related issues
+- Stream support for easy input/output
+
+## Installation
+
+Include the header file in your project:
+
+```cpp
+#include "fraction.hpp"
+```
+
 ## Class Definition
 
 ```cpp
 namespace atom::algorithm {
-class Fraction {
-    // ...
-};
+    class Fraction {
+        // Methods and members...
+    };
 }
 ```
 
-## Member Variables
+## Constructors
 
-- `int numerator`: The numerator of the fraction.
-- `int denominator`: The denominator of the fraction.
+### Default Constructor
 
-## Constructor
+Creates a fraction with value 0/1.
 
 ```cpp
-explicit Fraction(int n = 0, int d = 1);
+Fraction f; // Creates 0/1
 ```
 
-Constructs a new `Fraction` object.
+### Integer Constructor
 
-- Parameters:
+Creates a fraction from an integer value.
 
-  - `n`: The numerator (default is 0)
-  - `d`: The denominator (default is 1)
+```cpp
+Fraction f(5); // Creates 5/1
+```
 
-- Usage:
-  ```cpp
-  Fraction f1;           // Creates fraction 0/1
-  Fraction f2(3);        // Creates fraction 3/1
-  Fraction f3(3, 4);     // Creates fraction 3/4
-  ```
+### Fraction Constructor
+
+Creates a fraction with specified numerator and denominator.
+
+```cpp
+Fraction f(3, 4); // Creates 3/4
+```
 
 ## Arithmetic Operations
 
 ### Addition
 
 ```cpp
-auto operator+=(const Fraction& other) -> Fraction&;
-auto operator+(const Fraction& other) const -> Fraction;
+Fraction a(1, 2);
+Fraction b(1, 3);
+Fraction c = a + b;    // Result: 5/6
+a += b;                // a becomes 5/6
 ```
-
-- Usage:
-  ```cpp
-  Fraction f1(1, 2);
-  Fraction f2(1, 3);
-  Fraction result = f1 + f2;  // result is 5/6
-  f1 += f2;                   // f1 is now 5/6
-  ```
 
 ### Subtraction
 
 ```cpp
-auto operator-=(const Fraction& other) -> Fraction&;
-auto operator-(const Fraction& other) const -> Fraction;
+Fraction a(3, 4);
+Fraction b(1, 4);
+Fraction c = a - b;    // Result: 1/2
+a -= b;                // a becomes 1/2
 ```
-
-- Usage:
-  ```cpp
-  Fraction f1(3, 4);
-  Fraction f2(1, 4);
-  Fraction result = f1 - f2;  // result is 1/2
-  f1 -= f2;                   // f1 is now 1/2
-  ```
 
 ### Multiplication
 
 ```cpp
-auto operator*=(const Fraction& other) -> Fraction&;
-auto operator*(const Fraction& other) const -> Fraction;
+Fraction a(2, 3);
+Fraction b(3, 5);
+Fraction c = a * b;    // Result: 2/5
+a *= b;                // a becomes 2/5
 ```
-
-- Usage:
-  ```cpp
-  Fraction f1(2, 3);
-  Fraction f2(3, 4);
-  Fraction result = f1 * f2;  // result is 1/2
-  f1 *= f2;                   // f1 is now 1/2
-  ```
 
 ### Division
 
 ```cpp
-auto operator/=(const Fraction& other) -> Fraction&;
-auto operator/(const Fraction& other) const -> Fraction;
+Fraction a(2, 3);
+Fraction b(4, 5);
+Fraction c = a / b;    // Result: 5/6
+a /= b;                // a becomes 5/6
 ```
-
-- Usage:
-  ```cpp
-  Fraction f1(2, 3);
-  Fraction f2(3, 4);
-  Fraction result = f1 / f2;  // result is 8/9
-  f1 /= f2;                   // f1 is now 8/9
-  ```
 
 ## Comparison Operations
 
 ### Equality
 
 ```cpp
-auto operator==(const Fraction& other) const -> bool;
+Fraction a(1, 2);
+Fraction b(2, 4);
+bool equal = (a == b); // true, as both represent 1/2
 ```
-
-- Usage:
-  ```cpp
-  Fraction f1(1, 2);
-  Fraction f2(2, 4);
-  bool areEqual = (f1 == f2);  // areEqual is true
-  ```
 
 ### Ordering (C++20 and later)
 
 ```cpp
-auto operator<=>(const Fraction& other) const;
+Fraction a(1, 2);
+Fraction b(3, 4);
+bool less = (a < b);   // true
 ```
-
-This implements the three-way comparison operator, allowing for all comparison operations (`<`, `<=`, `>`, `>=`).
-
-- Usage:
-  ```cpp
-  Fraction f1(1, 2);
-  Fraction f2(3, 4);
-  bool isLess = (f1 < f2);     // isLess is true
-  bool isGreater = (f1 > f2);  // isGreater is false
-  ```
 
 ## Conversion Methods
 
 ### To Double
 
 ```cpp
-explicit operator double() const;
-[[nodiscard]] auto toDouble() const -> double;
+Fraction f(3, 4);
+double d = f.toDouble();       // 0.75
+double d2 = static_cast<double>(f); // 0.75
 ```
-
-- Usage:
-  ```cpp
-  Fraction f(3, 4);
-  double d1 = static_cast<double>(f);  // d1 is 0.75
-  double d2 = f.toDouble();            // d2 is 0.75
-  ```
-
-### To Float
-
-```cpp
-explicit operator float() const;
-```
-
-- Usage:
-  ```cpp
-  Fraction f(1, 2);
-  float fl = static_cast<float>(f);  // fl is 0.5f
-  ```
-
-### To Integer
-
-```cpp
-explicit operator int() const;
-```
-
-- Usage:
-  ```cpp
-  Fraction f(7, 3);
-  int i = static_cast<int>(f);  // i is 2 (rounded down)
-  ```
 
 ### To String
 
 ```cpp
-[[nodiscard]] auto toString() const -> std::string;
+Fraction f(3, 4);
+std::string s = f.toString();  // "3/4"
 ```
 
-- Usage:
-  ```cpp
-  Fraction f(3, 4);
-  std::string s = f.toString();  // s is "3/4"
-  ```
+### To Float
+
+```cpp
+Fraction f(3, 4);
+float fl = static_cast<float>(f); // 0.75f
+```
+
+### To Integer
+
+```cpp
+Fraction f(7, 2);
+int i = static_cast<int>(f);   // 3 (truncated toward zero)
+```
+
+## Utility Methods
+
+### Invert
+
+Inverts the fraction (reciprocal).
+
+```cpp
+Fraction f(3, 4);
+f.invert();  // f becomes 4/3
+```
+
+### Absolute Value
+
+Returns the absolute value of the fraction.
+
+```cpp
+Fraction f(-3, 4);
+Fraction abs = f.abs();  // 3/4
+```
+
+### Status Checks
+
+```cpp
+Fraction f(-3, 4);
+bool isZero = f.isZero();      // false
+bool isNegative = f.isNegative(); // true
+bool isPositive = f.isPositive(); // false
+```
 
 ## Stream Operations
 
-### Output Stream
+### Output
 
 ```cpp
-friend auto operator<<(std::ostream& os, const Fraction& f) -> std::ostream&;
+Fraction f(3, 4);
+std::cout << f;  // Outputs: 3/4
 ```
 
-- Usage:
-  ```cpp
-  Fraction f(3, 4);
-  std::cout << f;  // Outputs: 3/4
-  ```
-
-### Input Stream
+### Input
 
 ```cpp
-friend auto operator>>(std::istream& is, Fraction& f) -> std::istream&;
+Fraction f;
+std::cin >> f;   // Expects input in format "3/4"
 ```
 
-- Usage:
-  ```cpp
-  Fraction f;
-  std::cin >> f;  // Input format: numerator/denominator (e.g., 3/4)
-  ```
+## Factory Functions
 
-## Private Helper Methods
-
-### Greatest Common Divisor (GCD)
+### From Integer
 
 ```cpp
-static int gcd(int a, int b);
+Fraction f = makeFraction(5);  // Creates 5/1
 ```
 
-Computes the greatest common divisor of two numbers.
-
-### Reduce
+### From Double
 
 ```cpp
-void reduce();
+Fraction f = makeFraction(0.75, 1000);  // Creates 3/4
+// Second parameter is maximum denominator (default: 1000000)
 ```
 
-Reduces the fraction to its simplest form.
+## Error Handling
 
-## Best Practices
+The Fraction class throws `FractionException` in these cases:
 
-1. Always check for division by zero when creating fractions or performing division operations.
-2. Use the `toDouble()` method or explicit casting when you need to perform floating-point operations with fractions.
-3. Remember that integer division occurs when converting a fraction to an integer, which may lead to loss of precision.
-4. Utilize the comparison operators for accurate comparisons between fractions instead of converting to floating-point numbers.
-5. When inputting fractions from a stream, ensure the input is in the correct format (numerator/denominator) to avoid parsing errors.
+- Division by zero
+- Denominator is zero in construction
+- Integer overflow during arithmetic operations
+- Invalid input format when parsing from stream
+- Cannot invert a fraction with numerator zero
+
+Example of error handling:
+
+```cpp
+try {
+    Fraction f(1, 0);  // Will throw FractionException
+} catch (const FractionException& e) {
+    std::cerr << "Error: " << e.what() << std::endl;
+}
+```
+
+## Complete Example
+
+Below is a comprehensive example demonstrating various features of the Fraction class:
+
+```cpp
+#include <iostream>
+#include "fraction.hpp"
+
+using namespace atom::algorithm;
+
+int main() {
+    // Creating fractions
+    Fraction a(1, 2);
+    Fraction b(3, 4);
+    Fraction c = makeFraction(0.25);
+    
+    std::cout << "a = " << a << std::endl;
+    std::cout << "b = " << b << std::endl;
+    std::cout << "c = " << c << std::endl;
+    
+    // Arithmetic operations
+    std::cout << "a + b = " << (a + b) << std::endl;
+    std::cout << "a - c = " << (a - c) << std::endl;
+    std::cout << "a * b = " << (a * b) << std::endl;
+    std::cout << "a / c = " << (a / c) << std::endl;
+    
+    // Conversion to double
+    std::cout << "a as double: " << a.toDouble() << std::endl;
+    
+    // Comparison
+    std::cout << "a == b: " << (a == b) << std::endl;
+    std::cout << "a + c == b: " << (a + c == b) << std::endl;
+    
+    // Utility methods
+    Fraction d = a;
+    d.invert();
+    std::cout << "Inverted a: " << d << std::endl;
+    
+    Fraction e(-3, 4);
+    std::cout << "e = " << e << std::endl;
+    std::cout << "|e| = " << e.abs() << std::endl;
+    std::cout << "e is negative: " << e.isNegative() << std::endl;
+    
+    // Error handling
+    try {
+        Fraction invalid(1, 0);
+    } catch (const FractionException& ex) {
+        std::cout << "Caught exception: " << ex.what() << std::endl;
+    }
+    
+    // User input
+    std::cout << "Enter a fraction (e.g. 3/4): ";
+    Fraction input;
+    try {
+        std::cin >> input;
+        std::cout << "You entered: " << input << std::endl;
+        std::cout << "As decimal: " << input.toDouble() << std::endl;
+    } catch (const FractionException& ex) {
+        std::cout << "Invalid input: " << ex.what() << std::endl;
+    }
+    
+    return 0;
+}
+```
+
+Expected output (assuming user enters "5/6"):
+
+``` text
+a = 1/2
+b = 3/4
+c = 1/4
+a + b = 5/4
+a - c = 1/4
+a * b = 3/8
+a / c = 2
+a as double: 0.5
+a == b: 0
+a + c == b: 1
+Inverted a: 2
+e = -3/4
+|e| = 3/4
+e is negative: 1
+Caught exception: Denominator cannot be zero.
+Enter a fraction (e.g. 3/4): 5/6
+You entered: 5/6
+As decimal: 0.833333
+```
+
+## Performance Considerations
+
+- The Fraction class automatically reduces fractions to their simplest form using the GCD algorithm
+- Overflow detection is implemented to prevent integer overflow during arithmetic operations
+- For very large numerators/denominators, consider using a specialized arbitrary precision library
+
+## Limitations
+
+- The implementation uses int for numerator and denominator, limiting the range of representable fractions
+- Complex mathematical functions like logarithms and trigonometric functions are not directly supported

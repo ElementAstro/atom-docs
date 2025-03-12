@@ -3,19 +3,73 @@ title: Hash Algorithms
 description: Comprehensive for the hash.hpp file in the atom::algorithm namespace, including functions for hashing single values, vectors, tuples, arrays, and strings using FNV-1a.
 ---
 
-## Namespace
+## Overview
 
-All the main functions and concepts are defined within the `atom::algorithm` namespace.
+The Atom Algorithm Hash Library provides a **collection of optimized and enhanced hash algorithms** with thread safety, parallel processing, and support for various data types. This library extends beyond the standard C++ hashing capabilities by offering:
+
+- **SIMD optimization** when available through AVX2 and SSE2
+- **Thread-safe hash caching**
+- **Parallel processing** for large data collections
+- **Multiple hash algorithm** support
+- **Comprehensive type support** including STL containers and types
+- **Hash verification** with tolerance support
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Table of Contents](#table-of-contents)
+- [Installation](#installation)
+- [Core Components](#core-components)
+  - [HashCache](#hashcache)
+  - [Hashable Concept](#hashable-concept)
+  - [HashAlgorithm Enum](#hashalgorithm-enum)
+  - [Hash Functions](#hash-functions)
+  - [Hash Combining](#hash-combining)
+- [Computing Hashes](#computing-hashes)
+  - [Basic Types](#basic-types)
+  - [Vectors](#vectors)
+  - [Tuples](#tuples)
+  - [Arrays](#arrays)
+  - [Pairs](#pairs)
+  - [Optional Values](#optional-values)
+  - [Variants](#variants)
+  - [Any Type](#any-type)
+- [Utility Functions](#utility-functions)
+  - [Hash Verification](#hash-verification)
+  - [String Literal Operator](#string-literal-operator)
+- [Complete Example](#complete-example)
+
+## Installation
+
+Include the `hash.hpp` header in your project:
 
 ```cpp
-namespace atom::algorithm {
-    // ...
-}
+#include "atom/algorithm/hash.hpp"
 ```
 
-## Concepts
+For Boost integration, define `ATOM_USE_BOOST` before including the header:
 
-### Hashable
+```cpp
+#define ATOM_USE_BOOST
+#include "atom/algorithm/hash.hpp"
+```
+
+## Core Components
+
+### HashCache
+
+A thread-safe cache for hash values to improve performance by avoiding redundant hash calculations.
+
+```cpp
+atom::algorithm::HashCache<std::string> cache;
+auto cached_hash = cache.get("example"); // Returns std::nullopt if not found
+cache.set("example", 123456789);         // Store a hash value
+cache.clear();                          // Clear all cached values
+```
+
+### Hashable Concept
+
+A concept that defines types that can be hashed.
 
 ```cpp
 template <typename T>
@@ -24,168 +78,225 @@ concept Hashable = requires(T a) {
 };
 ```
 
-The `Hashable` concept defines types that can be hashed. A type is considered `Hashable` if it supports hashing via `std::hash` and the result is convertible to `std::size_t`.
+This concept is used throughout the library to constrain template parameters, ensuring they can be properly hashed.
 
-## Functions
+### HashAlgorithm Enum
 
-### computeHash (Single Value)
+Enum class defining supported hash algorithms:
 
 ```cpp
-template <Hashable T>
-auto computeHash(const T& value) -> std::size_t;
+enum class HashAlgorithm {
+    STD,       // Standard library hash
+    FNV1A,     // FNV-1a
+    XXHASH,    // xxHash
+    CITYHASH,  // CityHash
+    MURMUR3    // MurmurHash3
+};
 ```
 
-Computes the hash value for a single `Hashable` value.
+### Hash Functions
 
-- **Parameters:**
-  - `value`: The value to hash.
-- **Returns:** Hash value of the input value as `std::size_t`.
-- **Usage:**
-  ```cpp
-  int num = 42;
-  std::size_t hash_value = atom::algorithm::computeHash(num);
-  ```
-
-### computeHash (Vector)
+The library provides optimized hash functions that take advantage of SIMD instructions when available:
 
 ```cpp
-template <Hashable T>
-auto computeHash(const std::vector<T>& values) -> std::size_t;
+// String hashing with FNV-1a algorithm
+auto hash_value = atom::algorithm::hash("example string");
+
+// String literal hashing using user-defined literal
+auto literal_hash = "example string"_hash;
 ```
 
-Computes the hash value for a vector of `Hashable` values.
+### Hash Combining
 
-- **Parameters:**
-  - `values`: The vector of values to hash.
-- **Returns:** Hash value of the vector of values as `std::size_t`.
-- **Usage:**
-  ```cpp
-  std::vector<int> numbers = {1, 2, 3, 4, 5};
-  std::size_t hash_value = atom::algorithm::computeHash(numbers);
-  ```
-
-### computeHash (Tuple)
+Functions to combine multiple hash values into a single hash:
 
 ```cpp
-template <Hashable... Ts>
-auto computeHash(const std::tuple<Ts...>& tuple) -> std::size_t;
+std::size_t seed = compute_hash(value1);
+std::size_t combined = atom::algorithm::hashCombine(seed, compute_hash(value2));
 ```
 
-Computes the hash value for a tuple of `Hashable` values.
+## Computing Hashes
 
-- **Parameters:**
-  - `tuple`: The tuple of values to hash.
-- **Returns:** Hash value of the tuple of values as `std::size_t`.
-- **Usage:**
-  ```cpp
-  auto my_tuple = std::make_tuple(1, "hello", 3.14);
-  std::size_t hash_value = atom::algorithm::computeHash(my_tuple);
-  ```
+### Basic Types
 
-### computeHash (Array)
+Compute a hash for any hashable type:
 
 ```cpp
-template <Hashable T, std::size_t N>
-auto computeHash(const std::array<T, N>& array) -> std::size_t;
+std::size_t hash = atom::algorithm::computeHash(42); // Integer hash
+std::size_t hash = atom::algorithm::computeHash(3.14); // Double hash
+std::size_t hash = atom::algorithm::computeHash(std::string("example")); // String hash
+
+// Using a specific algorithm
+std::size_t hash = atom::algorithm::computeHash(value, atom::algorithm::HashAlgorithm::FNV1A);
 ```
 
-Computes the hash value for an array of `Hashable` values.
+### Vectors
 
-- **Parameters:**
-  - `array`: The array of values to hash.
-- **Returns:** Hash value of the array of values as `std::size_t`.
-- **Usage:**
-  ```cpp
-  std::array<int, 5> numbers = {1, 2, 3, 4, 5};
-  std::size_t hash_value = atom::algorithm::computeHash(numbers);
-  ```
-
-## Global Functions
-
-### hash (FNV-1a for Strings)
+Compute a hash for a vector of hashable elements, with optional parallel processing:
 
 ```cpp
-constexpr auto hash(const char* str, unsigned int basis = 2166136261U) -> unsigned int;
+std::vector<int> values = {1, 2, 3, 4, 5};
+
+// Sequential hash computation
+std::size_t hash = atom::algorithm::computeHash(values);
+
+// Parallel hash computation (recommended for large vectors)
+std::size_t hash = atom::algorithm::computeHash(values, true);
 ```
 
-Computes a hash value for a null-terminated string using the FNV-1a algorithm.
+### Tuples
 
-- **Parameters:**
-  - `str`: Pointer to the null-terminated string to hash.
-  - `basis`: Initial basis value for hashing (default: 2166136261U).
-- **Returns:** Hash value of the string as `unsigned int`.
-- **Usage:**
-  ```cpp
-  const char* my_string = "Hello, World!";
-  unsigned int hash_value = hash(my_string);
-  ```
-
-### operator""\_hash (User-defined Literal)
+Compute a hash for a tuple of hashable types:
 
 ```cpp
-constexpr auto operator""_hash(const char* str, std::size_t size) -> unsigned int;
+auto tuple = std::make_tuple(42, "example", 3.14);
+std::size_t hash = atom::algorithm::computeHash(tuple);
 ```
 
-User-defined literal for computing hash values of string literals.
+### Arrays
 
-- **Parameters:**
-  - `str`: Pointer to the string literal to hash.
-  - `size`: Size of the string literal (unused in the implementation).
-- **Returns:** Hash value of the string literal as `unsigned int`.
-- **Usage:**
-  ```cpp
-  auto hash_value = "example"_hash;
-  ```
-
-## Best Practices
-
-1. Use the `Hashable` concept to ensure that types you're working with can be hashed properly.
-2. When hashing multiple values, prefer using the appropriate `computeHash` overload (vector, tuple, or array) rather than combining hashes manually.
-3. For string hashing, use the global `hash` function or the `_hash` user-defined literal for compile-time hashing of string literals.
-4. Be cautious when using hash values for security-sensitive applications, as these implementations are not cryptographically secure.
-
-## Notes
-
-- The hash functions within the `atom::algorithm` namespace use a combination of XOR and bit shifting for combining hash values, which is effective for general-purpose hashing.
-- The FNV-1a algorithm is used for string hashing, which provides a good balance between speed and hash distribution for strings.
-- The `_hash` user-defined literal allows for compile-time hashing of string literals, which can be useful for switch statements or other compile-time applications.
-
-## Example: Combining Different Hash Types
-
-Here's an example that demonstrates how to use various hash functions together:
+Compute a hash for an array of hashable types:
 
 ```cpp
-#include "hash.hpp"
+std::array<int, 5> arr = {1, 2, 3, 4, 5};
+std::size_t hash = atom::algorithm::computeHash(arr);
+```
+
+### Pairs
+
+Compute a hash for a pair of hashable types:
+
+```cpp
+auto pair = std::make_pair("key", 42);
+std::size_t hash = atom::algorithm::computeHash(pair);
+```
+
+### Optional Values
+
+Compute a hash for an optional value:
+
+```cpp
+std::optional<int> opt_value = 42;
+std::size_t hash = atom::algorithm::computeHash(opt_value);
+
+std::optional<int> empty_opt;
+std::size_t empty_hash = atom::algorithm::computeHash(empty_opt); // Hash of empty optional
+```
+
+### Variants
+
+Compute a hash for a variant:
+
+```cpp
+std::variant<int, std::string, double> var = "example";
+std::size_t hash = atom::algorithm::computeHash(var);
+```
+
+### Any Type
+
+Compute a hash for a std::any value:
+
+```cpp
+std::any value = 42;
+std::size_t hash = atom::algorithm::computeHash(value);
+```
+
+## Utility Functions
+
+### Hash Verification
+
+Verify if two hash values match, with optional tolerance:
+
+```cpp
+// Exact match
+bool exact_match = atom::algorithm::verifyHash(hash1, hash2);
+
+// Match with tolerance (fuzzy matching)
+bool fuzzy_match = atom::algorithm::verifyHash(hash1, hash2, 10);
+```
+
+### String Literal Operator
+
+A user-defined literal for computing hash values of string literals:
+
+```cpp
+auto hash = "example"_hash;
+```
+
+## Complete Example
+
+Here's a comprehensive example demonstrating various features of the library:
+
+```cpp
 #include <iostream>
+#include <string>
 #include <vector>
-#include <array>
 #include <tuple>
+#include "atom/algorithm/hash.hpp"
 
 int main() {
-    // Single value
-    int single_value = 42;
-    std::cout << "Single value hash: " << atom::algorithm::computeHash(single_value) << std::endl;
-
-    // Vector
-    std::vector<int> vec = {1, 2, 3, 4, 5};
-    std::cout << "Vector hash: " << atom::algorithm::computeHash(vec) << std::endl;
-
-    // Array
-    std::array<double, 3> arr = {1.1, 2.2, 3.3};
-    std::cout << "Array hash: " << atom::algorithm::computeHash(arr) << std::endl;
-
-    // Tuple
-    auto tup = std::make_tuple(10, "hello", 3.14);
-    std::cout << "Tuple hash: " << atom::algorithm::computeHash(tup) << std::endl;
-
-    // String (using global hash function)
-    const char* str = "Hello, World!";
-    std::cout << "String hash: " << hash(str) << std::endl;
-
-    // String literal (using user-defined literal)
-    auto literal_hash = "example"_hash;
-    std::cout << "String literal hash: " << literal_hash << std::endl;
-
+    // Basic type hashing
+    int intValue = 42;
+    std::string strValue = "example string";
+    
+    std::size_t intHash = atom::algorithm::computeHash(intValue);
+    std::size_t strHash = atom::algorithm::computeHash(strValue);
+    
+    std::cout << "Integer hash: " << intHash << std::endl;
+    std::cout << "String hash: " << strHash << std::endl;
+    
+    // String literal hash
+    std::size_t literalHash = "example string"_hash;
+    std::cout << "String literal hash: " << literalHash << std::endl;
+    
+    // Using specific algorithm
+    std::size_t fnv1aHash = atom::algorithm::computeHash(
+        strValue, atom::algorithm::HashAlgorithm::FNV1A);
+    std::cout << "FNV-1a hash: " << fnv1aHash << std::endl;
+    
+    // Vector hashing with parallel processing
+    std::vector<int> largeVector(10000, 42);
+    std::size_t vecHash = atom::algorithm::computeHash(largeVector, true);
+    std::cout << "Vector hash (parallel): " << vecHash << std::endl;
+    
+    // Tuple hashing
+    auto tuple = std::make_tuple(42, "example", 3.14);
+    std::size_t tupleHash = atom::algorithm::computeHash(tuple);
+    std::cout << "Tuple hash: " << tupleHash << std::endl;
+    
+    // Optional value hashing
+    std::optional<int> optValue = 42;
+    std::optional<int> emptyOpt;
+    std::size_t optHash = atom::algorithm::computeHash(optValue);
+    std::size_t emptyOptHash = atom::algorithm::computeHash(emptyOpt);
+    std::cout << "Optional hash: " << optHash << std::endl;
+    std::cout << "Empty optional hash: " << emptyOptHash << std::endl;
+    
+    // Variant hashing
+    std::variant<int, std::string, double> var = "example";
+    std::size_t varHash = atom::algorithm::computeHash(var);
+    std::cout << "Variant hash: " << varHash << std::endl;
+    
+    // Hash verification
+    bool hashesMatch = atom::algorithm::verifyHash(strHash, literalHash);
+    std::cout << "Hashes match: " << (hashesMatch ? "true" : "false") << std::endl;
+    
+    // Hash combining
+    std::size_t combinedHash = atom::algorithm::hashCombine(intHash, strHash);
+    std::cout << "Combined hash: " << combinedHash << std::endl;
+    
     return 0;
 }
 ```
+
+This example demonstrates:
+
+- Hashing of basic types
+- Using string literal operator
+- Selecting specific hash algorithms
+- Parallel processing for vectors
+- Hashing complex types like tuples, optionals, and variants
+- Hash verification
+- Hash combining
+
+The Atom Algorithm Hash Library provides a **robust and flexible solution** for hashing needs in C++ applications, with optimizations for modern hardware and comprehensive type support.

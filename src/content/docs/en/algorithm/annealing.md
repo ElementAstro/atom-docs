@@ -3,144 +3,319 @@ title: Simulated Annealing Algorithm
 description: Detailed explanation of the Simulated Annealing algorithm implementation in C++, including the SimulatedAnnealing class and an example problem (Traveling Salesman Problem).
 ---
 
-## Table of Contents
-
-1. [Overview](#overview)
-2. [SimulatedAnnealing Class](#simulatedannealing-class)
-3. [Traveling Salesman Problem (TSP) Implementation](#traveling-salesman-problem-tsp-implementation)
-4. [Usage Example](#usage-example)
-5. [Optimization Techniques](#optimization-techniques)
-
 ## Overview
 
-The Simulated Annealing algorithm is a probabilistic technique for approximating the global optimum of a given function. It is often used for optimization problems where finding an exact solution is impractical. This implementation provides a flexible and efficient way to apply Simulated Annealing to various problems.
+This library provides a **flexible and efficient implementation of the Simulated Annealing algorithm** for solving optimization problems. Simulated Annealing is a probabilistic technique used to find global optima in complex search spaces with many local minima.
 
-## SimulatedAnnealing Class
+## Key Features
 
-### Class Template
+- **Generic implementation** using C++ templates and concepts
+- **Multiple cooling strategies** for different problem types
+- **Parallel optimization** with multi-threading support
+- **Restart mechanisms** to escape local minima
+- **Adaptive temperature control**
+- **Comprehensive progress monitoring** and statistics
+- **SIMD acceleration** when available
+- **Optional Boost integration**
+
+## Core Components
+
+### AnnealingProblem Concept
+
+This concept defines the requirements for problem types that can be solved using this library:
 
 ```cpp
 template <typename ProblemType, typename SolutionType>
-    requires AnnealingProblem<ProblemType, SolutionType>
-class SimulatedAnnealing;
+concept AnnealingProblem =
+    requires(ProblemType problemInstance, SolutionType solutionInstance) {
+        { problemInstance.energy(solutionInstance) } -> std::floating_point;
+        { problemInstance.neighbor(solutionInstance) } -> std::same_as<SolutionType>;
+        { problemInstance.randomSolution() } -> std::same_as<SolutionType>;
+        { problemInstance.validate(solutionInstance) } -> std::same_as<bool>;
+    };
 ```
 
-The `SimulatedAnnealing` class is templated to work with different problem types and solution representations.
+Your problem class must implement:
 
-### Constructor
+- **`energy(solution)`**: Calculate the energy (cost) of a solution
+- **`neighbor(solution)`**: Generate a neighboring solution by making a small change
+- **`randomSolution()`**: Create a random valid solution
+- **`validate(solution)`**: Verify if a solution is valid
+
+### Cooling Strategies
+
+The algorithm supports **seven different cooling strategies**:
 
 ```cpp
-SimulatedAnnealing(ProblemType& problemInstance,
-                   AnnealingStrategy coolingStrategy = AnnealingStrategy::EXPONENTIAL,
-                   int maxIterations = K_DEFAULT_MAX_ITERATIONS,
-                   double initialTemperature = K_DEFAULT_INITIAL_TEMPERATURE);
+enum class AnnealingStrategy {
+    LINEAR,
+    EXPONENTIAL,
+    LOGARITHMIC,
+    GEOMETRIC,
+    QUADRATIC,
+    HYPERBOLIC,
+    ADAPTIVE
+};
 ```
 
-- `problemInstance`: Reference to the problem instance.
-- `coolingStrategy`: The strategy for reducing temperature (default: EXPONENTIAL).
-- `maxIterations`: Maximum number of iterations (default: 1000).
-- `initialTemperature`: Starting temperature (default: 100.0).
+Each strategy provides different temperature reduction patterns:
 
-### Public Methods
+- **LINEAR**: Temperature decreases linearly with iterations
+- **EXPONENTIAL**: Temperature decreases exponentially (most common)
+- **LOGARITHMIC**: Temperature decreases logarithmically (very slow cooling)
+- **GEOMETRIC**: Temperature decreases as 1/(1+αt)
+- **QUADRATIC**: Temperature decreases as 1/(1+αt²)
+- **HYPERBOLIC**: Temperature decreases as 1/(1+α√t)
+- **ADAPTIVE**: Adjusts cooling rate based on acceptance rate
 
-1. `setCoolingSchedule(AnnealingStrategy strategy)`
+## Main Class: SimulatedAnnealing
 
-   - Sets the cooling schedule based on the specified strategy.
+### Constructor & Builder Pattern
 
-2. `setProgressCallback(std::function<void(int, double, const SolutionType&)> callback)`
-
-   - Sets a callback function to report progress during optimization.
-
-3. `setStopCondition(std::function<bool(int, double, const SolutionType&)> condition)`
-
-   - Sets a condition to stop the optimization process early.
-
-4. `optimize(int numThreads = 1) -> SolutionType`
-
-   - Runs the optimization process with the specified number of threads.
-   - Returns the best solution found.
-
-5. `getBestEnergy() const -> double`
-   - Returns the energy (cost) of the best solution found.
-
-### Private Methods
-
-1. `optimizeThread()`
-   - The main optimization loop executed by each thread.
-
-## Traveling Salesman Problem (TSP) Implementation
-
-The TSP class demonstrates how to implement a specific problem for use with the SimulatedAnnealing class.
-
-### Constructor
+The `SimulatedAnnealing` class uses a **builder pattern** for flexible initialization:
 
 ```cpp
-TSP(const std::vector<std::pair<double, double>>& cities);
+SimulatedAnnealing<MyProblem, MySolution>::Builder builder(problemInstance);
+auto annealing = builder
+    .setCoolingStrategy(AnnealingStrategy::EXPONENTIAL)
+    .setMaxIterations(10000)
+    .setInitialTemperature(100.0)
+    .setCoolingRate(0.95)
+    .setRestartInterval(500)
+    .build();
 ```
 
-- `cities`: A vector of (x, y) coordinates representing city locations.
+### Core Methods
 
-### Public Methods
+#### `setCoolingSchedule(AnnealingStrategy strategy)`
 
-1. `energy(const std::vector<int>& solution) const -> double`
+Sets the cooling schedule based on the specified strategy.
 
-   - Calculates the total distance of a given tour (solution).
+**Parameters:**
 
-2. `neighbor(const std::vector<int>& solution) -> std::vector<int>`
+- `strategy`: The cooling strategy to use
 
-   - Generates a neighboring solution by swapping two cities.
-
-3. `randomSolution() const -> std::vector<int>`
-   - Generates a random initial solution.
-
-## Usage Example
-
-Here's an example of how to use the SimulatedAnnealing class with the TSP problem:
+**Example:**
 
 ```cpp
-#include "annealing.hpp"
+annealing.setCoolingSchedule(AnnealingStrategy::ADAPTIVE);
+```
+
+#### `setProgressCallback(std::function<void(int, double, const SolutionType&)> callback)`
+
+Registers a callback function that will be invoked after each iteration.
+
+**Parameters:**
+
+- `callback`: Function taking iteration number, current energy, and current solution
+
+**Example:**
+
+```cpp
+annealing.setProgressCallback([](int iter, double energy, const auto& sol) {
+    std::cout << "Iteration " << iter << ": " << energy << std::endl;
+});
+```
+
+#### `setStopCondition(std::function<bool(int, double, const SolutionType&)> condition)`
+
+Sets a custom stop condition to terminate optimization early.
+
+**Parameters:**
+
+- `condition`: Function that returns true when optimization should stop
+
+**Example:**
+
+```cpp
+annealing.setStopCondition([](int iter, double energy, const auto& sol) {
+    return energy < 100.0 || iter > 5000;
+});
+```
+
+#### `optimize(int numThreads = 1) -> SolutionType`
+
+Runs the optimization process with specified number of threads.
+
+**Parameters:**
+
+- `numThreads`: Number of parallel optimization threads (default: 1)
+
+**Returns:**
+
+- The best solution found
+
+**Example:**
+
+```cpp
+auto bestSolution = annealing.optimize(4);  // Run with 4 threads
+```
+
+#### `getBestEnergy() -> double`
+
+Gets the energy value of the best solution found.
+
+**Returns:**
+
+- The energy of the best solution
+
+**Example:**
+
+```cpp
+double energy = annealing.getBestEnergy();
+```
+
+#### `setInitialTemperature(double temperature)`
+
+Sets the initial temperature for the annealing process.
+
+**Parameters:**
+
+- `temperature`: The starting temperature (must be positive)
+
+**Example:**
+
+```cpp
+annealing.setInitialTemperature(200.0);
+```
+
+#### `setCoolingRate(double rate)`
+
+Sets the cooling rate parameter that determines how quickly temperature decreases.
+
+**Parameters:**
+
+- `rate`: The cooling rate (must be between 0 and 1)
+
+**Example:**
+
+```cpp
+annealing.setCoolingRate(0.98);
+```
+
+## TSP Implementation Example
+
+The library includes a sample implementation for the **Traveling Salesman Problem**:
+
+```cpp
+class TSP {
+private:
+    std::vector<std::pair<double, double>> cities_;
+
+public:
+    explicit TSP(const std::vector<std::pair<double, double>>& cities);
+    auto energy(const std::vector<int>& solution) const -> double;
+    static auto neighbor(const std::vector<int>& solution) -> std::vector<int>;
+    auto randomSolution() const -> std::vector<int>;
+};
+```
+
+## Complete Usage Example
+
+Here's a comprehensive example showing how to solve the Traveling Salesman Problem:
+
+```cpp
+#include "atom/algorithm/annealing.hpp"
 #include <iostream>
+#include <vector>
 
 int main() {
-    // Define cities
+    // 1. Create a TSP instance with city coordinates
     std::vector<std::pair<double, double>> cities = {
-        {0, 0}, {1, 5}, {2, 2}, {3, 3}, {5, 1}
+        {0.0, 0.0},    // City 0
+        {1.0, 0.0},    // City 1
+        {1.0, 1.0},    // City 2
+        {0.0, 1.0},    // City 3
+        {0.5, 0.5},    // City 4
+        {0.0, 0.5},    // City 5
+        {1.0, 0.5},    // City 6
+        {0.5, 0.0},    // City 7
+        {0.5, 1.0}     // City 8
     };
-
-    // Create TSP instance
-    TSP tsp(cities);
-
-    // Create SimulatedAnnealing instance
-    SimulatedAnnealing<TSP, std::vector<int>> sa(tsp);
-
-    // Set progress callback (optional)
-    sa.setProgressCallback([](int iteration, double energy, const std::vector<int>& solution) {
-        std::cout << "Iteration " << iteration << ": Energy = " << energy << std::endl;
+    
+    TSP tspProblem(cities);
+    
+    // 2. Configure the simulated annealing solver
+    SimulatedAnnealing<TSP, std::vector<int>>::Builder builder(tspProblem);
+    auto annealing = builder
+        .setCoolingStrategy(AnnealingStrategy::ADAPTIVE)
+        .setMaxIterations(10000)
+        .setInitialTemperature(100.0)
+        .setCoolingRate(0.95)
+        .setRestartInterval(500)
+        .build();
+    
+    // 3. Add a progress callback
+    annealing.setProgressCallback([](int iteration, double energy, const std::vector<int>& solution) {
+        if (iteration % 1000 == 0) {
+            std::cout << "Iteration " << iteration << ": Energy = " << energy << std::endl;
+        }
     });
-
-    // Run optimization
-    auto bestSolution = sa.optimize(4);  // Use 4 threads
-
-    // Print results
-    std::cout << "Best solution energy: " << sa.getBestEnergy() << std::endl;
-    std::cout << "Best tour: ";
-    for (int city : bestSolution) {
-        std::cout << city << " ";
+    
+    // 4. Set a stop condition
+    annealing.setStopCondition([](int iteration, double energy, const std::vector<int>& solution) {
+        return energy < 5.0 || iteration > 9000;
+    });
+    
+    // 5. Run the optimization with 4 threads
+    std::cout << "Starting optimization..." << std::endl;
+    auto bestSolution = annealing.optimize(4);
+    
+    // 6. Output results
+    std::cout << "Optimization completed." << std::endl;
+    std::cout << "Best tour found has length: " << annealing.getBestEnergy() << std::endl;
+    
+    std::cout << "Tour order: ";
+    for (int cityIndex : bestSolution) {
+        std::cout << cityIndex << " ";
     }
     std::cout << std::endl;
-
+    
     return 0;
 }
 ```
 
-## Optimization Techniques
+## Advanced Features
 
-1. **SIMD Instructions**: The `energy` calculation in the TSP class uses SIMD (Single Instruction, Multiple Data) instructions when available to parallelize distance calculations.
+### Restart Mechanism
 
-2. **Multi-threading**: The `optimize` method supports running multiple optimization threads in parallel.
+The restart mechanism helps escape local minima by periodically generating new random solutions:
 
-3. **Flexible Cooling Strategies**: The implementation supports different cooling strategies (LINEAR, EXPONENTIAL, LOGARITHMIC) that can be easily switched.
+```cpp
+builder.setRestartInterval(500);  // Restart every 500 iterations
+```
 
-4. **Early Stopping**: A custom stop condition can be set to terminate the optimization process early if certain criteria are met.
+### Adaptive Temperature Control
 
-5. **Progress Tracking**: A callback function can be set to monitor the optimization progress in real-time.
+When using `AnnealingStrategy::ADAPTIVE`, the cooling rate is automatically adjusted based on the acceptance rate of new solutions, optimizing the exploration-exploitation balance.
+
+### SIMD Acceleration
+
+The library uses SIMD instructions on supported platforms:
+
+- **AVX2** on x86_64 architectures
+- **NEON** on ARM architectures
+
+To enable SIMD optimizations, define `ATOM_USE_SIMD` before including the header.
+
+### Boost Integration
+
+For enhanced random number generation and thread management, define `ATOM_USE_BOOST` before including the header.
+
+## Best Practices
+
+1. **Choose an appropriate cooling strategy** for your problem
+2. **Set a high enough initial temperature** to allow exploration of the search space
+3. **Experiment with different cooling rates** to balance exploration and exploitation
+4. **Use multiple threads** for complex problems to find better solutions faster
+5. **Implement an effective neighbor function** that makes meaningful changes to solutions
+6. **Set proper restart intervals** to escape local minima
+7. **Use the progress callback** for monitoring and logging
+8. **Define a custom stop condition** based on solution quality
+
+## Performance Considerations
+
+- The **computational cost** is dominated by the `energy()` and `neighbor()` functions
+- **Optimize these functions** for your specific problem
+- **Use SIMD acceleration** for performance-critical calculations
+- **Multi-threading** significantly improves results for complex problems

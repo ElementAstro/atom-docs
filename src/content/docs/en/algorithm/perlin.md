@@ -5,199 +5,185 @@ description: Detailed for the Perlin Noise implementation in the atom::algorithm
 
 ## Overview
 
-The `perlin.hpp` file provides an implementation of Perlin Noise, a gradient noise algorithm used to generate procedural textures, terrains, and other natural-looking patterns. This implementation supports both CPU and OpenCL-based GPU computation.
+The `atom::algorithm::PerlinNoise` class provides a robust implementation of Perlin noise, a popular gradient noise function used to generate procedural textures, terrain, and other natural-looking patterns. This implementation includes CPU and optional OpenCL acceleration for improved performance on compatible systems.
 
-## Namespace
+## Features
 
-The `PerlinNoise` class is defined within the `atom::algorithm` namespace.
+- 3D noise generation with customizable parameters
+- Octave noise for fractal detail generation
+- 2D noise map generation for terrain and textures
+- Template support for different floating-point types
+- Optional OpenCL acceleration when compiled with `USE_OPENCL`
+- Thread-safe noise generation
 
-```cpp
-namespace atom::algorithm {
-    // ...
-}
-```
-
-## PerlinNoise Class
-
-### Class Definition
-
-```cpp
-class PerlinNoise {
-public:
-    explicit PerlinNoise(unsigned int seed = std::default_random_engine::default_seed);
-    ~PerlinNoise();
-
-    template <std::floating_point T>
-    [[nodiscard]] auto noise(T x, T y, T z) const -> T;
-
-    template <std::floating_point T>
-    [[nodiscard]] auto octaveNoise(T x, T y, T z, int octaves, T persistence) const -> T;
-
-    [[nodiscard]] auto generateNoiseMap(int width, int height, double scale, int octaves,
-                                        double persistence, double lacunarity,
-                                        int seed = std::default_random_engine::default_seed) const
-        -> std::vector<std::vector<double>>;
-
-private:
-    // ... (private members and methods)
-};
-```
+## Class Construction
 
 ### Constructor
 
 ```cpp
-explicit PerlinNoise(unsigned int seed = std::default_random_engine::default_seed);
+explicit PerlinNoise(unsigned int seed = std::default_random_engine::default_seed)
 ```
 
-Constructs a PerlinNoise object with a specified seed for the random number generator.
+Parameters:
 
-- **Parameters:**
-  - `seed`: Seed value for the random number generator (default is the default seed of `std::default_random_engine`).
-- **Usage:**
+- `seed` - Optional random seed value that determines the noise pattern. Default is the standard random engine's default seed.
 
-  ```cpp
-  atom::algorithm::PerlinNoise perlin(12345); // Create PerlinNoise with seed 12345
-  ```
+Description:
+Initializes the Perlin noise generator with the provided seed. The constructor creates a permutation table that is essential for noise generation and initializes OpenCL if available.
 
 ### Destructor
 
 ```cpp
-~PerlinNoise();
+~PerlinNoise()
 ```
 
-Cleans up resources, including OpenCL resources if OpenCL is enabled.
+Description:
+Cleans up resources, particularly those related to OpenCL if enabled.
 
-### noise
+## Main Methods
+
+### Basic Noise Generation
 
 ```cpp
 template <std::floating_point T>
-[[nodiscard]] auto noise(T x, T y, T z) const -> T;
+[[nodiscard]] auto noise(T x, T y, T z) const -> T
 ```
 
-Generates 3D Perlin noise for given coordinates.
+Parameters:
 
-- **Template Parameters:**
-  - `T`: A floating-point type.
-- **Parameters:**
-  - `x`, `y`, `z`: Coordinates for which to generate noise.
-- **Returns:** A noise value in the range [0, 1].
-- **Usage:**
+- `x`, `y`, `z` - 3D coordinates where noise will be sampled
 
-  ```cpp
-  atom::algorithm::PerlinNoise perlin;
-  double value = perlin.noise(0.5, 1.0, 2.0);
-  ```
+Returns:
 
-### octaveNoise
+- A noise value in range [0,1] at the specified coordinates
+
+Description:
+Generates a single noise value at the specified 3D coordinates. The method automatically uses OpenCL if available, otherwise falls back to CPU implementation.
+
+### Octave Noise Generation
 
 ```cpp
 template <std::floating_point T>
-[[nodiscard]] auto octaveNoise(T x, T y, T z, int octaves, T persistence) const -> T;
+[[nodiscard]] auto octaveNoise(T x, T y, T z, int octaves, T persistence) const -> T
 ```
 
-Generates 3D Perlin noise with multiple octaves for added detail.
+Parameters:
 
-- **Template Parameters:**
-  - `T`: A floating-point type.
-- **Parameters:**
-  - `x`, `y`, `z`: Coordinates for which to generate noise.
-  - `octaves`: Number of noise layers to combine.
-  - `persistence`: Amplitude multiplier for each octave (usually < 1).
-- **Returns:** A combined noise value in the range [0, 1].
-- **Usage:**
+- `x`, `y`, `z` - 3D coordinates where noise will be sampled
+- `octaves` - Number of noise layers to combine
+- `persistence` - How quickly the amplitude diminishes for each octave (typically 0.0-1.0)
 
-  ```cpp
-  atom::algorithm::PerlinNoise perlin;
-  double value = perlin.octaveNoise(0.5, 1.0, 2.0, 4, 0.5);
-  ```
+Returns:
 
-### generateNoiseMap
+- A combined noise value in range [0,1]
+
+Description:
+Generates fractal noise by combining multiple layers (octaves) of noise. Higher octave counts produce more detailed noise at the cost of performance. The persistence value controls how much influence each successive octave has on the final result.
+
+### Noise Map Generation
 
 ```cpp
-[[nodiscard]] auto generateNoiseMap(int width, int height, double scale, int octaves,
-                                    double persistence, double lacunarity,
-                                    int seed = std::default_random_engine::default_seed) const
-    -> std::vector<std::vector<double>>;
+[[nodiscard]] auto generateNoiseMap(int width, int height, double scale, 
+                                   int octaves, double persistence, double lacunarity,
+                                   int seed = std::default_random_engine::default_seed) const
+    -> std::vector<std::vector<double>>
 ```
 
-Generates a 2D noise map using octave noise.
+Parameters:
 
-- **Parameters:**
-  - `width`, `height`: Dimensions of the noise map.
-  - `scale`: Scale of the noise (lower values create zoomed-out noise).
-  - `octaves`: Number of noise layers to combine.
-  - `persistence`: Amplitude multiplier for each octave.
-  - `lacunarity`: Frequency multiplier for each octave (not used in current implementation).
-  - `seed`: Seed for random number generation (default is the default seed of `std::default_random_engine`).
-- **Returns:** A 2D vector representing the noise map.
-- **Usage:**
+- `width`, `height` - Dimensions of the noise map
+- `scale` - Controls the "zoom level" of the noise (smaller values create more zoomed-out patterns)
+- `octaves` - Number of noise layers to combine
+- `persistence` - How quickly the amplitude diminishes for each octave
+- `lacunarity` - Currently unused parameter (intended to control frequency increase per octave)
+- `seed` - Optional seed value for the random offset, defaults to the standard random engine's default seed
 
-  ```cpp
-  atom::algorithm::PerlinNoise perlin;
-  auto noiseMap = perlin.generateNoiseMap(256, 256, 50.0, 4, 0.5, 2.0, 12345);
-  ```
+Returns:
 
-## OpenCL Support
+- A 2D vector containing noise values in range [0,1]
 
-The Perlin Noise implementation includes support for OpenCL-based GPU computation when the `USE_OPENCL` macro is defined. When OpenCL is available, the `noise` method will automatically use GPU acceleration for improved performance.
+Description:
+Generates a complete 2D noise map suitable for terrain generation, textures, or other applications requiring a grid of noise values. The method applies random offsets to avoid centered patterns.
 
-### OpenCL-specific Methods
+## Performance Considerations
 
-These methods are only available when `USE_OPENCL` is defined:
+1. OpenCL Acceleration: When compiled with `USE_OPENCL`, the implementation can leverage GPU computation for improved performance, especially for batch processing.
 
-- `initializeOpenCL()`: Initializes OpenCL context and resources.
-- `cleanupOpenCL()`: Cleans up OpenCL resources.
-- `noiseOpenCL()`: Computes Perlin noise using OpenCL.
+2. Octave Count: Higher octave counts produce more detailed noise but require more computation. For real-time applications, consider using lower octave counts.
 
-## SIMD Support
-
-The implementation includes SIMD (Single Instruction, Multiple Data) optimizations for the fade function calculations when the `USE_SIMD` macro is defined. This can significantly improve performance on CPUs that support SIMD instructions.
+3. Template Support: The implementation supports various floating-point types, but double precision is recommended for quality results.
 
 ## Example Usage
 
-Here's an example demonstrating how to use the PerlinNoise class to generate a noise map and use it to create a simple terrain heightmap:
-
 ```cpp
-#include "perlin.hpp"
+#include "atom/algorithm/perlin.hpp"
 #include <iostream>
-#include <vector>
-#include <algorithm>
+#include <fstream>
 
 int main() {
-    // Create a PerlinNoise object with a random seed
-    atom::algorithm::PerlinNoise perlin(12345);
-
-    // Generate a noise map
-    int width = 100;
-    int height = 100;
-    double scale = 25.0;
-    int octaves = 4;
-    double persistence = 0.5;
-    double lacunarity = 2.0;
-
-    auto noiseMap = perlin.generateNoiseMap(width, height, scale, octaves, persistence, lacunarity);
-
-    // Use the noise map to create a simple terrain heightmap
-    std::vector<std::vector<char>> terrain(height, std::vector<char>(width));
+    // Create a Perlin noise generator with a specific seed
+    atom::algorithm::PerlinNoise noise(42);
+    
+    // Generate a simple noise value
+    double value = noise.noise(0.5, 0.5, 0.0);
+    std::cout << "Simple noise value: " << value << std::endl;
+    
+    // Generate octave noise for more natural-looking results
+    double octaveValue = noise.octaveNoise(0.5, 0.5, 0.0, 4, 0.5);
+    std::cout << "Octave noise value: " << octaveValue << std::endl;
+    
+    // Generate a noise map for terrain
+    int width = 256;
+    int height = 256;
+    double scale = 50.0;
+    auto noiseMap = noise.generateNoiseMap(width, height, scale, 6, 0.5, 2.0);
+    
+    // Export the noise map as a simple PGM image (grayscale)
+    std::ofstream outFile("terrain.pgm");
+    outFile << "P2\n" << width << " " << height << "\n255\n";
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x) {
-            double value = noiseMap[y][x];
-            if (value < 0.3) terrain[y][x] = '~';  // Water
-            else if (value < 0.5) terrain[y][x] = '.';  // Sand
-            else if (value < 0.7) terrain[y][x] = '*';  // Grass
-            else if (value < 0.9) terrain[y][x] = '^';  // Hills
-            else terrain[y][x] = 'M';  // Mountains
+            // Convert from [0,1] to [0,255]
+            int pixelValue = static_cast<int>(noiseMap[y][x] * 255);
+            outFile << pixelValue << " ";
         }
+        outFile << "\n";
     }
-
-    // Print the terrain
-    for (const auto& row : terrain) {
-        for (char cell : row) {
-            std::cout << cell;
-        }
-        std::cout << '\n';
-    }
-
+    
+    std::cout << "Terrain map generated and saved as 'terrain.pgm'" << std::endl;
     return 0;
 }
 ```
+
+## Advanced Usage: Terrain Generation
+
+You can create realistic terrain heightmaps by adjusting the parameters:
+
+```cpp
+// Create more mountainous terrain with fine details
+double mountainScale = 150.0;
+int mountainOctaves = 8;
+double mountainPersistence = 0.65;
+auto mountainMap = noise.generateNoiseMap(width, height, mountainScale, 
+                                         mountainOctaves, mountainPersistence, 2.0, 123);
+
+// Create smoother, rolling hills
+double hillsScale = 100.0;
+int hillsOctaves = 4;
+double hillsPersistence = 0.4;
+auto hillsMap = noise.generateNoiseMap(width, height, hillsScale, 
+                                      hillsOctaves, hillsPersistence, 2.0, 456);
+
+// Combine multiple noise maps for more complex terrain
+std::vector<std::vector<double>> combinedMap(height, std::vector<double>(width));
+for (int y = 0; y < height; ++y) {
+    for (int x = 0; x < width; ++x) {
+        // Use one noise map to blend between two others
+        double blendFactor = noise.noise(x/300.0, y/300.0, 0.0);
+        combinedMap[y][x] = mountainMap[y][x] * blendFactor + 
+                           hillsMap[y][x] * (1.0 - blendFactor);
+    }
+}
+```
+
+This implementation provides a versatile foundation for procedural generation in games, simulations, and graphics applications.

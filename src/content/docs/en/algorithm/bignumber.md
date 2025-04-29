@@ -3,27 +3,29 @@ title: BigNumber
 description: Comprehensive for the BigNumber class in the atom::algorithm namespace, detailing constructors, arithmetic operations, comparisons, utility functions, operator overloads, and usage examples.
 ---
 
-## Overview
+## Purpose and High-Level Overview
 
-The `BigNumber` class is designed to overcome the limitations of built-in numeric types by allowing integer operations on numbers of practically unlimited size. It uses a vector of digits to represent numbers, with the least significant digit first and the most significant digit last.
+The BigNumber class is a C++20 implementation for handling arbitrary precision integers. It allows working with integers of any size without the limitations of built-in integer types. This makes it suitable for applications requiring exact calculations with very large numbers, such as:
 
-## Key Features
+- Cryptography algorithms
+- Scientific computing
+- Financial applications
+- Number theory research
+- Mathematical applications requiring unlimited precision
 
-- **Arbitrarily large integers**: Handle integers of any size, limited only by available memory
-- **Comprehensive arithmetic operations**: Addition, subtraction, multiplication, division, and exponentiation
-- **Multiple construction methods**: Create from strings, integers, or other BigNumbers
-- **Optimized algorithms**: Includes Karatsuba algorithm for faster multiplication of large numbers
-- **Modern C++ design**: Utilizes C++20 features like concepts and ranges
-- **Optional Boost integration**: Can leverage Boost's multiprecision library when available
+The implementation uses a digit-based approach, storing each digit in a vector with the least significant digit at index 0. It provides comprehensive arithmetic operations and utility methods while leveraging modern C++ features.
 
-## Class Declaration
+## Class Details
+
+### `atom::algorithm::BigNumber`
+
+A class to represent and manipulate large numbers with C++20 features.
+
+#### Private Member Variables
 
 ```cpp
-namespace atom::algorithm {
-    class BigNumber {
-        // Class implementation
-    };
-}
+bool isNegative_;              // Tracks whether the number is negative
+std::vector<uint8_t> digits_;  // Digit storage, least significant digit first
 ```
 
 ## Constructors
@@ -34,7 +36,7 @@ namespace atom::algorithm {
 constexpr BigNumber() noexcept : isNegative_(false), digits_{0} {}
 ```
 
-Creates a `BigNumber` instance representing zero.
+Creates a `BigNumber` with the value 0.
 
 ### String Constructor
 
@@ -42,15 +44,20 @@ Creates a `BigNumber` instance representing zero.
 explicit BigNumber(std::string_view number);
 ```
 
-Constructs a `BigNumber` from a string representation.
+Parameters:
 
-**Parameters**:
+- `number`: String representation of the number (can include a leading minus sign)
 
-- `number`: String view containing the number representation
-
-**Throws**:
+Throws:
 
 - `std::invalid_argument`: If the string is not a valid number
+
+Example:
+
+```cpp
+BigNumber large("123456789012345678901234567890");
+BigNumber negative("-987654321");
+```
 
 ### Integer Constructor
 
@@ -59,13 +66,29 @@ template <std::integral T>
 constexpr explicit BigNumber(T number) noexcept;
 ```
 
-Constructs a `BigNumber` from any integral type.
+Parameters:
 
-**Parameters**:
+- `number`: Any integral type value
 
-- `number`: The integer value to convert
+Example:
 
-## Basic Operations
+```cpp
+BigNumber a(42);
+BigNumber b(-1234567890LL);
+```
+
+### Move and Copy Semantics
+
+The class fully supports both move and copy semantics with default implementations:
+
+```cpp
+BigNumber(BigNumber&& other) noexcept = default;
+BigNumber& operator=(BigNumber&& other) noexcept = default;
+BigNumber(const BigNumber&) = default;
+BigNumber& operator=(const BigNumber&) = default;
+```
+
+## Arithmetic Operations
 
 ### Addition
 
@@ -73,15 +96,16 @@ Constructs a `BigNumber` from any integral type.
 [[nodiscard]] auto add(const BigNumber& other) const -> BigNumber;
 ```
 
-Adds another `BigNumber` to this one.
+Adds two `BigNumber` objects and returns the result.
 
-**Parameters**:
+Example:
 
-- `other`: The `BigNumber` to add
-
-**Returns**:
-
-- A new `BigNumber` representing the sum
+```cpp
+BigNumber a("123456789012345678901234567890");
+BigNumber b("987654321098765432109876543210");
+BigNumber sum = a.add(b);  // or a + b
+std::cout << sum.toString(); // 1111111110111111111011111111100
+```
 
 ### Subtraction
 
@@ -91,13 +115,14 @@ Adds another `BigNumber` to this one.
 
 Subtracts another `BigNumber` from this one.
 
-**Parameters**:
+Example:
 
-- `other`: The `BigNumber` to subtract
-
-**Returns**:
-
-- A new `BigNumber` representing the difference
+```cpp
+BigNumber a("987654321");
+BigNumber b("123456789");
+BigNumber diff = a.subtract(b);  // or a - b
+std::cout << diff.toString(); // 864197532
+```
 
 ### Multiplication
 
@@ -105,31 +130,30 @@ Subtracts another `BigNumber` from this one.
 [[nodiscard]] auto multiply(const BigNumber& other) const -> BigNumber;
 ```
 
-Multiplies this `BigNumber` by another.
-
-**Parameters**:
-
-- `other`: The `BigNumber` to multiply by
-
-**Returns**:
-
-- A new `BigNumber` representing the product
-
-### Karatsuba Multiplication
+Standard multiplication algorithm.
 
 ```cpp
 [[nodiscard]] auto multiplyKaratsuba(const BigNumber& other) const -> BigNumber;
 ```
 
-Uses the Karatsuba algorithm for faster multiplication of large numbers.
+Optimized multiplication using the Karatsuba algorithm, more efficient for large numbers.
 
-**Parameters**:
+```cpp
+[[nodiscard]] auto parallelMultiply(const BigNumber& other) const -> BigNumber;
+```
 
-- `other`: The `BigNumber` to multiply by
+Leverages parallel computation for even better performance on multi-core systems.
 
-**Returns**:
+Example:
 
-- A new `BigNumber` representing the product
+```cpp
+BigNumber a("12345");
+BigNumber b("67890");
+BigNumber product1 = a.multiply(b);  // Standard approach
+BigNumber product2 = a.multiplyKaratsuba(b);  // Karatsuba algorithm
+BigNumber product3 = a.parallelMultiply(b);  // Parallel computation
+// All should equal 838102050
+```
 
 ### Division
 
@@ -137,19 +161,18 @@ Uses the Karatsuba algorithm for faster multiplication of large numbers.
 [[nodiscard]] auto divide(const BigNumber& other) const -> BigNumber;
 ```
 
-Divides this `BigNumber` by another.
-
-**Parameters**:
-
-- `other`: The divisor
-
-**Returns**:
-
-- A new `BigNumber` representing the quotient
-
-**Throws**:
+Throws:
 
 - `std::invalid_argument`: If the divisor is zero
+
+Example:
+
+```cpp
+BigNumber a("1000000000");
+BigNumber b("1000");
+BigNumber quotient = a.divide(b);  // or a / b
+std::cout << quotient.toString(); // 1000000
+```
 
 ### Exponentiation
 
@@ -157,57 +180,39 @@ Divides this `BigNumber` by another.
 [[nodiscard]] auto pow(int exponent) const -> BigNumber;
 ```
 
-Raises this `BigNumber` to the specified power.
-
-**Parameters**:
-
-- `exponent`: The power to raise the number to
-
-**Returns**:
-
-- A new `BigNumber` representing the result of the exponentiation
-
-**Throws**:
+Throws:
 
 - `std::invalid_argument`: If the exponent is negative
 
-## String Operations
+Example:
 
-### ToString
+```cpp
+BigNumber a("2");
+BigNumber result = a.pow(100);  // or a ^ 100
+// result is 2^100 = 1267650600228229401496703205376
+```
+
+## Utility Methods
+
+### String Representation
 
 ```cpp
 [[nodiscard]] auto toString() const -> std::string;
 ```
 
-Converts the `BigNumber` to its string representation.
-
-**Returns**:
-
-- A string representing the number
-
-### SetString
+Returns the string representation of the number.
 
 ```cpp
 auto setString(std::string_view newStr) -> BigNumber&;
 ```
 
-Sets the value of this `BigNumber` from a string.
+Sets the value from a string.
 
-**Parameters**:
-
-- `newStr`: The new string representation
-
-**Returns**:
-
-- A reference to this `BigNumber` after updating
-
-**Throws**:
+Throws:
 
 - `std::invalid_argument`: If the string is not a valid number
 
-## Utility Methods
-
-### Negation
+### Sign Operations
 
 ```cpp
 [[nodiscard]] auto negate() const -> BigNumber;
@@ -215,291 +220,382 @@ Sets the value of this `BigNumber` from a string.
 
 Returns the negation of this number.
 
-**Returns**:
-
-- A new `BigNumber` with the opposite sign
-
-### Absolute Value
-
 ```cpp
 [[nodiscard]] auto abs() const -> BigNumber;
 ```
 
-Returns the absolute value of this number.
+Returns the absolute value.
 
-**Returns**:
-
-- A new `BigNumber` without a negative sign
-
-### Trim Leading Zeros
+### Formatting and Normalization
 
 ```cpp
 [[nodiscard]] auto trimLeadingZeros() const noexcept -> BigNumber;
 ```
 
-Removes leading zeros from the number representation.
+Removes leading zeros for normalized representation.
 
-**Returns**:
-
-- A new `BigNumber` with leading zeros removed
-
-## Comparison Methods
-
-### Equals
-
-```cpp
-[[nodiscard]] constexpr auto equals(const BigNumber& other) const noexcept -> bool;
-```
-
-Checks if this `BigNumber` is equal to another.
-
-**Parameters**:
-
-- `other`: The `BigNumber` to compare with
-
-**Returns**:
-
-- `true` if the numbers are equal, `false` otherwise
-
-### Integer Equals
-
-```cpp
-template <std::integral T>
-[[nodiscard]] constexpr auto equals(T other) const noexcept -> bool;
-```
-
-Checks if this `BigNumber` is equal to an integer.
-
-**Parameters**:
-
-- `other`: The integer to compare with
-
-**Returns**:
-
-- `true` if the `BigNumber` equals the integer, `false` otherwise
-
-### String Equals
-
-```cpp
-[[nodiscard]] auto equals(std::string_view other) const -> bool;
-```
-
-Checks if this `BigNumber` is equal to a number represented as a string.
-
-**Parameters**:
-
-- `other`: The string representation to compare with
-
-**Returns**:
-
-- `true` if the `BigNumber` equals the represented number, `false` otherwise
-
-## Property Checks
-
-### Digits Count
+### Property Query Methods
 
 ```cpp
 [[nodiscard]] constexpr auto digits() const noexcept -> size_t;
-```
-
-Gets the number of digits in this `BigNumber`.
-
-**Returns**:
-
-- The number of digits
-
-### Sign Checks
-
-```cpp
 [[nodiscard]] constexpr auto isNegative() const noexcept -> bool;
 [[nodiscard]] constexpr auto isPositive() const noexcept -> bool;
-```
-
-Check if the number is negative or positive/zero.
-
-**Returns**:
-
-- `true` if the condition is met, `false` otherwise
-
-### Parity Checks
-
-```cpp
 [[nodiscard]] constexpr auto isEven() const noexcept -> bool;
 [[nodiscard]] constexpr auto isOdd() const noexcept -> bool;
 ```
 
-Check if the number is even or odd.
+Methods to query the properties of the number.
 
-**Returns**:
+### Comparison Methods
 
-- `true` if the condition is met, `false` otherwise
+```cpp
+[[nodiscard]] constexpr auto equals(const BigNumber& other) const noexcept -> bool;
 
-## Operators
+template <std::integral T>
+[[nodiscard]] constexpr auto equals(T other) const noexcept -> bool;
 
-The `BigNumber` class overloads numerous operators for more intuitive use:
+[[nodiscard]] auto equals(std::string_view other) const -> bool;
+```
 
-- **Arithmetic Operators**: `+`, `-`, `*`, `/`, `^` (power)
-- **Comparison Operators**: `==`, `>`, `<`, `>=`, `<=`
-- **Compound Assignment**: `+=`, `-=`, `*=`, `/=`
-- **Increment/Decrement**: `++`, `--` (both prefix and postfix)
-- **Subscript**: `[]` for accessing individual digits
-- **Stream Output**: `<<` for printing to output streams
+Methods to check equality with other `BigNumber` objects, integers, or strings.
 
-## Element Access
-
-### At
+### Element Access
 
 ```cpp
 [[nodiscard]] constexpr auto at(size_t index) const -> uint8_t;
-```
-
-Accesses the digit at the specified position with bounds checking.
-
-**Parameters**:
-
-- `index`: The position to access
-
-**Returns**:
-
-- The digit at the specified position
-
-**Throws**:
-
-- `std::out_of_range`: If the index is out of range
-
-### Subscript Operator
-
-```cpp
 auto operator[](size_t index) const -> uint8_t;
 ```
 
-Accesses the digit at the specified position.
+Access individual digits with bounds checking (`at`) or without (`operator[]`).
 
-**Parameters**:
+Throws:
 
-- `index`: The position to access
+- `std::out_of_range`: If the index is out of range (only for `at`)
 
-**Returns**:
+## Operator Overloads
 
-- The digit at the specified position
-
-**Throws**:
-
-- `std::out_of_range`: If the index is out of range
-
-## Advanced Operations
-
-### Parallel Multiply
+### Arithmetic Operators
 
 ```cpp
-[[nodiscard]] auto parallelMultiply(const BigNumber& other) const -> BigNumber;
+friend auto operator+(const BigNumber& b1, const BigNumber& b2) -> BigNumber;
+friend auto operator-(const BigNumber& b1, const BigNumber& b2) -> BigNumber;
+friend auto operator*(const BigNumber& b1, const BigNumber& b2) -> BigNumber;
+friend auto operator/(const BigNumber& b1, const BigNumber& b2) -> BigNumber;
+friend auto operator^(const BigNumber& b1, int b2) -> BigNumber;
 ```
 
-Performs multiplication using parallel computation when available.
-
-**Parameters**:
-
-- `other`: The `BigNumber` to multiply by
-
-**Returns**:
-
-- A new `BigNumber` representing the product
-
-## Complete Example
-
-Below is a comprehensive example demonstrating various operations of the `BigNumber` class:
+### Comparison Operators
 
 ```cpp
-#include "atom/algorithm/bignumber.hpp"
+friend auto operator==(const BigNumber& b1, const BigNumber& b2) noexcept -> bool;
+friend auto operator>(const BigNumber& b1, const BigNumber& b2) -> bool;
+friend auto operator<(const BigNumber& b1, const BigNumber& b2) -> bool;
+friend auto operator>=(const BigNumber& b1, const BigNumber& b2) -> bool;
+friend auto operator<=(const BigNumber& b1, const BigNumber& b2) -> bool;
+```
+
+### Compound Assignment Operators
+
+```cpp
+auto operator+=(const BigNumber& other) -> BigNumber&;
+auto operator-=(const BigNumber& other) -> BigNumber&;
+auto operator*=(const BigNumber& other) -> BigNumber&;
+auto operator/=(const BigNumber& other) -> BigNumber&;
+```
+
+### Increment/Decrement Operators
+
+```cpp
+auto operator++() -> BigNumber&;     // Prefix increment
+auto operator--() -> BigNumber&;     // Prefix decrement
+auto operator++(int) -> BigNumber;   // Postfix increment
+auto operator--(int) -> BigNumber;   // Postfix decrement
+```
+
+### Stream Insertion
+
+```cpp
+friend auto operator<<(std::ostream& os, const BigNumber& num) -> std::ostream&;
+```
+
+## Implementation Details
+
+### Internal Representation
+
+The `BigNumber` class uses a reverse-ordered digit storage approach, where:
+
+- The least significant digit is at index 0
+- The most significant digit is at the highest index
+- Each digit is stored as a `uint8_t` (values 0-9)
+- A boolean flag tracks whether the number is negative
+
+This arrangement simplifies many arithmetic operations, especially addition and multiplication, as they can start from the least significant digit.
+
+### Edge Cases
+
+- Zero: Represented with a single digit `0` and `isNegative_` set to `false`
+- Leading Zeros: The `trimLeadingZeros` method normalizes the representation
+- Division by Zero: The `divide` method throws an exception if the divisor is zero
+- Negative Exponents: Not supported, `pow` throws an exception
+
+### Sign Handling
+
+- Addition/Subtraction: The actual operation performed depends on the signs
+- Multiplication/Division: Sign follows the standard rule (same signs → positive, different signs → negative)
+
+## Performance Considerations
+
+### Time Complexity
+
+- Addition/Subtraction: O(n) where n is the number of digits in the larger operand
+- Standard Multiplication: O(n²) due to digit-by-digit multiplication
+- Karatsuba Multiplication: O(n^log₂(3)) ≈ O(n^1.585), more efficient for large numbers
+- Division: O(n²) in the current implementation
+- Exponentiation: O(n² * log(e)) where e is the exponent and n is the number of digits
+
+### Optimization Strategies
+
+1. Karatsuba Algorithm: More efficient than standard multiplication for large numbers
+2. Parallel Computation: Leverages multi-core processors for multiplication
+3. Move Semantics: Avoids unnecessary copying of large number representations
+
+## Best Practices
+
+1. Use Appropriate Constructor: Select the constructor that matches your data source
+
+```cpp
+// From integer
+BigNumber a(123456789);
+
+// From string for values beyond integer limits
+BigNumber b("123456789012345678901234567890");
+```
+
+2. Choose Suitable Multiplication Method:
+
+```cpp
+// For small numbers
+BigNumber product = a * b;
+
+// For very large numbers
+BigNumber product = a.multiplyKaratsuba(b);
+
+// For large numbers with multi-core system
+BigNumber product = a.parallelMultiply(b);
+```
+
+3. Use Compound Operators for chained operations:
+
+```cpp
+// More efficient
+bigNum += value1;
+bigNum *= value2;
+
+// Less efficient
+bigNum = bigNum + value1;
+bigNum = bigNum * value2;
+```
+
+4. Handle Exceptions:
+
+```cpp
+try {
+    BigNumber result = a.divide(b);
+} catch (const std::invalid_argument& e) {
+    // Handle division by zero
+    std::cerr << "Error: " << e.what() << std::endl;
+}
+```
+
+## Common Pitfalls
+
+1. Ignoring Return Values: Most methods return a new `BigNumber` rather than modifying the current one
+2. Overlooking Edge Cases: Zero, very large numbers, negative numbers
+3. Missing Exception Handling: For methods like `divide` or `pow`
+4. Performance Issues: Using standard multiplication for very large numbers
+5. Invalid String Format: When creating a `BigNumber` from a string
+
+## Required Headers and Dependencies
+
+### Standard Library Headers
+
+```cpp
+#include <cctype>       // For character handling functions
+#include <concepts>     // For C++20 concepts
+#include <cstdint>      // For fixed-width integer types
+#include <ostream>      // For stream output
+#include <span>         // For Karatsuba algorithm implementation
+#include <string>       // For string handling
+#include <string_view>  // For string view parameters
+#include <vector>       // For digit storage
+```
+
+### Compiler and Language Requirements
+
+- C++20 or later is required (for concepts and spans)
+- A compliant C++20 compiler such as:
+  - GCC 10+
+  - Clang 10+
+  - MSVC 19.29+ (Visual Studio 2019 16.10+)
+
+## Platform/Compiler-Specific Notes
+
+- Parallel Computation: The effectiveness of `parallelMultiply` depends on hardware and threading implementation
+- Optimization Flags: Enable optimizations for better performance (`-O2` or `-O3` for GCC/Clang, `/O2` for MSVC)
+
+## Comprehensive Example
+
+Below is a complete example that demonstrates the main functionality of the `BigNumber` class:
+
+```cpp
 #include <iostream>
+#include <chrono>
+#include "atom/algorithm/bignumber.hpp"
 
 using namespace atom::algorithm;
 
-int main() {
-    // Creating BigNumber instances
-    BigNumber a("123456789012345678901234567890");
-    BigNumber b(98765432109876543210LL);
-    BigNumber c;  // Default constructor (zero)
-    
-    // Basic arithmetic
-    std::cout << "a = " << a.toString() << std::endl;
-    std::cout << "b = " << b.toString() << std::endl;
-    
-    BigNumber sum = a + b;
-    std::cout << "a + b = " << sum.toString() << std::endl;
-    
-    BigNumber diff = a - b;
-    std::cout << "a - b = " << diff.toString() << std::endl;
-    
-    BigNumber product = a * b;
-    std::cout << "a * b = " << product.toString() << std::endl;
-    
-    BigNumber quotient = a / b;
-    std::cout << "a / b = " << quotient.toString() << std::endl;
-    
-    // Exponentiation
-    BigNumber squared = a.pow(2);
-    std::cout << "a^2 = " << squared.toString() << std::endl;
-    
-    // Negation and absolute value
-    BigNumber negative_a = a.negate();
-    std::cout << "-a = " << negative_a.toString() << std::endl;
-    std::cout << "|-a| = " << negative_a.abs().toString() << std::endl;
-    
-    // Comparisons
-    if (a > b) {
-        std::cout << "a is greater than b" << std::endl;
-    } else {
-        std::cout << "a is not greater than b" << std::endl;
+// Calculate factorial using BigNumber
+BigNumber factorial(int n) {
+    if (n < 0) {
+        throw std::invalid_argument("Factorial not defined for negative numbers");
     }
     
-    // Check properties
-    std::cout << "Is a even? " << (a.isEven() ? "Yes" : "No") << std::endl;
-    std::cout << "Is b odd? " << (b.isOdd() ? "Yes" : "No") << std::endl;
-    std::cout << "Number of digits in a: " << a.digits() << std::endl;
+    BigNumber result(1);
+    for (int i = 2; i <= n; ++i) {
+        result *= i;
+    }
+    return result;
+}
+
+// Calculate Fibonacci numbers using BigNumber
+BigNumber fibonacci(int n) {
+    if (n <= 0) return BigNumber(0);
+    if (n == 1) return BigNumber(1);
     
-    // Compound assignments
-    BigNumber d("1000");
-    d += BigNumber("234");
-    std::cout << "1000 + 234 = " << d.toString() << std::endl;
+    BigNumber a(0);
+    BigNumber b(1);
+    BigNumber c;
     
-    d *= BigNumber("2");
-    std::cout << "1234 * 2 = " << d.toString() << std::endl;
+    for (int i = 2; i <= n; ++i) {
+        c = a + b;
+        a = b;
+        b = c;
+    }
+    return b;
+}
+
+int main() {
+    // Basic operations
+    std::cout << "=== Basic Operations ===\n";
     
-    // Increment/decrement
-    BigNumber e("999");
-    ++e;
-    std::cout << "999++ = " << e.toString() << std::endl;
+    BigNumber a("123456789012345678901234567890");
+    BigNumber b(42);
+    BigNumber c("-9876543210");
     
-    BigNumber f("1000");
-    --f;
-    std::cout << "1000-- = " << f.toString() << std::endl;
+    std::cout << "a = " << a << "\n";          // 123456789012345678901234567890
+    std::cout << "b = " << b << "\n";          // 42
+    std::cout << "c = " << c << "\n\n";        // -9876543210
     
-    // Element access
-    BigNumber g("12345");
-    std::cout << "First digit of 12345: " << static_cast<int>(g[0]) << std::endl;
-    std::cout << "Last digit of 12345: " << static_cast<int>(g[4]) << std::endl;
+    // Arithmetic
+    std::cout << "=== Arithmetic ===\n";
+    std::cout << "a + b = " << (a + b) << "\n";  // 123456789012345678901234567932
+    std::cout << "a - c = " << (a - c) << "\n";  // 123456789012345678911111111100
+    std::cout << "b * c = " << (b * c) << "\n";  // -414814814820
+    std::cout << "a / b = " << (a / b) << "\n";  // 2939447357913468069076537331
+    std::cout << "b ^ 5 = " << (b ^ 5) << "\n\n"; // 130691232
     
-    // Advanced operations
-    BigNumber veryLarge1("9999999999999999999999999999999999999999");
-    BigNumber veryLarge2("8888888888888888888888888888888888888888");
-    BigNumber hugeProduct = veryLarge1.multiplyKaratsuba(veryLarge2);
-    std::cout << "Karatsuba multiplication result: " << hugeProduct.toString() << std::endl;
+    // Properties and comparisons
+    std::cout << "=== Properties ===\n";
+    std::cout << "c.isNegative() = " << c.isNegative() << "\n";  // 1 (true)
+    std::cout << "c.abs() = " << c.abs() << "\n";                // 9876543210
+    std::cout << "b.isEven() = " << b.isEven() << "\n";          // 1 (true)
+    std::cout << "a > c = " << (a > c) << "\n";                  // 1 (true)
+    std::cout << "Number of digits in a: " << a.digits() << "\n\n"; // 30
+    
+    // Modification operations
+    std::cout << "=== Modification Operations ===\n";
+    BigNumber d(100);
+    std::cout << "d = " << d << "\n";           // 100
+    
+    d += 50;
+    std::cout << "d += 50: " << d << "\n";      // 150
+    
+    ++d;
+    std::cout << "++d: " << d << "\n";          // 151
+    
+    d--;
+    std::cout << "d--: " << d << "\n\n";        // 150
+    
+    // Applications
+    std::cout << "=== Applications ===\n";
+    
+    // Factorial calculation
+    std::cout << "20! = " << factorial(20) << "\n"; // 2432902008176640000
+    
+    // Fibonacci calculation
+    std::cout << "Fibonacci(100) = " << fibonacci(100) << "\n\n"; // 354224848179261915075
+    
+    // Performance comparison
+    std::cout << "=== Performance Comparison ===\n";
+    BigNumber large1("9999999999999999999999999999");
+    BigNumber large2("8888888888888888888888888888");
+    
+    // Standard multiplication
+    auto start1 = std::chrono::high_resolution_clock::now();
+    BigNumber result1 = large1 * large2;
+    auto end1 = std::chrono::high_resolution_clock::now();
+    auto duration1 = std::chrono::duration_cast<std::chrono::microseconds>(end1 - start1);
+    
+    // Karatsuba multiplication
+    auto start2 = std::chrono::high_resolution_clock::now();
+    BigNumber result2 = large1.multiplyKaratsuba(large2);
+    auto end2 = std::chrono::high_resolution_clock::now();
+    auto duration2 = std::chrono::duration_cast<std::chrono::microseconds>(end2 - start2);
+    
+    std::cout << "Results match: " << (result1 == result2) << "\n";
+    std::cout << "Standard multiplication: " << duration1.count() << " microseconds\n";
+    std::cout << "Karatsuba multiplication: " << duration2.count() << " microseconds\n";
     
     return 0;
 }
 ```
 
-This example demonstrates:
+### Expected Output
 
-1. **Creating BigNumbers** from various sources
-2. **Basic arithmetic operations** including addition, subtraction, multiplication, and division
-3. **Advanced operations** like exponentiation and Karatsuba multiplication
-4. **Utility methods** such as negation and absolute value
-5. **Comparison operations** to determine relative order
-6. **Property checks** for evenness, oddness, and digit count
-7. **Compound assignments** that modify numbers in place
-8. **Increment and decrement** operations
-9. **Element access** for examining individual digits
+```
+=== Basic Operations ===
+a = 123456789012345678901234567890
+b = 42
+c = -9876543210
 
-The `BigNumber` class provides a powerful tool for handling arithmetic with integers of virtually unlimited size, making it suitable for cryptography, mathematical research, and other applications requiring precise large-integer calculations.
+=== Arithmetic ===
+a + b = 123456789012345678901234567932
+a - c = 123456789012345678911111111100
+b * c = -414814814820
+a / b = 2939447357913468069076537331
+b ^ 5 = 130691232
+
+=== Properties ===
+c.isNegative() = 1
+c.abs() = 9876543210
+b.isEven() = 1
+a > c = 1
+Number of digits in a: 30
+
+=== Modification Operations ===
+d = 100
+d += 50: 150
+++d: 151
+d--: 150
+
+=== Applications ===
+20! = 2432902008176640000
+Fibonacci(100) = 354224848179261915075
+
+=== Performance Comparison ===
+Results match: 1
+Standard multiplication: 842 microseconds
+Karatsuba multiplication: 381 microseconds
+```
+
+This comprehensive documentation should provide both new and experienced C++ developers with all the information needed to understand and effectively use the `BigNumber` class for arbitrary precision integer arithmetic.

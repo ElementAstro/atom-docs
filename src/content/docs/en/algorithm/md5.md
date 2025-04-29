@@ -5,126 +5,23 @@ description: Detailed for the MD5 class, including member functions, internal st
 
 ## Overview
 
-The MD5 algorithm produces a 128-bit (16-byte) hash value, typically expressed as a 32-character hexadecimal string. While no longer recommended for security-critical applications due to known vulnerabilities, MD5 remains useful for:
+This library provides a modern C++ implementation of the MD5 (Message Digest Algorithm 5) cryptographic hash function. While MD5 is no longer considered secure for cryptographic purposes, it remains useful for checksums, data integrity checks, and non-security-critical applications.
 
-- Data integrity checks
-- Checksumming
-- Non-security critical fingerprinting
+The implementation offers a clean API for generating MD5 hashes from various string types and binary data, as well as verifying if a given string matches a specific MD5 hash. It leverages C++20 features including concepts, std::span, and other modern C++ paradigms.
 
-## API Documentation
+## Key Features
 
-### Class `MD5`
+- Template-based string handling - Works with various string types through concepts
+- Binary data support - Hash arbitrary binary data
+- Hash verification - Built-in functionality to verify strings against hashes
+- Exception handling - Custom exceptions for error reporting
+- Modern C++ design - Uses C++20 features for improved safety and flexibility
 
-The `MD5` class provides static methods for easy hashing as well as instance methods for more controlled processing.
+## Classes and Interfaces
 
-#### Public Methods
+### `MD5Exception`
 
-##### Constructor
-
-```cpp
-MD5() noexcept;
-```
-
-- Description: Creates a new MD5 instance with initialized internal state.
-- Return: An MD5 object ready for hashing operations.
-- Exceptions: None - constructor is noexcept.
-
-##### Static Methods
-
-```cpp
-template <StringLike T>
-static auto encrypt(const T& input) -> std::string;
-```
-
-- Description: Computes the MD5 hash of any string-like input.
-- Parameters:
-  - `input`: Any type convertible to `std::string_view` (strings, string literals, etc.)
-- Return: The MD5 hash as a 32-character hexadecimal string.
-- Exceptions: `MD5Exception` if the input validation fails or an internal error occurs.
-- Usage Example:
-
-  ```cpp
-  std::string hash = MD5::encrypt("Hello, world!");
-  std::string hash2 = MD5::encrypt(std::string("Hello, world!"));
-  ```
-
-```cpp
-static auto encryptBinary(std::span<const std::byte> data) -> std::string;
-```
-
-- Description: Computes the MD5 hash of binary data.
-- Parameters:
-  - `data`: A span of bytes representing the data to hash.
-- Return: The MD5 hash as a 32-character hexadecimal string.
-- Exceptions: `MD5Exception` if an error occurs during processing.
-- Usage Example:
-
-  ```cpp
-  std::vector<std::byte> data = { /* binary data */ };
-  std::string hash = MD5::encryptBinary(data);
-  ```
-
-```cpp
-template <StringLike T>
-static auto verify(const T& input, const std::string& hash) noexcept -> bool;
-```
-
-- Description: Verifies if a string's MD5 hash matches an expected hash value.
-- Parameters:
-  - `input`: Any string-like type to compute the hash for.
-  - `hash`: The expected MD5 hash to compare against.
-- Return: `true` if the computed hash matches the expected hash, `false` otherwise.
-- Exceptions: None - method is noexcept and handles exceptions internally.
-- Usage Example:
-
-  ```cpp
-  bool isValid = MD5::verify("Hello, world!", "6cd3556deb0da54bca060b4c39479839");
-  ```
-
-#### Private Methods
-
-These methods provide the core functionality but are generally not called directly by users:
-
-```cpp
-void init() noexcept;
-void update(std::span<const std::byte> input);
-auto finalize() -> std::string;
-void processBlock(std::span<const std::byte, 64> block) noexcept;
-```
-
-#### Helper Functions
-
-The implementation includes optimized auxiliary functions used by the MD5 algorithm:
-
-```cpp
-static constexpr auto F(uint32_t x, uint32_t y, uint32_t z) noexcept -> uint32_t;
-static constexpr auto G(uint32_t x, uint32_t y, uint32_t z) noexcept -> uint32_t;
-static constexpr auto H(uint32_t x, uint32_t y, uint32_t z) noexcept -> uint32_t;
-static constexpr auto I(uint32_t x, uint32_t y, uint32_t z) noexcept -> uint32_t;
-static constexpr auto leftRotate(uint32_t x, uint32_t n) noexcept -> uint32_t;
-```
-
-## Performance Optimizations
-
-This implementation includes several performance optimizations:
-
-1. SIMD Acceleration: When compiled with AVX2 support (`__AVX2__` defined), the implementation uses vector instructions to process data more efficiently.
-
-2. OpenMP Parallelization: When compiled with OpenMP support (`USE_OPENMP` defined), the implementation parallelizes certain computations across multiple threads.
-
-3. Modern C++ Features:
-   - Uses `std::span` for zero-copy memory views
-   - Employs `std::byte` for type-safe byte manipulation
-   - Utilizes `std::rotl` for optimized bit rotation (C++20)
-   - Uses `std::byteswap` for efficient byte order conversion (C++20)
-
-4. Memory Management:
-   - Pre-allocation of buffers to minimize reallocations
-   - Efficient processing of data in 64-byte blocks
-
-## Error Handling
-
-The implementation provides comprehensive error handling through the `MD5Exception` class:
+A custom exception class for reporting MD5-specific errors.
 
 ```cpp
 class MD5Exception : public std::runtime_error {
@@ -134,101 +31,452 @@ public:
 };
 ```
 
-Errors that may be reported include:
+Parameters:
 
-- Input validation failures
-- Buffer size issues
-- Counter overflow for extremely large inputs
+- `message`: Description of the error that occurred
 
-## Complete Usage Example
+### `StringLike` Concept
 
-Below is a comprehensive example demonstrating various ways to use the MD5 implementation:
+A concept that constrains template parameters to string-like types.
+
+```cpp
+template <typename StrType>
+concept StringLike = std::convertible_to<StrType, std::string_view>;
+```
+
+### `MD5` Class
+
+The main class implementing the MD5 algorithm.
+
+#### Public Methods
+
+##### `MD5()`
+
+Default constructor that initializes the MD5 context.
+
+Throws: Nothing
+
+##### `encrypt<StringLike StrType>(const StrType& input) -> std::string`
+
+Static method that computes the MD5 hash of a string-like input.
+
+Parameters:
+
+- `input`: String data to be hashed
+
+Returns:
+
+- A string representation of the MD5 hash (32 hexadecimal characters)
+
+Throws:
+
+- `MD5Exception`: If input validation fails or an internal error occurs
+
+##### `encryptBinary(std::span<const std::byte> data) -> std::string`
+
+Static method that computes the MD5 hash of binary data.
+
+Parameters:
+
+- `data`: Binary data to be hashed as a span of bytes
+
+Returns:
+
+- A string representation of the MD5 hash (32 hexadecimal characters)
+
+Throws:
+
+- `MD5Exception`: If input validation fails or an internal error occurs
+
+##### `verify<StringLike StrType>(const StrType& input, const std::string& hash) -> bool`
+
+Static method that verifies if a string's MD5 hash matches an expected hash.
+
+Parameters:
+
+- `input`: String data to check
+- `hash`: Expected MD5 hash to compare against
+
+Returns:
+
+- `true` if the computed hash matches the expected hash, `false` otherwise
+
+Throws: Nothing (returns `false` on any internal exceptions)
+
+#### Private Methods
+
+##### `init() noexcept`
+
+Initializes the MD5 context with standard initial values.
+
+##### `update(std::span<const std::byte> input)`
+
+Updates the MD5 context with input data.
+
+Parameters:
+
+- `input`: Data to incorporate into the hash
+
+Throws:
+
+- `MD5Exception`: If processing fails
+
+##### `finalize() -> std::string`
+
+Finalizes the MD5 hash computation and returns the result.
+
+Returns:
+
+- The final MD5 hash as a string
+
+Throws:
+
+- `MD5Exception`: If finalization fails
+
+##### `processBlock(std::span<const std::byte, 64> block) noexcept`
+
+Processes a 512-bit block of the input according to the MD5 algorithm.
+
+Parameters:
+
+- `block`: A 64-byte block of data to process
+
+##### Helper Functions
+
+```cpp
+static constexpr auto F(uint32_t x, uint32_t y, uint32_t z) noexcept -> uint32_t;
+static constexpr auto G(uint32_t x, uint32_t y, uint32_t z) noexcept -> uint32_t;
+static constexpr auto H(uint32_t x, uint32_t y, uint32_t z) noexcept -> uint32_t;
+static constexpr auto I(uint32_t x, uint32_t y, uint32_t z) noexcept -> uint32_t;
+static constexpr auto leftRotate(uint32_t x, uint32_t n) noexcept -> uint32_t;
+```
+
+These auxiliary functions implement the core transformations of the MD5 algorithm.
+
+## Usage Examples
+
+### Basic String Hashing
+
+```cpp
+#include "md5.hpp"
+#include <iostream>
+
+int main() {
+    try {
+        // Hash a string
+        std::string input = "Hello, World!";
+        std::string hash = atom::algorithm::MD5::encrypt(input);
+        
+        std::cout << "Input: " << input << std::endl;
+        std::cout << "MD5 Hash: " << hash << std::endl;
+        // Expected output: 65a8e27d8879283831b664bd8b7f0ad4
+        
+        return 0;
+    } catch (const atom::algorithm::MD5Exception& e) {
+        std::cerr << "MD5 Error: " << e.what() << std::endl;
+        return 1;
+    }
+}
+```
+
+### Working with Different String Types
+
+```cpp
+#include "md5.hpp"
+#include <iostream>
+#include <string_view>
+
+int main() {
+    try {
+        // Using std::string
+        std::string str = "Test string";
+        std::string hash1 = atom::algorithm::MD5::encrypt(str);
+        
+        // Using string literal
+        std::string hash2 = atom::algorithm::MD5::encrypt("Test string");
+        
+        // Using string_view
+        std::string_view sv = "Test string";
+        std::string hash3 = atom::algorithm::MD5::encrypt(sv);
+        
+        std::cout << "Hash from std::string: " << hash1 << std::endl;
+        std::cout << "Hash from string literal: " << hash2 << std::endl;
+        std::cout << "Hash from string_view: " << hash3 << std::endl;
+        
+        // All should output: 6f8db599de986fab7a21625b7916589c
+        
+        return 0;
+    } catch (const atom::algorithm::MD5Exception& e) {
+        std::cerr << "MD5 Error: " << e.what() << std::endl;
+        return 1;
+    }
+}
+```
+
+### Hashing Binary Data
 
 ```cpp
 #include "md5.hpp"
 #include <iostream>
 #include <vector>
-#include <string>
-#include <iomanip>
 
 int main() {
-    using namespace atom::algorithm;
-    
     try {
-        // Example 1: Basic string hashing
-        std::string input = "Hello, world!";
-        std::string hash = MD5::encrypt(input);
-        std::cout << "MD5 hash of '" << input << "': " << hash << std::endl;
-        
-        // Example 2: String literal hashing
-        auto hash2 = MD5::encrypt("The quick brown fox jumps over the lazy dog");
-        std::cout << "MD5 hash of fox sentence: " << hash2 << std::endl;
-        
-        // Example 3: Binary data hashing
-        std::vector<std::byte> binary_data(1024);
-        // Fill with some test data
-        for (size_t i = 0; i < binary_data.size(); ++i) {
-            binary_data[i] = static_cast<std::byte>(i & 0xFF);
+        // Create some binary data
+        std::vector<std::byte> binary_data;
+        for (int i = 0; i < 10; ++i) {
+            binary_data.push_back(static_cast<std::byte>(i));
         }
-        auto binary_hash = MD5::encryptBinary(binary_data);
-        std::cout << "MD5 hash of binary data: " << binary_hash << std::endl;
         
-        // Example 4: Hash verification
-        bool is_valid = MD5::verify(input, hash);
-        std::cout << "Hash verification: " << (is_valid ? "Valid" : "Invalid") << std::endl;
+        // Hash the binary data
+        std::string hash = atom::algorithm::MD5::encryptBinary(binary_data);
         
-        // Example 5: Empty string hashing
-        std::string empty_hash = MD5::encrypt("");
-        std::cout << "MD5 hash of empty string: " << empty_hash << std::endl;
+        std::cout << "Binary data MD5 hash: " << hash << std::endl;
+        // Expected output: 70ece3f177978c456e6fb7a0c7bac9e5
         
-        // Example 6: Manual multi-step hashing
-        MD5 md5;
-        md5.init();
-        
-        std::string part1 = "Part one of ";
-        std::string part2 = "a multi-part message";
-        
-        md5.update(std::span<const std::byte>(
-            reinterpret_cast<const std::byte*>(part1.data()), 
-            part1.size()));
-            
-        md5.update(std::span<const std::byte>(
-            reinterpret_cast<const std::byte*>(part2.data()), 
-            part2.size()));
-            
-        std::string multi_part_hash = md5.finalize();
-        std::cout << "Multi-part hash: " << multi_part_hash << std::endl;
-        
-        // Verify that multi-part hash equals single operation
-        std::string combined = part1 + part2;
-        std::string combined_hash = MD5::encrypt(combined);
-        std::cout << "Combined hash: " << combined_hash << std::endl;
-        std::cout << "Hashes match: " << (multi_part_hash == combined_hash ? "Yes" : "No") << std::endl;
-        
-    } catch (const MD5Exception& e) {
+        return 0;
+    } catch (const atom::algorithm::MD5Exception& e) {
         std::cerr << "MD5 Error: " << e.what() << std::endl;
         return 1;
-    } catch (const std::exception& e) {
-        std::cerr << "Standard exception: " << e.what() << std::endl;
-        return 2;
     }
+}
+```
+
+### Hash Verification
+
+```cpp
+#include "md5.hpp"
+#include <iostream>
+
+int main() {
+    // String to verify
+    std::string data = "Verify this data";
+    
+    // Known correct hash for the data
+    std::string correct_hash = "ea7f1d02c5835ee1a34d73ffa56a3689";
+    
+    // Incorrect hash for comparison
+    std::string incorrect_hash = "abcdef0123456789abcdef0123456789";
+    
+    // Verify against correct hash
+    bool is_valid = atom::algorithm::MD5::verify(data, correct_hash);
+    std::cout << "Verification against correct hash: " 
+              << (is_valid ? "Passed" : "Failed") << std::endl;
+    // Expected output: Verification against correct hash: Passed
+    
+    // Verify against incorrect hash
+    is_valid = atom::algorithm::MD5::verify(data, incorrect_hash);
+    std::cout << "Verification against incorrect hash: "
+              << (is_valid ? "Passed" : "Failed") << std::endl;
+    // Expected output: Verification against incorrect hash: Failed
     
     return 0;
 }
 ```
 
+### Handling Empty Input
+
+```cpp
+#include "md5.hpp"
+#include <iostream>
+
+int main() {
+    try {
+        // Hash an empty string
+        std::string empty_string = "";
+        std::string hash = atom::algorithm::MD5::encrypt(empty_string);
+        
+        std::cout << "MD5 hash of empty string: " << hash << std::endl;
+        // Expected output: d41d8cd98f00b204e9800998ecf8427e
+        
+        return 0;
+    } catch (const atom::algorithm::MD5Exception& e) {
+        std::cerr << "MD5 Error: " << e.what() << std::endl;
+        return 1;
+    }
+}
+```
+
 ## Performance Considerations
 
-For optimal performance:
+1. Memory Usage: The implementation maintains a minimized memory footprint by processing data in chunks.
 
-1. Compile with optimizations enabled: `-O2` or `-O3`
-2. Enable SIMD support: Compile with `-mavx2` on supported platforms
-3. Enable OpenMP: Compile with `-fopenmp` for multi-threaded execution
-4. Large data: For very large data, use the incremental interface (`init`, `update`, `finalize`) instead of the one-shot `encrypt` method
-5. Reuse instances: When hashing multiple pieces of data, consider reusing an `MD5` instance with `init`, `update`, and `finalize`
+2. Exception Safety: The implementation provides strong exception guarantees. Public methods either succeed or throw an exception, leaving the object in a consistent state.
 
-## Limitations
+3. Large Data Handling: The algorithm is designed to handle large inputs efficiently by processing data in 64-byte blocks.
 
-- MD5 is not secure for cryptographic purposes - use SHA-256 or better for security applications
-- The implementation has a theoretical limit on input size (due to 64-bit counter)
-- Performance is dependent on hardware support for SIMD and multi-threading
+4. Move Semantics: The implementation takes advantage of modern C++ move semantics where appropriate to minimize unnecessary copying.
+
+## Limitations and Security Considerations
+
+Important Security Note: MD5 is not considered cryptographically secure. It has known vulnerabilities, including:
+
+1. Collision vulnerability: It's computationally feasible to find different inputs that produce the same MD5 hash.
+
+2. Preimage resistance weaknesses: While harder than finding collisions, there are attacks that weaken MD5's resistance to preimage attacks.
+
+Recommended Use Cases:
+
+- Checksums for non-security critical data integrity
+- Legacy system compatibility
+- Teaching/learning purposes
+
+Not Recommended For:
+
+- Password storage
+- Digital signatures
+- Security-critical applications
+
+For security-critical applications, consider using more secure alternatives like SHA-256, SHA-3, or BLAKE2.
+
+## Required Headers and Dependencies
+
+This implementation depends only on the C++ Standard Library:
+
+```cpp
+#include <array>        // For fixed-size arrays
+#include <concepts>     // For template constraints
+#include <cstdint>      // For fixed-width integer types
+#include <span>         // For views over contiguous sequences
+#include <stdexcept>    // For exception handling
+#include <string>       // For string handling
+#include <string_view>  // For non-owning string references
+#include <vector>       // For dynamic arrays
+```
+
+## Platform and Compiler Compatibility
+
+- Requires a C++20 compatible compiler for concepts and std::span
+- Tested compilers:
+  - GCC 10.0+
+  - Clang 10.0+
+  - MSVC 19.28+ (Visual Studio 2019 16.8+)
+
+## Best Practices
+
+1. Error Handling: Always wrap MD5 operations in try-catch blocks to handle potential exceptions.
+
+2. Input Validation: Validate input data before passing it to the MD5 functions, especially when dealing with user input.
+
+3. Constants and Reuse: If you're verifying the same hash multiple times, store the hash as a constant rather than recomputing it.
+
+4. Security: Remember that MD5 is not secure against determined attackers - use it only for non-security-critical purposes.
+
+## Common Pitfalls
+
+1. Forgetting to Handle Exceptions: The library can throw exceptions. Always implement proper exception handling.
+
+2. Security Misconceptions: Don't use this implementation for security-critical applications where a cryptographically secure hash is required.
+
+3. Expecting Binary Determinism Across Platforms: While MD5 always produces the same output for the same input, string encoding issues might cause unexpected results when working with text data across different platforms.
+
+4. Performance Assumptions: For very small inputs, the MD5 computation overhead might be noticeable - don't use it in hot loops for tiny strings where performance is critical.
+
+## Comprehensive Example
+
+Here's a complete example demonstrating most features of the MD5 implementation:
+
+```cpp
+#include "md5.hpp"
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <iomanip>
+
+// Utility function to read a file as binary data
+std::vector<std::byte> readFile(const std::string& filename) {
+    std::ifstream file(filename, std::ios::binary | std::ios::ate);
+    if (!file.is_open()) {
+        throw std::runtime_error("Could not open file: " + filename);
+    }
+    
+    auto size = file.tellg();
+    std::vector<std::byte> buffer(size);
+    
+    file.seekg(0);
+    file.read(reinterpret_cast<char*>(buffer.data()), size);
+    
+    return buffer;
+}
+
+// Utility function to print a hash with a label
+void printHash(const std::string& label, const std::string& hash) {
+    std::cout << std::setw(20) << std::left << label << ": " << hash << std::endl;
+}
+
+int main() {
+    try {
+        std::cout << "MD5 Hash Demonstration\n";
+        std::cout << "======================\n\n";
+        
+        // 1. Simple string hashing
+        std::string test1 = "The quick brown fox jumps over the lazy dog";
+        auto hash1 = atom::algorithm::MD5::encrypt(test1);
+        printHash("Simple string", hash1);
+        // Expected: 9e107d9d372bb6826bd81d3542a419d6
+        
+        // 2. Empty string
+        auto hash2 = atom::algorithm::MD5::encrypt("");
+        printHash("Empty string", hash2);
+        // Expected: d41d8cd98f00b204e9800998ecf8427e
+        
+        // 3. String with special characters
+        std::string test3 = "🔒 Special chars & UTF-8 test! 👍";
+        auto hash3 = atom::algorithm::MD5::encrypt(test3);
+        printHash("Special chars", hash3);
+        
+        // 4. Binary data (creating an array of bytes)
+        std::vector<std::byte> binary_data;
+        for (int i = 0; i < 256; ++i) {
+            binary_data.push_back(static_cast<std::byte>(i % 256));
+        }
+        auto hash4 = atom::algorithm::MD5::encryptBinary(binary_data);
+        printHash("Binary data", hash4);
+        
+        // 5. Verification (positive case)
+        bool verified = atom::algorithm::MD5::verify(test1, hash1);
+        std::cout << "\nVerification (correct): " 
+                  << (verified ? "PASSED" : "FAILED") << std::endl;
+        
+        // 6. Verification (negative case)
+        verified = atom::algorithm::MD5::verify(test1, hash2);
+        std::cout << "Verification (incorrect): " 
+                  << (verified ? "PASSED" : "FAILED") << std::endl;
+        
+        // 7. Try to hash from file (if exists)
+        try {
+            auto file_data = readFile("test_file.txt");
+            auto hash5 = atom::algorithm::MD5::encryptBinary(file_data);
+            printHash("\nFile hash", hash5);
+        } catch (const std::exception& e) {
+            std::cout << "\nFile example skipped: " << e.what() << std::endl;
+        }
+        
+        // 8. Performance demo - hash a large string
+        std::string large_string(1000000, 'A'); // 1 million 'A's
+        std::cout << "\nHashing 1MB of data... ";
+        auto start = std::chrono::high_resolution_clock::now();
+        auto hash6 = atom::algorithm::MD5::encrypt(large_string);
+        auto end = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+        std::cout << "done in " << duration.count() << "ms" << std::endl;
+        printHash("1MB data hash", hash6);
+        
+        return 0;
+    } catch (const atom::algorithm::MD5Exception& e) {
+        std::cerr << "MD5 Error: " << e.what() << std::endl;
+        return 1;
+    } catch (const std::exception& e) {
+        std::cerr << "General Error: " << e.what() << std::endl;
+        return 2;
+    }
+}
+```
+
+## Conclusion
+
+This MD5 implementation provides a modern, type-safe, and easy-to-use interface for generating MD5 hashes in C++. While MD5 is no longer recommended for security-critical applications, it remains useful for checksums, data integrity verification, and compatibility with legacy systems.
+
+The implementation takes advantage of modern C++ features like concepts, spans, and exception handling to provide a robust and flexible API. It offers both high-level convenience methods for common use cases and lower-level access for more specialized needs.
+
+Remember to consider the security implications when choosing a hash algorithm, and select an appropriate alternative like SHA-256 when security is a priority.

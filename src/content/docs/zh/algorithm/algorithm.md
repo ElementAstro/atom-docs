@@ -30,17 +30,21 @@ explicit KMP(std::string_view pattern);
    - 返回：一个整数向量，表示文本中模式匹配的起始位置。
 
 2. `setPattern`
+
    ```cpp
    void setPattern(std::string_view pattern);
    ```
+
    设置新的搜索模式。
 
 #### 私有方法
 
 - `computeFailureFunction`
+
   ```cpp
   auto computeFailureFunction(std::string_view pattern) -> std::vector<int>;
   ```
+
   计算给定模式的失败函数（部分匹配表）。
 
 ### 布隆过滤器
@@ -82,9 +86,11 @@ explicit BloomFilter(std::size_t num_hash_functions);
 #### 私有方法
 
 - `hash`
+
   ```cpp
   auto hash(std::string_view element, std::size_t seed) const -> std::size_t;
   ```
+
   使用特定的种子计算元素的哈希值。
 
 ### 博耶-摩尔算法
@@ -112,9 +118,11 @@ explicit BoyerMoore(std::string_view pattern);
    - 返回：一个整数向量，表示文本中模式匹配的起始位置。
 
 2. `setPattern`
+
    ```cpp
    void setPattern(std::string_view pattern);
    ```
+
    设置新的搜索模式。
 
 #### 私有方法
@@ -128,9 +136,11 @@ explicit BoyerMoore(std::string_view pattern);
    计算当前模式的坏字符位移表。
 
 2. `computeGoodSuffixShift`
+
    ```cpp
    void computeGoodSuffixShift();
    ```
+
    计算当前模式的好后缀位移表。
 
 ## 使用示例

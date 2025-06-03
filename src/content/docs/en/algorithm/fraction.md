@@ -3,15 +3,15 @@ title: Fraction
 description: Comprehensive for the Fraction class in the atom::algorithm namespace, including constructors, arithmetic operations, comparisons, conversions, and usage examples.
 ---
 
-## 1. Purpose and High-Level Overview
+## Purpose and High-Level Overview
 
 The Fraction class library provides a comprehensive implementation for working with rational numbers (fractions) in C++. This library allows precise arithmetic operations without the loss of precision that occurs with floating-point calculations, making it ideal for financial calculations, scientific computations requiring exact rational arithmetic, and mathematical applications.
 
 The library implements a Fraction class that represents a mathematical fraction with numerator and denominator, along with a complete set of arithmetic operations, comparison operators, and utility functions. The implementation automatically reduces fractions to their simplest form and handles proper sign representation.
 
-## 2. Detailed Class and Method Documentation
+## Detailed Class and Method Documentation
 
-### 2.1 FractionException Class
+### FractionException Class
 
 ```cpp
 class FractionException : public std::runtime_error {
@@ -27,7 +27,7 @@ Methods:
 - Constructor: Creates a new exception with the given error message.
   - Parameters: `message` - A string describing the error.
 
-### 2.2 Fraction Class
+### Fraction Class
 
 ```cpp
 class Fraction {
@@ -37,7 +37,7 @@ class Fraction {
 
 Purpose: Represents a mathematical fraction with a numerator and denominator.
 
-#### 2.2.1 Constructors and Destructors
+#### Constructors and Destructors
 
 ```cpp
 constexpr Fraction(int n, int d);
@@ -62,7 +62,7 @@ constexpr Fraction(Fraction&&) noexcept = default;
 
 - Copy and Move constructors: Standard constructors that copy or move fraction values.
 
-#### 2.2.2 Assignment Operators
+#### Assignment Operators
 
 ```cpp
 constexpr Fraction& operator=(const Fraction&) noexcept = default;
@@ -71,7 +71,7 @@ constexpr Fraction& operator=(Fraction&&) noexcept = default;
 
 - Standard copy and move assignment operators.
 
-#### 2.2.3 Accessors
+#### Accessors
 
 ```cpp
 [[nodiscard]] constexpr int getNumerator() const noexcept;
@@ -84,7 +84,7 @@ constexpr Fraction& operator=(Fraction&&) noexcept = default;
 - `getDenominator()`: Returns the denominator of the fraction.
   - Return Value: The denominator as an integer.
 
-#### 2.2.4 Arithmetic Operators
+#### Arithmetic Operators
 
 ```cpp
 Fraction& operator+=(const Fraction& other);
@@ -128,7 +128,7 @@ Fraction& operator/=(const Fraction& other);
 - Unary operators (`+`, `-`): These return copies or negations of the current fraction.
   - Return Value: A new fraction with the appropriate sign
 
-#### 2.2.5 Comparison Operators
+#### Comparison Operators
 
 ```cpp
 #if __cplusplus >= 202002L
@@ -156,7 +156,7 @@ Fraction& operator/=(const Fraction& other);
   - Parameters: `other` - The fraction to compare with
   - Return Value: Boolean indicating equality or inequality
 
-#### 2.2.6 Type Conversion
+#### Type Conversion
 
 ```cpp
 [[nodiscard]] constexpr explicit operator double() const noexcept;
@@ -181,7 +181,7 @@ Fraction& operator/=(const Fraction& other);
 - `toDouble()`: Converts the fraction to a double value.
   - Return Value: Fraction value as a double
 
-#### 2.2.7 Utility Methods
+#### Utility Methods
 
 ```cpp
 Fraction& invert();
@@ -213,7 +213,7 @@ Fraction& invert();
   - Return Value: `std::optional<Fraction>` containing the result, or `std::nullopt` if the operation cannot be performed
   - Notes: Handles negative exponents by inverting the fraction
 
-#### 2.2.8 Static Methods
+#### Static Methods
 
 ```cpp
 [[nodiscard]] static std::optional<Fraction> fromString(std::string_view str) noexcept;
@@ -223,7 +223,7 @@ Fraction& invert();
   - Parameters: `str` - String in format "numerator/denominator" or just "numerator"
   - Return Value: `std::optional<Fraction>` containing the parsed fraction, or `std::nullopt` if parsing fails
 
-#### 2.2.9 Boost Integration (Optional)
+#### Boost Integration (Optional)
 
 ```cpp
 #ifdef ATOM_USE_BOOST_RATIONAL
@@ -238,7 +238,7 @@ explicit Fraction(const boost::rational<int>& r);
 - Constructor from `boost::rational`: Creates a fraction from a `boost::rational`.
   - Parameters: `r` - The `boost::rational` to convert from
 
-#### 2.2.10 Stream Operators
+#### Stream Operators
 
 ```cpp
 friend auto operator<<(std::ostream& os, const Fraction& f) -> std::ostream&;
@@ -258,7 +258,7 @@ friend auto operator>>(std::istream& is, Fraction& f) -> std::istream&;
   - Return Value: Reference to the input stream
   - Throws: `FractionException` if the input format is invalid or denominator is zero
 
-### 2.3 Free Functions
+### Free Functions
 
 ```cpp
 [[nodiscard]] inline constexpr Fraction makeFraction(int value) noexcept;
@@ -281,9 +281,9 @@ friend auto operator>>(std::istream& is, Fraction& f) -> std::istream&;
   - Return Value: A fraction with the given value as numerator and 1 as denominator
   - Usage: `3_fr` creates a fraction equivalent to 3/1
 
-## 3. Key Features with Code Examples
+## Key Features with Code Examples
 
-### 3.1 Basic Fraction Creation and Arithmetic
+### Basic Fraction Creation and Arithmetic
 
 ```cpp
 #include <iostream>
@@ -314,7 +314,7 @@ int main() {
 }
 ```
 
-### 3.2 Fraction Comparison and Type Conversion
+### Fraction Comparison and Type Conversion
 
 ```cpp
 #include <iostream>
@@ -348,7 +348,7 @@ int main() {
 }
 ```
 
-### 3.3 Utility Functions and Special Operations
+### Utility Functions and Special Operations
 
 ```cpp
 #include <iostream>
@@ -390,9 +390,9 @@ int main() {
 }
 ```
 
-## 4. Implementation Details and Edge Cases
+## Implementation Details and Edge Cases
 
-### 4.1 Fraction Reduction
+### Fraction Reduction
 
 The class automatically reduces fractions to their simplest form using the Greatest Common Divisor (GCD) algorithm. This happens in the constructor and after any arithmetic operation.
 
@@ -415,7 +415,7 @@ void Fraction::reduce() noexcept {
 }
 ```
 
-### 4.2 Handling of Special Cases
+### Handling of Special Cases
 
 The implementation handles several edge cases carefully:
 
@@ -429,7 +429,7 @@ The implementation handles several edge cases carefully:
 
 5. Zero Fraction: A zero fraction is always represented as 0/1.
 
-## 5. Performance Considerations
+## Performance Considerations
 
 1. Memory Usage: The `Fraction` class uses two `int` values, so its size is typically 8 bytes. This is more memory-efficient than using `double` for representing exact rational values.
 
@@ -439,9 +439,9 @@ The implementation handles several edge cases carefully:
 
 4. Constexpr Support: Many functions are marked as `constexpr` to enable compile-time computation when possible, which can improve runtime performance.
 
-## 6. Best Practices and Common Pitfalls
+## Best Practices and Common Pitfalls
 
-### 6.1 Best Practices
+### Best Practices
 
 1. Use Factory Functions for Safety:
 
@@ -474,7 +474,7 @@ The implementation handles several edge cases carefully:
    }
    ```
 
-### 6.2 Common Pitfalls
+### Common Pitfalls
 
 1. Integer Overflow: When multiplying fractions with large numerators or denominators, overflow may occur.
 
@@ -500,9 +500,9 @@ The implementation handles several edge cases carefully:
    Fraction c = a / b;  // Throws FractionException
    ```
 
-## 7. Required Headers and Dependencies
+## Required Headers and Dependencies
 
-### 7.1 Standard Library Dependencies
+### Standard Library Dependencies
 
 The `Fraction` class relies on the following standard C++ headers:
 
@@ -516,7 +516,7 @@ The `Fraction` class relies on the following standard C++ headers:
 #include <string_view> // For std::string_view
 ```
 
-### 7.2 Optional External Dependencies
+### Optional External Dependencies
 
 ```cpp
 // Optional Boost dependency
@@ -528,7 +528,7 @@ The `Fraction` class relies on the following standard C++ headers:
 - The library optionally integrates with Boost's `rational` template for interoperability with Boost code.
 - To enable this integration, define the macro `ATOM_USE_BOOST_RATIONAL` before including the header.
 
-## 8. Platform and Compiler Considerations
+## Platform and Compiler Considerations
 
 1. C++ Standard Version:
    - The library provides specialized implementations for different C++ standards.
@@ -544,7 +544,7 @@ The `Fraction` class relies on the following standard C++ headers:
    - The implementation avoids platform-specific features, making it portable across different operating systems.
    - Integer overflow handling may vary across platforms, but the implementation includes checks to minimize differences.
 
-## 9. Comprehensive Example
+## Comprehensive Example
 
 The following example demonstrates the major features of the `Fraction` class in a complete application:
 
@@ -730,7 +730,7 @@ int main() {
 
 Expected Output:
 
-```
+```txt
 === Fraction Class Demonstration ===
 
 === Creation Methods ===

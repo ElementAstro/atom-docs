@@ -172,6 +172,7 @@ enum class Connectivity : uint8_t {
 - **8-Connected**: Employs the Moore neighborhood using Chebyshev distance (max(|Δx|, |Δy|) ≤ 1, including diagonals)
 
 **Practical Implications**:
+
 - 4-way connectivity preserves geometric properties for applications requiring strict orthogonal relationships
 - 8-way connectivity provides more natural region boundaries for image processing and computer vision tasks
 
@@ -199,6 +200,7 @@ concept Grid = requires(T t, size_t i) {
 5. **Iterator Compliance**: Full compliance with C++20 ranges specification
 
 **Supported Container Types**:
+
 - `std::vector<std::vector<T>>` (recommended for dynamic sizing)
 - `std::array<std::array<T, N>, M>` (optimal for compile-time known dimensions)
 - Custom container implementations meeting the Grid concept requirements
@@ -226,18 +228,21 @@ static void fillBFS(
 ```
 
 **Algorithm Characteristics**:
+
 - **Traversal Strategy**: Level-order exploration using FIFO queue data structure
 - **Space Complexity**: O(w) where w represents the maximum width of any single level
 - **Time Complexity**: O(n) where n equals the total number of target-colored cells
 - **Memory Access Pattern**: Cache-friendly due to spatial locality of breadth-first exploration
 
 **Technical Implementation Details**:
+
 - Utilizes `std::queue<std::pair<int, int>>` for coordinate management
 - Implements early termination optimization when target equals fill color
 - Provides deterministic filling pattern suitable for animated visualizations
 - Maintains strict bounds checking with configurable assertion levels
 
 **Parameters**:
+
 - `grid`: Mutable reference to 2D container satisfying Grid concept requirements
 - `start_x`, `start_y`: Zero-based coordinates defining the flood fill seed point
 - `target_color`: Value to be replaced (type must support equality comparison)
@@ -245,6 +250,7 @@ static void fillBFS(
 - `conn`: Neighborhood connectivity model (default: orthogonal 4-way)
 
 **Exception Safety**:
+
 - **Basic Guarantee**: Grid remains in valid state upon exception
 - **Throws**: `std::invalid_argument` for invalid coordinates or empty grid
 - **Strong Exception Safety**: No modifications occur if validation fails
@@ -264,12 +270,14 @@ static void fillDFS(
 ```
 
 **Algorithm Characteristics**:
+
 - **Traversal Strategy**: Depth-first exploration using explicit LIFO stack (non-recursive)
 - **Space Complexity**: O(h) where h represents the maximum depth of any exploration path
 - **Time Complexity**: O(n) with potentially better cache performance for narrow regions
 - **Memory Access Pattern**: Follows connected paths completely before backtracking
 
 **Implementation Optimizations**:
+
 - Explicit stack implementation prevents stack overflow in deep recursions
 - Tail-call optimization equivalent through iterative design
 - Memory-efficient for regions with high aspect ratios
@@ -291,18 +299,21 @@ static void fillParallel(
 ```
 
 **Parallel Architecture**:
+
 - **Decomposition Strategy**: Region-based work distribution with load balancing
 - **Synchronization Mechanism**: Fine-grained locking using `std::mutex` per grid access
 - **Thread Pool Management**: Dynamic thread creation with automatic resource cleanup
 - **Scalability Profile**: Near-linear speedup for large grids (> 50,000 cells)
 
 **Performance Considerations**:
+
 - **Thread Overhead**: Minimum grid size threshold of 10,000 cells recommended
 - **Memory Contention**: Optimized access patterns to minimize cache line conflicts
 - **Load Balancing**: Dynamic work stealing implementation for irregular region shapes
 - **NUMA Awareness**: Thread affinity optimization for multi-socket systems
 
 **Advanced Parameters**:
+
 - `num_threads`: Thread pool size (default: `std::thread::hardware_concurrency()`)
   - Range: [1, 64] threads (implementation-defined maximum)
   - Optimal value: 1-2× CPU core count for compute-bound workloads
@@ -369,6 +380,7 @@ static void fillDFS(
 **Direction Vector Mappings**:
 
 **4-Way Connectivity (Von Neumann)**:
+
 ```cpp
 // Cardinal directions with unit Manhattan distance
 std::vector<std::pair<int, int>> directions = {
@@ -380,6 +392,7 @@ std::vector<std::pair<int, int>> directions = {
 ```
 
 **8-Way Connectivity (Moore)**:
+
 ```cpp
 // All adjacent cells including diagonals
 std::vector<std::pair<int, int>> directions = {

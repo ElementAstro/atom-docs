@@ -104,6 +104,7 @@ Compression:     27 chars → 6 pairs = 77.8% reduction
 #### Parallel Processing Strategy
 
 **Work Distribution Algorithm:**
+
 1. **Matrix Segmentation**: Divide matrix into horizontal strips (optimal for cache locality)
 2. **Independent Processing**: Each thread processes contiguous row ranges
 3. **Result Aggregation**: Concatenate compressed segments with minimal overhead
@@ -131,6 +132,7 @@ concept MatrixLike = requires(T m) {
 ```
 
 **Compile-time Validation:**
+
 - Ensures matrix-like structure with O(1) random access
 - Validates character-convertible element types
 - Prevents accidental usage with incompatible data structures
@@ -485,6 +487,7 @@ static auto upsample(const MatrixType& matrix, std::uint32_t factor) -> Matrix;
 | 4096×4096 | 16 threads | 11.2ms | **8.64x** | 97% | 54.0% |
 
 **Key Insights:**
+
 - **Optimal Thread Count**: 4-8 threads for most workloads (diminishing returns beyond CPU core count)
 - **Scaling Efficiency**: >80% up to 4 threads, >70% up to 8 threads
 - **Memory Bandwidth**: Becomes limiting factor for matrices >4096×4096
@@ -503,6 +506,7 @@ static auto upsample(const MatrixType& matrix, std::uint32_t factor) -> Matrix;
 #### Game Development Use Case
 
 **Scenario**: Procedural terrain compression for open-world game
+
 - **Matrix Size**: 2048×2048 terrain tiles
 - **Character Set**: 16 terrain types (4-bit entropy)
 - **Performance Requirement**: <50ms compression for real-time streaming
@@ -534,6 +538,7 @@ struct TerrainTile {
 ```
 
 **Production Results:**
+
 - **Average Compression Time**: 31.2ms (8-thread parallel)
 - **Compression Ratio**: 0.28 (72% size reduction)
 - **Memory Savings**: 180GB → 50GB for world data
@@ -542,11 +547,13 @@ struct TerrainTile {
 #### Scientific Computing Application
 
 **Scenario**: Sparse matrix storage for finite element analysis
+
 - **Matrix Size**: 4096×4096 coefficient matrices
 - **Sparsity Pattern**: 85-95% zeros (extremely low entropy)
 - **Accuracy Requirement**: Lossless compression mandatory
 
 **Performance Profile:**
+
 ```cpp
 // High-performance scientific computing integration
 namespace fem::storage {
@@ -574,6 +581,7 @@ public:
 ```
 
 **Empirical Results:**
+
 - **Compression Ratio**: 0.06 (94% reduction) for typical FEM matrices
 - **Reconstruction Accuracy**: MSE < 1e-15 (machine precision)
 - **Storage Reduction**: 2.5TB → 150GB for simulation dataset
@@ -582,6 +590,7 @@ public:
 #### Image Processing Pipeline
 
 **Scenario**: Binary mask compression for computer vision
+
 - **Matrix Size**: 1920×1080 to 3840×2160 image masks
 - **Data Characteristics**: Binary (0/1) with region connectivity
 - **Processing Volume**: 1000+ images per batch
@@ -596,6 +605,7 @@ public:
 | 3840×2160 | Complex (detailed edges) | **0.29** | 32.1ms | 31 images/sec |
 
 **Production Integration:**
+
 ```cpp
 // Computer vision pipeline optimization
 class MaskProcessor {
@@ -663,6 +673,7 @@ public:
 ```
 
 **Performance Characteristics:**
+
 - **Latency**: <10ms per 1024×1024 sensor grid
 - **Throughput**: 500+ grids/second sustained
 - **Memory Overhead**: <50MB working set

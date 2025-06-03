@@ -8,11 +8,13 @@ description: Professional-grade C++ library for statistical measurement error ca
 ### 🚀 Essential Setup (5 minutes)
 
 #### Prerequisites
+
 - C++20 compliant compiler (GCC 10+, Clang 12+, MSVC 19.29+)
 - CMake 3.20+ for build configuration
 - Optional: Intel TBB for enhanced parallelization
 
 #### Installation
+
 ```bash
 # Clone and build
 git clone https://github.com/atom-library/atom-algorithm.git
@@ -23,6 +25,7 @@ make -j$(nproc)
 ```
 
 #### Minimal Working Example
+
 ```cpp
 #include "atom/algorithm/error_calibration.hpp"
 #include <vector>
@@ -57,6 +60,7 @@ int main() {
 | `outlierDetection()` | Data quality assurance | Automated QC, anomaly detection |
 
 ### ⚡ Performance Optimization Quick Setup
+
 ```cpp
 // For high-throughput applications
 #define USE_SIMD           // Enable vectorization
@@ -72,6 +76,7 @@ ErrorCalibration<float> calibrator;  // Use float for 2x memory efficiency
 The **Error Calibration Library** implements industry-standard statistical calibration algorithms for precision measurement instrumentation. This library addresses systematic measurement errors through mathematically rigorous calibration models, providing traceability and compliance with international metrology standards (ISO/IEC 17025, NIST SP 811).
 
 ### Primary Applications
+
 - **Analytical Instrumentation**: HPLC, GC-MS, XRF spectrometers
 - **Environmental Monitoring**: Air quality sensors, water analysis equipment  
 - **Industrial Process Control**: Flow meters, level sensors, pressure transducers
@@ -81,25 +86,30 @@ The **Error Calibration Library** implements industry-standard statistical calib
 ### Technical Capabilities
 
 #### Mathematical Models
+
 - **Linear Calibration**: Least squares regression with Gauss-Markov optimality
 - **Polynomial Calibration**: Levenberg-Marquardt nonlinear optimization
 - **Exponential/Logarithmic Models**: Maximum likelihood estimation
 - **Power Law Calibration**: Weighted least squares for heteroscedastic data
 
 #### Statistical Analysis Framework
+
 - **Goodness-of-fit**: R², adjusted R², AIC/BIC model selection
 - **Uncertainty Quantification**: Bootstrap confidence intervals (Efron & Tibshirani methodology)
 - **Outlier Detection**: Modified Z-score and Grubbs' test implementations
 - **Cross-validation**: K-fold and leave-one-out validation protocols
 
 #### High-Performance Computing
+
 - **SIMD Vectorization**: AVX2/AVX-512 (x86), NEON (ARM) acceleration
 - **Parallel Processing**: OpenMP-based thread parallelism
 - **Memory Optimization**: Memory pool allocators, cache-friendly algorithms
 - **Asynchronous Processing**: C++20 coroutines for non-blocking operations
 
 ### Measurement Uncertainty Compliance
+
 The library implements uncertainty propagation according to the **Guide to the Expression of Uncertainty in Measurement (GUM)**, providing:
+
 - Type A uncertainty evaluation (statistical analysis)
 - Type B uncertainty evaluation (systematic effects)
 - Combined standard uncertainty calculation
@@ -110,6 +120,7 @@ The library implements uncertainty propagation according to the **Guide to the E
 ### Mandatory Requirements
 
 #### Compiler Specifications
+
 ```cpp
 // Minimum compiler versions with C++20 feature support
 // GCC 10.1+ (full concepts and coroutines support)
@@ -125,6 +136,7 @@ The library implements uncertainty propagation according to the **Guide to the E
 ```
 
 #### Core Dependencies
+
 ```cpp
 // Standard Library Headers (C++20)
 #include <algorithm>        // Parallel STL algorithms
@@ -146,6 +158,7 @@ The library implements uncertainty propagation according to the **Guide to the E
 ### High-Performance Extensions
 
 #### SIMD Acceleration Support
+
 ```cpp
 // Intel x86/x64 platforms
 #ifdef USE_SIMD
@@ -169,6 +182,7 @@ The library implements uncertainty propagation according to the **Guide to the E
 ```
 
 #### External Library Integration
+
 ```cpp
 // Atom framework dependencies
 #include "atom/async/pool.hpp"      // High-performance thread pool
@@ -195,6 +209,7 @@ The library implements uncertainty propagation according to the **Guide to the E
 ### Platform-Specific Configuration
 
 #### Build System Requirements
+
 ```cmake
 # CMakeLists.txt configuration example
 cmake_minimum_required(VERSION 3.20)
@@ -220,6 +235,7 @@ find_package(TBB OPTIONAL)
 ```
 
 #### Memory Requirements
+
 - **Minimum RAM**: 512MB available memory
 - **Recommended RAM**: 2GB+ for large datasets (>10,000 points)
 - **Memory Usage**: ~O(n) where n = number of calibration points
@@ -642,17 +658,19 @@ enum class OutlierMethod { ZScore, ModifiedZScore, IQR, Grubbs };
     return {mean_residual, dispersion_measure, effective_threshold};
 }
 ```
-auto levenbergMarquardt(const std::vector<T>& x, 
+
+auto levenbergMarquardt(const std::vector<T>& x,
                       const std::vector<T>& y,
                       NonlinearFunction func,
                       std::vector<T> initial_params,
-                      int max_iterations = 100, 
+                      int max_iterations = 100,
                       T lambda = 0.01,
                       T epsilon = 1e-8) -> std::vector<T>;
 
 // Solve system of linear equations (when not using Boost)
 auto solveLinearSystem(const std::vector<std::vector<T>>& A,
                      const std::vector<T>& b) -> std::vector<T>;
+
 ```
 
 ### `AsyncCalibrationTask<T>` Class

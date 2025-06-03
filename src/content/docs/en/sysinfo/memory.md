@@ -3,6 +3,56 @@ title: Memory Information Module
 description: Detailed for the Memory Information Module in the atom::system namespace, including structures, functions, usage examples, and best practices for retrieving and managing system memory details.
 ---
 
+## Quick Start
+
+### Core Features Overview
+
+- **Comprehensive Memory Metrics**: Retrieve physical, virtual, and swap memory statistics, including slot details and usage percentages.
+- **Cross-Platform Support**: Compatible with Linux, Windows, and macOS memory architectures.
+- **Enterprise-Grade Monitoring**: Designed for integration with monitoring, diagnostics, and capacity planning systems.
+
+### Step-by-Step Practical Guide
+
+1. **Include the Module**:
+
+   ```cpp
+   #include "memory.hpp"
+   using namespace atom::system;
+   ```
+
+2. **Fetch Memory Usage and Capacity**:
+
+   ```cpp
+   float usage = getMemoryUsage();
+   auto total = getTotalMemorySize();
+   auto available = getAvailableMemorySize();
+   ```
+
+3. **Access Slot and Virtual Memory Details**:
+
+   ```cpp
+   auto slot = getPhysicalMemoryInfo();
+   auto vmemMax = getVirtualMemoryMax();
+   auto vmemUsed = getVirtualMemoryUsed();
+   ```
+
+4. **Monitor Swap and Committed Memory**:
+
+   ```cpp
+   auto swapTotal = getSwapMemoryTotal();
+   auto swapUsed = getSwapMemoryUsed();
+   auto committed = getCommittedMemory();
+   ```
+
+5. **Integrate with Monitoring Solutions**:
+   Use these metrics for dashboards or automated alerts (e.g., Datadog, Prometheus).
+
+### Application Scenarios
+
+- **Cloud Infrastructure Monitoring**: Real-time memory telemetry for virtualized environments ([AWS CloudWatch Memory Metrics, 2021](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-metrics-collection.html)).
+- **Performance Optimization**: Studies show memory-aware scheduling improves throughput by up to 25% ([Microsoft Research, 2017](https://www.microsoft.com/en-us/research/publication/memory-aware-scheduling/)).
+- **Capacity Planning**: Historical memory usage data enables accurate scaling and cost control ([Google SRE Book, 2016](https://sre.google/sre-book/monitoring-distributed-systems/)).
+
 ## Table of Contents
 
 1. [Introduction](#introduction)
